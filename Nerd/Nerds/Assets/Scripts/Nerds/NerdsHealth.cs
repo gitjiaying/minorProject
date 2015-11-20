@@ -19,7 +19,7 @@ public class NerdsHealth : MonoBehaviour {
 
 	}
 
-    public void TakeDamage(int amount, Vector3 hitPoint)
+    public void TakeDamage(int amount)
     {
         if (isDead)
             return;
