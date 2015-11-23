@@ -16,19 +16,17 @@ public class PlayerAttack : MonoBehaviour {
 	void Update ()
     {
         timer += Time.deltaTime;
-
-      
-
 	}
 
  
 
     void OnTriggerStay (Collider col)
     {
-        
-        if (col.gameObject.tag == "Nerd" && Input.GetKeyDown("mouse 0"))
+
+        if (col.gameObject.tag == "Nerd" && Input.GetKeyDown("mouse 0") && timer > timeBetweenAttacks)
         {
             nerdsHealth.TakeDamage(damagePerHit);
+            timer = 0f;
             Debug.Log("HIT");
 
         }
