@@ -1,12 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainMenuScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharMenuScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\MainMenuScript.cs" Line="80" Column="17" />
-      <File FileName="Assets\Scripts\NewCharMenuScript.cs" Line="51" Column="24" />
-      <File FileName="Assets\Scripts\CharMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CharMenuScript.cs" Line="40" Column="92" />
+      <File FileName="Assets\Scripts\NewCharMenuScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenuScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\RotateScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CharacterProperties.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerAppearance.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CharAppearance.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

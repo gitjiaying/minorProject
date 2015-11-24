@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterProperties : MonoBehaviour {
+public class CharAppearance : MonoBehaviour {
 
+	public int index;
 	public int hair;
 	public int face;
 	public int shirt;
@@ -11,7 +12,6 @@ public class CharacterProperties : MonoBehaviour {
 	public int stamina;
 	public int health;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
@@ -19,5 +19,13 @@ public class CharacterProperties : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void setAppearance(){
+		PlayerAppearance.hair = hair;
+		PlayerAppearance.face = face;
+		PlayerAppearance.shirt = shirt;
+		PlayerAppearance.pants = pants;
+		PlayerAppearance.skinColor = skinColor;
 	}
 }

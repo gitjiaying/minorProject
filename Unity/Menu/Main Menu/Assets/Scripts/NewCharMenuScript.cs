@@ -12,14 +12,19 @@ public class NewCharMenuScript : MonoBehaviour {
 	public Button shirtRight;
 	public Button pantsLeft;
 	public Button pantsRight;
+	public Button start;
 	public Button save;
-	public Button cancel;
+	//public Button cancel;
 	public Slider skinColor;
 	public int hair;
 	public int face;
 	public int shirt;
 	public int pants;
 	public Color32 Skin;
+	public Canvas editMenu;
+	public GameObject main;
+	private CharAppearance charAp;
+
 
 
 
@@ -35,22 +40,30 @@ public class NewCharMenuScript : MonoBehaviour {
 		pantsLeft = pantsLeft.GetComponent<Button> ();
 		pantsRight = pantsRight.GetComponent<Button> ();
 		save = save.GetComponent<Button> ();
-		cancel = cancel.GetComponent<Button> ();
+		start = start.GetComponent<Button> ();
+		//cancel = cancel.GetComponent<Button> ();
 		skinColor = skinColor.GetComponent<Slider> ();
-		Skin = new Color32(255, 229, 200,1);
-		hair = 0;
-		face = 0;
-		shirt = 0;
-		pants = 0;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		GameObject.Find ("Cube").GetComponent<Renderer> ().material.color = Skin;
+
+		string charname = "Character " + CharMenuScript.charIndex.ToString ();
 		GameObject.Find ("NewCharMenu").GetComponent<AudioSource>().mute = MainMenuScript.soundEffects;
 		//Character.setProperties 
 	}
+
+	public void startEdit(){
+		string charname = "Character " + CharMenuScript.charIndex.ToString ();
+		charAp = GameObject.Find(charname).GetComponent<CharAppearance> ();
+		Skin = charAp.skinColor;
+		hair = charAp.hair;
+		face = charAp.face;
+		shirt = charAp.shirt;
+		pants = charAp.pants;
+	}
+
 	public void nextHair () {
 		if (hair == 4) {
 			hair = 0;
@@ -133,11 +146,22 @@ public class NewCharMenuScript : MonoBehaviour {
 
 
 	}
-	public void cancelChar(){
-		Application.LoadLevel ("Characters");
-	}
-	public void saveChar(){
-		//save current properties to a character
 
+	
+	public void saveChar(){
+		charAp.hair = hair;
+		charAp.face = face;
+		charAp.shirt = shirt;
+		charAp.pants = pants;
+		charAp.skinColor = Skin;
+
+		Skin = new Color32 (255, 229, 200,1);
+		hair = 0;
+		face = 0;
+		shirt = 0;
+		pants = 0;
+
+		editMenu.enabled = false;
+		main.SetActive (true);
 	}
 }
