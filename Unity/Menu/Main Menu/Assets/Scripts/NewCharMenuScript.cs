@@ -51,7 +51,6 @@ public class NewCharMenuScript : MonoBehaviour {
 
 		string charname = "Character " + CharMenuScript.charIndex.ToString ();
 		GameObject.Find ("NewCharMenu").GetComponent<AudioSource>().mute = MainMenuScript.soundEffects;
-		//Character.setProperties 
 	}
 
 	public void startEdit(){
@@ -70,6 +69,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			hair++;
 		}
+		charAp.hair = hair;
 	
 	}
 	public void prevHair(){
@@ -78,6 +78,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			hair--;
 		}
+		charAp.hair = hair;
 	}
 	public void nextFace(){
 		if (face == 4) {
@@ -85,6 +86,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			face++;
 		}
+		charAp.face = face;
 	}
 	public void prevFace(){
 		if (face == 0) {
@@ -92,6 +94,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			face--;
 		}
+		charAp.face = face;
 	}
 	public void nextShirt(){
 		if (shirt== 4) {
@@ -99,6 +102,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			shirt++;
 		}
+		charAp.shirt = shirt;
 	}
 	public void prevShirt(){
 		if (shirt == 0) {
@@ -106,6 +110,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			shirt--;
 		}
+		charAp.shirt = shirt;
 	}
 	public void nextPants(){
 		if (pants == 4) {
@@ -113,6 +118,8 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			pants++;
 		}
+		charAp.pants = pants;
+
 	}
 	public void prevPants(){
 		if (pants == 0) {
@@ -120,6 +127,8 @@ public class NewCharMenuScript : MonoBehaviour {
 		} else {
 			pants--;
 		}
+		charAp.pants = pants;
+
 	}
 	public void changeSkin(){
 		if (skinColor.value == 0) {
@@ -143,7 +152,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		}else if (skinColor.value == 9) {
 			Skin = new Color32(45, 34,30,1);
 		}
-
+		charAp.skinColor = Skin;
 
 	}
 

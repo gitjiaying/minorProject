@@ -3,13 +3,33 @@ using System.Collections;
 
 public class PlayerAttack : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public int damagePerHit = 20;
+    public float timeBetweenAttacks = 0.5f;
+    bool hit = false;
+
+    float timer;
+    public NerdsHealth nerdsHealth;
+
+
 	
+	
+	void Update ()
+    {
+        timer += Time.deltaTime;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+ 
+
+    void OnTriggerStay (Collider col)
+    {
+
+        if (col.gameObject.tag == "Nerd" && Input.GetKeyDown("mouse 0") && timer > timeBetweenAttacks)
+        {
+            nerdsHealth.TakeDamage(damagePerHit);
+            timer = 0f;
+            Debug.Log("HIT");
+
+        }
+       
+    }
 }

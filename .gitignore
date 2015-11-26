@@ -56,6 +56,10 @@ $RECYCLE.BIN/
 [Ll]ibrary/
 sysinfo.txt
 *.stackdump
+
+# Unity3D generated meta files
+*.pidb.meta
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -69,6 +73,7 @@ sysinfo.txt
 /*.user
 /*.unityproj
 /*.booproj
+/*.tmp
 # ============ #
 # OS generated #
 # ============ #

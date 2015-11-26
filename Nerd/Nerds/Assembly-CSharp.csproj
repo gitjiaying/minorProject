@@ -48,6 +48,9 @@
      <Compile Include="Assets\Scripts\Nerds\NerdsAttack.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsHealth.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\Camera2Controller.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Player\MainCameraController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />

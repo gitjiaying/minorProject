@@ -4,33 +4,47 @@ using System.Collections;
 public class NerdsAttack : MonoBehaviour {
 
     public float timeBetweenAttacks = 0.5f;
-    public int attackDamage = 10;
+    public float attackDamage = 10f;
 
     GameObject player;
     PlayerHealth playerHealth;
     NerdsHealth nerdsHealth;
     bool playerInRange;
     float timer;
-
+    GameObject nerd;
 
 	void Awake (){
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         nerdsHealth = GetComponent<NerdsHealth>();
+        nerd = GameObject.FindGameObjectWithTag("Nerd");
 	}
 	
     void OnTriggerEnter (Collider other)
     {
         if (other.gameObject == player)
         {
+            Debug.Log("Enter");
+
             playerInRange = true;
         }
     }
-   
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            Debug.Log("Enter");
+
+            playerInRange = false;
+        }
+    }
+
 
     void Update () {
 
+        
         timer += Time.deltaTime;
         if (timer >= timeBetweenAttacks && playerInRange && nerdsHealth.currentHealth > 0)
         {

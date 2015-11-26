@@ -11,21 +11,24 @@ public class CharAppearance : MonoBehaviour {
 	public Color32 skinColor;
 	public int stamina;
 	public int health;
+	//public GameObject unit;
 
 	void Start () {
-	
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
+		this.GetComponent<Renderer>().material.color = skinColor;
 	}
 
 	public void setAppearance(){
-		PlayerAppearance.hair = hair;
-		PlayerAppearance.face = face;
-		PlayerAppearance.shirt = shirt;
-		PlayerAppearance.pants = pants;
-		PlayerAppearance.skinColor = skinColor;
+
+		GameManagerScript.playerhair = hair;
+		GameManagerScript.playerface = face;
+		GameManagerScript.playershirt = shirt;
+		GameManagerScript.playerpants = pants;
+		GameManagerScript.playerskinColor = skinColor;
+		Debug.Log ("set appearance");
 	}
 }

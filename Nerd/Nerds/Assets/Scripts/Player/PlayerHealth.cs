@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public PlayerController playerController;
     public int startingHealth = 100;
-    public int currentHealth;
+    public float currentHealth;
     public Slider healthSlider;
 
     
@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
         playerController = playerController.GetComponent<PlayerController>();
     }
 
-    public void TakeDamage (int amount)
+    public void TakeDamage (float amount)
     {
         damaged = true;
         currentHealth -= amount;

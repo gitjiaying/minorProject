@@ -32,12 +32,12 @@ public class CharMenuScript : MonoBehaviour {
 		char4 = char4.GetComponent<CharAppearance> ();
 		char5 = char5.GetComponent<CharAppearance> ();
 		char6 = char6.GetComponent<CharAppearance> ();
-
+		charIndex=1;
 		editMenu.enabled = false;
 	}
 	void Update(){
 		GameObject.Find ("CharMenu").GetComponent<AudioSource>().mute = MainMenuScript.soundEffects;
-		GameObject.Find("Character 1").GetComponent<Renderer> ().material.color = char1.skinColor;
+
 	}
 	
 	public void next(){
@@ -88,10 +88,7 @@ public class CharMenuScript : MonoBehaviour {
 			char1.setAppearance();
 			break;
 		}
-		
-		
-		
-		
+		Application.LoadLevel ("MainMenu");
 	}
 	
 	
