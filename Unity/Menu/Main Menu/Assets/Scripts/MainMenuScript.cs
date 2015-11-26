@@ -18,6 +18,10 @@ public class MainMenuScript : MonoBehaviour {
 	public Toggle mute;
 	public static bool soundEffects;
 
+	void awake(){
+		DontDestroyOnLoad (GameObject.Find ("PlayerAppearance"));
+	}
+
 	void Start () {
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 		optionsMenu = optionsMenu.GetComponent<Canvas> ();
@@ -34,8 +38,6 @@ public class MainMenuScript : MonoBehaviour {
 		quitMenu.enabled = false;
 		optionsMenu.enabled = false;
 		highscoresMenu.enabled = false;
-
-	
 	}
 	void Update(){
 		GameObject.Find ("mainMenu").GetComponent<AudioSource>().mute = soundEffects;
