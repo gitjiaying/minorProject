@@ -1,0 +1,24 @@
+ANN:
+Targets:	1. Define inputs and outputs (players and enemies)
+		Inputs:	Actions Player(CPU)		Outputs: Actions Enemy (player-controlled)
+		Aim At Enemy (1) (0)			
+		Speed towards enemy [-1, 1]		Speed from player[-1, 1]
+		Meleeweapon or Fireweapon (1) (0) 	Meleeweapon or Fireweapon (1) (0)
+		Jump(0) (1)				Jump (0) (1)
+		crouch(0) (1)				Crouch(0) (1)
+		Hide(0) (1)				Hide(0) (1)
+
+		2. Sample Data By controlling the enemy. And Let the player be controller by either CPU or another player.
+		3. Amount of inputs = amount of neurons Input layer
+		   Amount of outputs = amount of neurons Output layer
+		   Input neurons < Amound of hidden neurons Hidden Layer < output neurons
+		4. Train the network
+		5. Use the weights to perform enemy actions while playing, based on the inputs (player actions).
+
+
+Input:
+6 N
+Hidden
+6 N
+Output
+5 N

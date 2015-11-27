@@ -1,0 +1,25 @@
+WhenDoEnemiesAttack?
+
+public double maxDistance;
+
+Vector3 distance;
+boolean enemyClose;
+
+	void FixedUpdate()
+	{
+	 
+	 distance = Vector3.Distance(player.transform.position, enemy.transform.position);
+	 if(distance < maxDistance);
+	 enemyClose = true;
+
+	if(enemyClose)
+	EnemyAttack()
+	 
+	}
+	
+	
+
+	void EnemyAttack()
+	{
+	//Enemy Attacks Player by means of NN outputs
+	....
