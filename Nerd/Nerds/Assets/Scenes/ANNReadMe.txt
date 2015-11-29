@@ -11,3 +11,6 @@ Neural Network level 0.0 --> Dodgy behaviour?
 
 (optional)
 8. Change public var X to large number for stronger effect, or low number, as to your liking.
+
+Note:!
+PlayerMovement Should work with Forces rather than position transforms in this particular instance.
