@@ -45,28 +45,33 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Camera\Camera2Controller.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\Camera\MainCameraController.cs" />
+     <Compile Include="Assets\Scripts\Camera\SmoothFollow.cs" />
+     <Compile Include="Assets\Scripts\Camera\SmoothLookAt.cs" />
+     <Compile Include="Assets\Scripts\Nerds\Data.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsAttack.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsHealth.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsMovement.cs" />
-     <Compile Include="Assets\Scripts\Player\Camera2Controller.cs" />
-     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Player\MainCameraController.cs" />
+     <Compile Include="Assets\Scripts\Nerds\WeightsMDF.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStamina.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
+     <None Include="Assets\Scenes\WeightsHO.txt" />
+     <None Include="Assets\Scenes\output2.txt" />
+     <None Include="Assets\Scenes\input.txt" />
+     <None Include="Assets\Scenes\WeightsIH.txt" />
+     <None Include="Assets\Scenes\output.txt" />
+     <None Include="Assets\Scenes\ANNReadMe.txt" />
+     <None Include="Assets\Scenes\input2.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

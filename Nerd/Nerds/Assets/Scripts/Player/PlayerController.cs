@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     public float jump;
     public bool canJump = true;
     public bool sprint;
+    public Transform target;
+    public float rotSpeed;
     Animator anim;
 
+   
     private Rigidbody rb;
     GameObject player;
     GameObject ground;
@@ -20,7 +23,8 @@ public class PlayerController : MonoBehaviour
     Collision col;
     Vector3 movement;
     Rigidbody playerRigidbody;
-
+    
+ 
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -33,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+     
 
     }
 
@@ -43,14 +48,7 @@ public class PlayerController : MonoBehaviour
 
         Move(h, v);
         Animating(h,v);
-
-        //float MoveHorizontal = Input.GetAxis("Horizontal");
-       // float MoveVertical = Input.GetAxis("Vertical");
-
-
-       // Vector3 movement = new Vector3(MoveHorizontal, 0.0f, MoveVertical);
-        //rb.AddForce(movement * WalkSpeed);
-
+    
         if (Input.GetKey("left shift"))
         {
             Sprint(PlayerStamina.currentStamina);
@@ -67,6 +65,14 @@ public class PlayerController : MonoBehaviour
             Jump(PlayerStamina.currentStamina);
         }
 
+    }
+
+    void Update ()
+    {
+        Vector3 targetpos = target.position;
+        targetpos.y = transform.position.y;
+        Quaternion targetdir = Quaternion.LookRotation((targetpos - transform.position));
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetdir, rotSpeed * Time.deltaTime);
     }
 
     void Move (float h, float v)
