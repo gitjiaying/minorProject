@@ -4,11 +4,10 @@ using System.Collections;
 public class SmoothFollow : MonoBehaviour {
 
     public Transform target;
-
-    int distance = 10;
-    float height = 10;
-    int heightdamping = 2;
-    int rotationdamping = 3;
+    public int distance = 10;
+    public float height = 10;
+    public int heightdamping = 2;
+    public int rotationdamping = 3;
 	
 	// Update is called once per frame
 	void LateUpdate ()

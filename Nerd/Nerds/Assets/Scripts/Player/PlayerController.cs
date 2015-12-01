@@ -11,8 +11,7 @@ public class PlayerController : MonoBehaviour
     public float jump;
     public bool canJump = true;
     public bool sprint;
-    public Transform target;
-    public float rotSpeed;
+    public CameraTurn CameraTurn;
     Animator anim;
 
    
@@ -69,10 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
-        Vector3 targetpos = target.position;
-        targetpos.y = transform.position.y;
-        Quaternion targetdir = Quaternion.LookRotation((targetpos - transform.position));
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetdir, rotSpeed * Time.deltaTime);
+        
     }
 
     void Move (float h, float v)
@@ -140,5 +136,21 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Walking", walking);
         anim.SetBool("Running", running);
         anim.SetBool("Hitting", hitting);
+    }
+
+    public void CheckButton()
+    {
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical"); 
+
+        if ((v >= 0.1 )|| (h >= 0.1) || (h <= 0.1))
+        {
+            CameraTurn.enabled = true;
+        }
+        else
+        {
+            CameraTurn.enabled = false;
+        }
+
     }
 }
