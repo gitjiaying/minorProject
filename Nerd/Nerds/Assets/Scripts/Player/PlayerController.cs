@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public CameraTurn CameraTurn;
     Animator anim;
 
-   
     private Rigidbody rb;
     GameObject player;
     GameObject ground;
@@ -29,8 +28,9 @@ public class PlayerController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerStamina = player.GetComponent<PlayerStamina>();
         ground = GameObject.FindGameObjectWithTag("ground");
-        playerRigidbody = GetComponent<Rigidbody>();
+       // playerRigidbody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        CameraTurn = GetComponent<CameraTurn>();
     }
 
     void Start()
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
-        
+        CheckButton();
     }
 
     void Move (float h, float v)
@@ -77,7 +77,8 @@ public class PlayerController : MonoBehaviour
 
         movement = movement.normalized * WalkSpeed * Time.deltaTime;
 
-        playerRigidbody.MovePosition(transform.position + movement);
+       // playerRigidbody.MovePosition(transform.position + movement);
+       rb.transform.Translate( movement);
 
     }
 
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
         if (stamina >= 0)
         {
             movement = movement.normalized * SprintSpeed * Time.deltaTime;
-            playerRigidbody.MovePosition(transform.position + movement);
+            rb.transform.Translate(movement);
             playerStamina.Run(SprintCost);
 
             //rb.AddForce(movement * SprintSpeed);
