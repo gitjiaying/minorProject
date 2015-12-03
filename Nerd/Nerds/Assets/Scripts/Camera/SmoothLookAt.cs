@@ -5,8 +5,7 @@ public class SmoothLookAt : MonoBehaviour {
 
     public Transform target;
     public bool smooth = true;
-
-    int damping = 6;
+    public int damping = 6;
    
 
 	void Start ()

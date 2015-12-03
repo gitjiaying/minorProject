@@ -11,11 +11,9 @@ public class PlayerController : MonoBehaviour
     public float jump;
     public bool canJump = true;
     public bool sprint;
-    public Transform target;
-    public float rotSpeed;
+    public CameraTurn CameraTurn;
     Animator anim;
 
-   
     private Rigidbody rb;
     GameObject player;
     GameObject ground;
@@ -30,8 +28,9 @@ public class PlayerController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerStamina = player.GetComponent<PlayerStamina>();
         ground = GameObject.FindGameObjectWithTag("ground");
-        playerRigidbody = GetComponent<Rigidbody>();
+       // playerRigidbody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        CameraTurn = GetComponent<CameraTurn>();
     }
 
     void Start()
@@ -69,10 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
-        Vector3 targetpos = target.position;
-        targetpos.y = transform.position.y;
-        Quaternion targetdir = Quaternion.LookRotation((targetpos - transform.position));
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetdir, rotSpeed * Time.deltaTime);
+        CheckButton();
     }
 
     void Move (float h, float v)
@@ -81,7 +77,8 @@ public class PlayerController : MonoBehaviour
 
         movement = movement.normalized * WalkSpeed * Time.deltaTime;
 
-        playerRigidbody.MovePosition(transform.position + movement);
+       // playerRigidbody.MovePosition(transform.position + movement);
+       rb.transform.Translate( movement);
 
     }
 
@@ -112,7 +109,7 @@ public class PlayerController : MonoBehaviour
         if (stamina >= 0)
         {
             movement = movement.normalized * SprintSpeed * Time.deltaTime;
-            playerRigidbody.MovePosition(transform.position + movement);
+            rb.transform.Translate(movement);
             playerStamina.Run(SprintCost);
 
             //rb.AddForce(movement * SprintSpeed);
@@ -140,5 +137,21 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Walking", walking);
         anim.SetBool("Running", running);
         anim.SetBool("Hitting", hitting);
+    }
+
+    public void CheckButton()
+    {
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical"); 
+
+        if ((v >= 0.1 )|| (h >= 0.1) || (h <= 0.1))
+        {
+            CameraTurn.enabled = true;
+        }
+        else
+        {
+            CameraTurn.enabled = false;
+        }
+
     }
 }

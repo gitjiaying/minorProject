@@ -228,7 +228,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400024, guid: d27bdb5e43b255b46b36605c15e86954, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: d27bdb5e43b255b46b36605c15e86954, type: 3}
       propertyPath: m_LocalPosition.y
@@ -236,7 +236,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: d27bdb5e43b255b46b36605c15e86954, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.89999998
       objectReference: {fileID: 0}
     - target: {fileID: 400024, guid: d27bdb5e43b255b46b36605c15e86954, type: 3}
       propertyPath: m_LocalRotation.x
@@ -401,8 +401,7 @@ MonoBehaviour:
   jump: 250
   canJump: 1
   sprint: 0
-  target: {fileID: 0}
-  rotSpeed: 0
+  CameraTurn: {fileID: 0}
 --- !u!23 &436365394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1039,8 +1038,7 @@ MonoBehaviour:
   jump: 250
   canJump: 1
   sprint: 0
-  target: {fileID: 1697658319}
-  rotSpeed: 5
+  CameraTurn: {fileID: 0}
 --- !u!23 &1135528279
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1078,7 +1076,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!33 &1135528282
 MeshFilter:
@@ -1087,6 +1085,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1135528273}
   m_Mesh: {fileID: 4300000, guid: d27bdb5e43b255b46b36605c15e86954, type: 3}
+--- !u!114 &1135528283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135528273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e60ae667569b454b9b4edd5e5e6bb7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1697658319}
+  rotSpeed: 5
 --- !u!65 &1135528284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1689,7 +1700,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2068578841}
   m_LocalRotation: {x: .258819073, y: 0, z: 0, w: .965925813}
-  m_LocalPosition: {x: 0, y: 10, z: -10}
+  m_LocalPosition: {x: 2, y: 10, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1697658319}
@@ -1712,6 +1723,8 @@ MonoBehaviour:
   ySpeed: 120
   target: {fileID: 692750316}
   distance: 10
+  ymin: -10
+  ymax: 80
 --- !u!114 &2068578848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1725,6 +1738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 692750316}
   smooth: 1
+  damping: 6
 --- !u!114 &2068578849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,3 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 692750316}
+  distance: 10
+  height: 5
+  heightdamping: 2
+  rotationdamping: 3

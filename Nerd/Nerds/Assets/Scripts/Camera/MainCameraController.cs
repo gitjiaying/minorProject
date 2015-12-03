@@ -9,15 +9,17 @@ public class MainCameraController : MonoBehaviour {
     public float ySpeed;
     public Transform target;
     public int distance;
+    public int ymin = -20;
+    public int ymax = 80;
 
     private Vector3 offset;
-    private float x;
-    private float y;
+    private float x = 0.0f;
+    private float y = 0.0f;
 
-    // Use this for initialization
+
     void Start () {
 
-        offset = transform.position - player.transform.position;
+        //offset = transform.position - player.transform.position;
         Vector3 angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -29,20 +31,9 @@ public class MainCameraController : MonoBehaviour {
 
     }
 	
-	// Update is called once per frame
 	void LateUpdate () {
 
-        transform.position = player.transform.position + offset;
-        Turning();
-        
-
-    }
-
-    void Turning()
-    {
-        int ymin = -20;
-        int ymax = 80;
-        
+       // transform.position = player.transform.position + offset;
 
         if (target)
         {
@@ -52,14 +43,17 @@ public class MainCameraController : MonoBehaviour {
             y = ClampAngle(y, ymin, ymax);
 
             Quaternion rotation = Quaternion.Euler(y, x, 0);
-            Vector3 position = rotation * new Vector3(0.0f, 0.0f, -distance);
+            Vector3 position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
 
             transform.rotation = rotation;
             transform.position = position;
 
         }
+
+
     }
 
+   
     static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360)
