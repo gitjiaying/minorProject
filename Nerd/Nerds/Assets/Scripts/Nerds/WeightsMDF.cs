@@ -92,8 +92,7 @@ public float X = 10;
    		void Update()
    		{
 		InputX1=(player.velocity.x)*5;	InputX2 = (player.velocity.z)*5;
-			
-			
+
 
 			for(int i = 0; i<WeightsIH.Length; i++)
 			{
@@ -104,7 +103,6 @@ public float X = 10;
 				rowsYhidden[0] = (1f - Mathf.Exp(-1f*HiddenOutput[i][0])) / (1f + Mathf.Exp(-1f*HiddenOutput[i][0]));
 				Yhidden[i] = rowsYhidden;
 		
-				
 				Sum += WeightsHO[i][0]*Yhidden[i][0]; 
 				Xoutput[0] = Sum;
 				
@@ -119,6 +117,7 @@ public float X = 10;
 			}
 			//Debug.Log(Youtput1);
 			//Debug.Log(Youtput2);
+            
 			Debug.Log(enemy.velocity.x);
 			Debug.Log(enemy.velocity.z);
 			Sum = 0;
