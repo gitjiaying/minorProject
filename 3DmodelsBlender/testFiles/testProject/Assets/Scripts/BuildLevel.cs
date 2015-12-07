@@ -14,15 +14,19 @@ public class BuildLevel : MonoBehaviour {
 	public int numPrefabs;
 	public List<GameObject> buildingPrefabs = new List<GameObject>();
 	public List<Object> instantiatedBuildings = new List<Object>();
-	
+
+	void Awake() {
+		CreateRoads.createRoads (); 
+	} 
+
 	void Start () {
 		GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		scale = 5; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
-		
+
 		GameObject building1 = Resources.Load("Buildings/building1") as GameObject;
 		GameObject building2 = (GameObject)Resources.Load ("Buildings/building2");
-		GameObject building3 = (GameObject)Resources.Load ("Buildings/ohio_building");
+		GameObject building3 = (GameObject)Resources.Load ("Buildings/building3");
 		buildingPrefabs.Add (building1); //+90 degrees in x-axis
 		buildingPrefabs.Add (building2); //+90 degrees in x-axis	
 		buildingPrefabs.Add (building3); //normal
@@ -61,6 +65,6 @@ public class BuildLevel : MonoBehaviour {
 	//	return;
 	//}
 	//}
-	
+
 }
 
