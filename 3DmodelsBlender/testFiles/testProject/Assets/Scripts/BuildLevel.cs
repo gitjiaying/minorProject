@@ -17,7 +17,7 @@ public class BuildLevel : MonoBehaviour {
 	
 	void Start () {
 		GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-		scale = 10; // scaling the plane
+		scale = 5; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
 		
 		GameObject building1 = Resources.Load("Buildings/building1") as GameObject;
@@ -31,21 +31,23 @@ public class BuildLevel : MonoBehaviour {
 		numBuildings = 20;
 		
 		for (i =1; i < numBuildings; i++) {
-			int number = Random.Range (0, numPrefabs);
 			//Invoke("InstantiatePrefab", 2f);
-			InstantiatePrefab(number);
-			Debug.Log (number);
+			InstantiatePrefab();
 		}
 	}
 	
-	void InstantiatePrefab(int number) {
-		Vector3 position = new Vector3 (Random.Range (-scale, scale), 0, Random.Range (-scale, scale)); //random position in the x,z-plane
+	void InstantiatePrefab() {
+		int number = Random.Range (0, numPrefabs);
+		Debug.Log (number);
+		Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
 		//if (positions.Find(Vector3 => Vector3.Equals(position)) == null) { //cannot use contains as the reference (memorypointer) of position is unique everytime a new vertor3 is made
 		positions.Add (position);
+		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
 		Object building;
 		if (number != 2) {
-			//building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, 0f, 0f));
-			building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
+			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, 0f, 0f));
+			//building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
+			//building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler(0f, 0f, 0f));
 		} else {
 			building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
 		}
@@ -55,6 +57,7 @@ public class BuildLevel : MonoBehaviour {
 	
 	//else {
 	//	i--;
+	// numBuildings++; //either try this or i++, but 
 	//	return;
 	//}
 	//}
