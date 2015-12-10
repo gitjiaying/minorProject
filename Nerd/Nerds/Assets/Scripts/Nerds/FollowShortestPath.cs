@@ -5,6 +5,7 @@ public class FollowShortestPath : MonoBehaviour
 {
 	public Transform target;
 	public Grid grid;
+	public int speed = 10;
 
 	void Awake()
 	{
@@ -13,7 +14,17 @@ public class FollowShortestPath : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		Debug.Log(grid.path.Count);
+		if(grid.path.Count != null)
+		{
+			Debug.Log(grid.path[0].getWorldPos());
+			moveTo(grid.path[0].getWorldPos());
+		}
+
+	}
+
+	void moveTo(Vector3 Pos)
+	{
+		transform.position = Vector3.MoveTowards(transform.position, Pos, Time.deltaTime * speed);
 	}
 
 }
