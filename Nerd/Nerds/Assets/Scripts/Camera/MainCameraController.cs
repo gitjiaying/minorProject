@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainCameraController : MonoBehaviour {
 
-    public GameObject player;
+    public GameObject guide;
     public Camera mainCamera;
     public float xSpeed;
     public float ySpeed;
@@ -19,54 +19,59 @@ public class MainCameraController : MonoBehaviour {
 
     void Start () {
 
-        //offset = transform.position - player.transform.position;
-        Vector3 angles = transform.eulerAngles;
-        x = angles.y;
-        y = angles.x;
+       offset = transform.position - guide.transform.position;
 
-        if (GetComponent<Rigidbody>())
-        {
-            GetComponent<Rigidbody>().freezeRotation = true;
-        }
+        //**Voor oude camera**
+
+        //Vector3 angles = transform.eulerAngles;
+        //x = angles.y;
+        //y = angles.x;
+
+        //if (GetComponent<Rigidbody>())
+        //{
+        //    GetComponent<Rigidbody>().freezeRotation = true;
+        //}
 
     }
 	
 	void LateUpdate () {
 
-       // transform.position = player.transform.position + offset;
+      transform.position = guide.transform.position + offset;
 
-        if (target)
-        {
-            x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
-            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+        //**Voor oude camera
 
-            y = ClampAngle(y, ymin, ymax);
+        //if (target)
+        //{
+        //    x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
+        //    y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-            Vector3 position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
+        //    y = ClampAngle(y, ymin, ymax);
 
-            transform.rotation = rotation;
-            transform.position = position;
+        //    Quaternion rotation = Quaternion.Euler(y, x, 0);
+        //    Vector3 position = rotation * new Vector3(0.0f, 0.0f, -distance) + target.position;
 
-        }
+        //    transform.rotation = rotation;
+        //    transform.position = position;
+
+        //}
 
 
     }
 
-   
-    static float ClampAngle(float angle, float min, float max)
-    {
-        if (angle < -360)
-        {
-            angle += 360;
-        }
+   //**Voor oude camera**
+    //static float ClampAngle(float angle, float min, float max)
+    //{
+    //    if (angle < -360)
+    //    {
+    //        angle += 360;
+    //    }
 
-        if (angle > 360)
-        {
-            angle -= 360;
-        }
-        return Mathf.Clamp(angle, min, max);
-    }
+    //    if (angle > 360)
+    //    {
+    //        angle -= 360;
+    //    }
+    //    return Mathf.Clamp(angle, min, max);
+    //}
 
     void Update ()
     {
