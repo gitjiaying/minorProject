@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
-       // CheckButton(); **oude camera**
+        // CheckButton(); **oude camera**
+        
     }
 
     void Move (float h, float v)
@@ -130,10 +131,7 @@ public class PlayerController : MonoBehaviour
      {
          canJump = true;
      }
-     else
-     {
-         canJump = false;
-       }
+   
    }
 
     void Animating (float h, float v)
