@@ -25,7 +25,7 @@ public class NerdsAttack : MonoBehaviour {
     {
         if (other.gameObject == player)
         {
-            Debug.Log("Enter");
+           // Debug.Log("Enter");
 
             playerInRange = true;
         }
@@ -35,7 +35,7 @@ public class NerdsAttack : MonoBehaviour {
     {
         if (other.gameObject == player)
         {
-            Debug.Log("Enter");
+           // Debug.Log("Enter");
 
             playerInRange = false;
         }
