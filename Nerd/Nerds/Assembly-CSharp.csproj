@@ -68,6 +68,11 @@
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStamina.cs" />
+     <Compile Include="Assets\Scripts\Weapons\BookMovement.cs" />
+     <Compile Include="Assets\Scripts\Weapons\ChooseWeapon.cs" />
+     <Compile Include="Assets\Scripts\Weapons\GeoMovement.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Shoot.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Throw.cs" />
      <None Include="Assets\Scenes\WeightsHO.txt" />
      <None Include="Assets\Scenes\output2.txt" />
      <None Include="Assets\Scenes\input.txt" />
