@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	public Animator Anim;
 	public Rigidbody rb;
 
-	 bool canJump;
+	 bool canJump;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();

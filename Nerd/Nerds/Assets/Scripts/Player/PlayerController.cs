@@ -11,7 +11,11 @@ public class PlayerController : MonoBehaviour
     public float jump;
     public bool canJump = true;
     public bool sprint;
+    public int ymin = -20;
+    public int ymax = 80;
+    public float rotmultiplier = 1.25f;
     public CameraTurn CameraTurn;
+    public ButtonTurn ButtonTurn;
     Animator anim;
 
     private Rigidbody rb;
@@ -31,6 +35,7 @@ public class PlayerController : MonoBehaviour
        // playerRigidbody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         CameraTurn = GetComponent<CameraTurn>();
+        ButtonTurn = GetComponent<ButtonTurn>();
     }
 
     void Start()
@@ -68,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
     void Update ()
     {
-        CheckButton();
+        // CheckButton(); **oude camera**
+        
     }
 
     void Move (float h, float v)
@@ -78,8 +84,10 @@ public class PlayerController : MonoBehaviour
         movement = movement.normalized * WalkSpeed * Time.deltaTime;
 
        // playerRigidbody.MovePosition(transform.position + movement);
-       rb.transform.Translate( movement);
-
+        rb.transform.Translate( -movement);
+        float rotation = CameraMouseMovementHorizontal.rotation*rotmultiplier;
+        rb.transform.Rotate(0, rotation, 0);
+        rotation = ClampAngle(rotation, ymin, ymax);
     }
 
     public void Jump(float stamina)
@@ -109,7 +117,7 @@ public class PlayerController : MonoBehaviour
         if (stamina >= 0)
         {
             movement = movement.normalized * SprintSpeed * Time.deltaTime;
-            rb.transform.Translate(movement);
+            rb.transform.Translate(-movement);
             playerStamina.Run(SprintCost);
 
             //rb.AddForce(movement * SprintSpeed);
@@ -123,10 +131,7 @@ public class PlayerController : MonoBehaviour
      {
          canJump = true;
      }
-     else
-     {
-         canJump = false;
-       }
+   
    }
 
     void Animating (float h, float v)
@@ -139,19 +144,36 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Hitting", hitting);
     }
 
-    public void CheckButton()
+    static float ClampAngle(float angle, float min, float max)
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical"); 
-
-        if ((v >= 0.1 )|| (h >= 0.1) || (h <= 0.1))
+        if (angle < -360)
         {
-            CameraTurn.enabled = true;
-        }
-        else
-        {
-            CameraTurn.enabled = false;
+            angle += 360;
         }
 
+        if (angle > 360)
+        {
+            angle -= 360;
+        }
+        return Mathf.Clamp(angle, min, max);
     }
+
+    //**Voor oude camera**
+    //    public void CheckButton()
+    //    {
+    //        float h = Input.GetAxisRaw("Horizontal");
+    //        float v = Input.GetAxisRaw("Vertical"); 
+
+    //        if ((v >= 0.1 )|| (h >= 0.1) || (h <= -0.1))
+    //        {
+    //            CameraTurn.enabled = true;
+    //            ButtonTurn.enabled = false;
+    //        }
+    //        else
+    //        {
+    //            CameraTurn.enabled = false;
+    //            ButtonTurn.enabled = true;
+    //        }
+
+    //    }
 }
