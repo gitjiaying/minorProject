@@ -7,11 +7,13 @@ public class CreateRoads : MonoBehaviour {
 
 	static Grid grid;
 	public static Object road;
+	int roadSize;
 
 	void Awake()
 	{
 		grid = GetComponent<Grid> ();
 		road = Resources.Load ("road") as GameObject;
+		roadSize = 
 		borderX = new Vector2 (grid.worldBottomLeft.x, grid.worldBottomLeft.x + grid.gridWorldSize.x); //left and right border
 		borderZ = new Vector2 (grid.worldBottomLeft.z, grid.worldBottomLeft.z + grid.gridWorldSize.y); //upper and down border
 	}
