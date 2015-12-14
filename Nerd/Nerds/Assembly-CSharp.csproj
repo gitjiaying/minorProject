@@ -45,18 +45,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Camera\Camera2Controller.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraMouseMovementHorizontal.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraMouseMovementVertical.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\Camera\CameraSwitch.cs" />
      <Compile Include="Assets\Scripts\Camera\MainCameraController.cs" />
      <Compile Include="Assets\Scripts\Camera\SmoothFollow.cs" />
      <Compile Include="Assets\Scripts\Camera\SmoothLookAt.cs" />
      <Compile Include="Assets\Scripts\Nerds\Data.cs" />
+     <Compile Include="Assets\Scripts\Nerds\FollowShortestPath.cs" />
+     <Compile Include="Assets\Scripts\Nerds\Grid.cs" />
+     <Compile Include="Assets\Scripts\Nerds\NerdControl.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsAttack.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsHealth.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsMovement.cs" />
+     <Compile Include="Assets\Scripts\Nerds\Node.cs" />
      <Compile Include="Assets\Scripts\Nerds\WeightsMDF.cs" />
      <Compile Include="Assets\Scripts\Player\ButtonTurn.cs" />
      <Compile Include="Assets\Scripts\Player\CameraTurn.cs" />
@@ -64,6 +68,11 @@
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStamina.cs" />
+     <Compile Include="Assets\Scripts\Weapons\BookMovement.cs" />
+     <Compile Include="Assets\Scripts\Weapons\ChooseWeapon.cs" />
+     <Compile Include="Assets\Scripts\Weapons\GeoMovement.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Shoot.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Throw.cs" />
      <None Include="Assets\Scenes\WeightsHO.txt" />
      <None Include="Assets\Scenes\output2.txt" />
      <None Include="Assets\Scenes\input.txt" />
