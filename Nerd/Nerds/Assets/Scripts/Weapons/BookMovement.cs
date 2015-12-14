@@ -5,17 +5,29 @@ public class BookMovement : MonoBehaviour {
 
 	public float MovementSpeed;
 	public float tumble;
-	private Rigidbody rb;
-	// Use this for initialization
-	void Start () {
+    public int damagePerBook = 40;
+    public NerdsHealth nerdsHealth;
+
+    private Rigidbody rb;
+	
+	void Start ()
+    {
 		rb = GetComponent<Rigidbody>();
 
 		rb.AddForce(transform.forward * MovementSpeed * -100.0f);
 		rb.angularVelocity = Random.insideUnitSphere * tumble;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	
+	void Update ()
+    {
 	
 	}
+
+    void OnTriggerStay (Collider col)
+    {
+        Destroy(gameObject, 0.1f);
+
+       
+    }
 }

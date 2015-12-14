@@ -7,7 +7,7 @@ public class GeoMovement : MonoBehaviour
     public float MovementSpeed;
     public float tumble;
     private Rigidbody rb;
-    // Use this for initialization
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,7 +16,7 @@ public class GeoMovement : MonoBehaviour
         rb.angularVelocity = Random.insideUnitSphere * tumble;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 

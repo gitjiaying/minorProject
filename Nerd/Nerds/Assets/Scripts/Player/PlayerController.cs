@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public ButtonTurn ButtonTurn;
     Animator anim;
 
+    ChooseWeapon launcher_ON;
     private Rigidbody rb;
     GameObject player;
     GameObject ground;
@@ -137,8 +138,8 @@ public class PlayerController : MonoBehaviour
     void Animating (float h, float v)
     {
         bool walking = (h!= 0f || v!= 0f) && !sprint ;
-        bool running = (h!= 0f || v!= 0f )&& sprint;
-        bool hitting = (Input.GetKey("mouse 0"));
+        bool running = (h!= 0f || v!= 0f)&& sprint;
+        bool hitting = (Input.GetKey("mouse 0") && !launcher_ON);
         anim.SetBool("Walking", walking);
         anim.SetBool("Running", running);
         anim.SetBool("Hitting", hitting);

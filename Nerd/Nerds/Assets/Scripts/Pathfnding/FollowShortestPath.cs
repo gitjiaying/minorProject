@@ -4,6 +4,7 @@ using System.Collections;
 public class FollowShortestPath : MonoBehaviour 
 {
 	public Transform target;
+    public Transform player;
 	public Grid grid;
 	public int speed = 10;
 
@@ -14,12 +15,17 @@ public class FollowShortestPath : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(grid.path.Count != null)
+		if(grid.path[0] != null)
 		{
-			Debug.Log(grid.path[0].getWorldPos());
+			//Debug.Log(grid.path[0].getWorldPos());
 			moveTo(grid.path[0].getWorldPos());
-		}
-
+        }
+        if(grid.path.Count == 0)
+        {
+            Debug.Log(grid.path.Count);
+            moveTo(player.position);
+        }
+        Debug.Log(grid.path.Count);
 	}
 
 	void moveTo(Vector3 Pos)

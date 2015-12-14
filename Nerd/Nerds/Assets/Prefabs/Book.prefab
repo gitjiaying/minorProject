@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11497288}
   m_Layer: 0
   m_Name: Book
-  m_TagString: Untagged
+  m_TagString: Book
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -102,15 +102,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754504239f61be14989f46c42196f416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 10
+  MovementSpeed: 20
   tumble: 10
+  damagePerBook: 40
+  nerdsHealth: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: nerdsHealth
+      value: 
+      objectReference: {fileID: 11440244, guid: e3b77f1b604710c4f8233536c59b2a8f,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 125428}

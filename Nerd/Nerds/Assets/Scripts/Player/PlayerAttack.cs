@@ -30,6 +30,9 @@ public class PlayerAttack : MonoBehaviour {
             Debug.Log("HIT");
 
         }
-       
+        
     }
+
+    
+
 }
