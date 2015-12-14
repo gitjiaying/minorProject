@@ -7,7 +7,7 @@ public class checkCollision : MonoBehaviour {
 		if (col.gameObject.CompareTag ("building") || col.gameObject.CompareTag ("ground")) {
 
 			fail= true;
-			Debug.Log("fail");
+			//Debug.Log("fail");
 			Destroy(gameObject);
 		}
 	}
