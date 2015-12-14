@@ -13,6 +13,7 @@ public class CharAppearance : MonoBehaviour {
 	public int health;
 	public GameObject player;
 	public Material [] temp;
+	public Material Body1;
 
 	//public GameObject unit;
 
@@ -23,7 +24,7 @@ public class CharAppearance : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		rendertextures();
+		renderCharacter();
 
 		switch (index)
 		{
@@ -129,11 +130,14 @@ public class CharAppearance : MonoBehaviour {
 			break;
 		}
 	}
-	void rendertextures(){
+	void renderCharacter(){
 		temp = player.GetComponent<Renderer>().materials;
-		for (int i=0; i<temp.Length; i++) {
-			temp [i].SetColor ("_Color",(Color)skinColor);
-		}
+		temp [3].SetColor ("_Color",(Color)skinColor);
+		temp [3].SetTexture("_Main Texture",Resources.Load("Face"+ face, typeof(Texture))as Texture);
+		temp [4] = Resources.Load ("Body" + shirt, typeof(Material))as Material ;
+		temp [4] = Resources.Load ("Arms" + shirt, typeof(Material))as Material ;
+		temp [1] = Resources.Load ("Hair" + hair, typeof(Material))as Material;
+		temp [2] = Resources.Load ("Legs" + pants, typeof(Material))as Material;
 		player.GetComponent<Renderer>().materials = temp;
 	}
 }
