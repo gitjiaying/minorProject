@@ -54,9 +54,9 @@ $RECYCLE.BIN/
 [Oo]bj/
 [Bb]uild
 [Ll]ibrary/
+/Assets/AssetStoreTools*
 sysinfo.txt
 *.stackdump
-*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -75,6 +75,7 @@ sysinfo.txt
 /*.unityproj
 /*.booproj
 /*.tmp
+/.svd
 /*.cs.meta
 
 # ============ #
