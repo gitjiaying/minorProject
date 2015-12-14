@@ -9,19 +9,30 @@ public class BuildLevel : MonoBehaviour {
 	int scale;
 	int numBuildings;
 	int i;
-	
+	Grid grid;
+
+	GameObject[] allObjects;
+	List<GameObject> objectsToDisable;
+
+
 	public List<Vector3> positions = new List<Vector3> ();
 	public int numPrefabs;
 	public List<GameObject> buildingPrefabs = new List<GameObject>();
 	public List<Object> instantiatedBuildings = new List<Object>();
 
+	
+	List<Node> allRed = new List<Node> (); //list all the red gridnodes from the last spawned buildings
+	List<Node> currentRed = new List<Node> (); //list all the red gridnodes from this spawned building
+
 	void Awake() {
-		CreateRoads.createRoads (); 
+		//CreateRoads.createRoads (); 
 	} 
 
 	void Start () {
+		grid = GetComponent<Grid> (); 
+
 		GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-		scale = 5; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane
+		scale = 10; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane, set to 50
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
 
 		GameObject building1 = Resources.Load("Buildings/building1") as GameObject;
@@ -32,39 +43,74 @@ public class BuildLevel : MonoBehaviour {
 		buildingPrefabs.Add (building3); //normal
 		
 		numPrefabs = buildingPrefabs.Count;
-		numBuildings = 20;
-		
+		numBuildings = 50;
+
+		//check every instantiated building
 		for (i =1; i < numBuildings; i++) {
-			//Invoke("InstantiatePrefab", 2f);
-			InstantiatePrefab();
+			Debug.Log(i +" " + currentRed.Count +" " + allRed.Count +" " + failCount);
+			ThisStep();
+			
+			if (failCount == 3) {
+				break;
+			}
 		}
 	}
 	
-	void InstantiatePrefab() {
+	List<Node> theseReds;
+	List<Node> InstantiatePrefab() {
+		allObjects = FindObjectsOfType<GameObject>();
+		objectsToDisable = new List<GameObject>(allObjects);
+		foreach (GameObject a in allObjects) {
+			if (!a.layer.Equals("unwalkableMask") ) {
+				objectsToDisable.Remove(a);
+			};
+		};
+		foreach (GameObject b in objectsToDisable) {
+			b.SetActive (false);
+		}
+
+		theseReds = new List<Node> ();
 		int number = Random.Range (0, numPrefabs);
-		Debug.Log (number);
 		Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
-		//if (positions.Find(Vector3 => Vector3.Equals(position)) == null) { //cannot use contains as the reference (memorypointer) of position is unique everytime a new vertor3 is made
 		positions.Add (position);
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
+
 		Object building;
 		if (number != 2) {
 			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, 0f, 0f));
-			//building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
-			//building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler(0f, 0f, 0f));
+			//grid.CreateGrid();
+			theseReds = grid.GetUnwalkables();
+			instantiatedBuildings.Add (building); //handler for this instantiated building
+			return theseReds;
 		} else {
 			building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
+			//grid.CreateGrid();
+			theseReds = grid.GetUnwalkables();
+			instantiatedBuildings.Add (building); //handler for this instantiated building
+			return theseReds;
 		}
-		instantiatedBuildings.Add (building);
-		//Instantiate (buildingPrefabs [Random.Range (0, numPrefabs)], position, Quaternion.identity);
 	}
 	
-	//else {
-	//	i--;
-	// numBuildings++; //either try this or i++, but 
-	//	return;
-	//}
-	//}
+
+	int failCount = 0;
+	void ThisStep() {
+		currentRed = InstantiatePrefab();
+		//grid.CreateGrid(); //grid wordt elke frame geupdate
+		foreach(Node n in currentRed) {
+			if(allRed.Contains(n)){ //fail
+				Destroy(instantiatedBuildings[instantiatedBuildings.Count -1]);
+				failCount++;
+				numBuildings++;
+			}
+			else { //succes
+				failCount =0;
+			}
+		}
+		foreach(GameObject a in objectsToDisable) {
+			a.SetActive(true);
+		}
+		allRed = grid.GetUnwalkables();
+	}
 
 }
 
