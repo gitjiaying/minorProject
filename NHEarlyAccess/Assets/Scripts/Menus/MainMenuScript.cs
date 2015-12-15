@@ -18,6 +18,7 @@ public class MainMenuScript : MonoBehaviour {
 	public Toggle mute;
 	public Toggle music;
 	public Toggle ThirdPerson;
+	public GameObject player;
 
 
 	void awake(){
@@ -54,7 +55,9 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void Quit(){
 		quitMenu.enabled = true;
+		player.SetActive (false);
 		main.SetActive(false);
+
 	}
 
 	public void newCharacter(){
@@ -63,6 +66,7 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void Highscores(){
 		highscoresMenu.enabled=true;
+		player.SetActive (false);
 		main.SetActive (false);
 	}
 
@@ -76,6 +80,7 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void Menu(){
 		quitMenu.enabled = false;
+		player.SetActive (true);
 		highscoresMenu.enabled = false;
 		optionsMenu.enabled = false;
 		main.SetActive (true);

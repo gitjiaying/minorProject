@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Features\Inventory.cs" />
      <Compile Include="Assets\Scripts\Features\PlayerAppearance.cs" />
      <Compile Include="Assets\Scripts\Menus\CharMenuScript.cs" />
+     <Compile Include="Assets\Scripts\Menus\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\Menus\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\Menus\NewCharMenuScript.cs" />
      <Compile Include="Assets\Scripts\Nerds\Data.cs" />

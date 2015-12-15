@@ -21,13 +21,13 @@ public class NerdsMovement : MonoBehaviour {
 
 	void Update () {
 
-        if (nerdHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
+        //if (nerdHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
         {
-            nav.SetDestination(player.position);
+           // nav.SetDestination(player.position);
         }
-        else
+        //else
         {
-            nav.enabled = false;
+            //nav.enabled = false;
         }
 	
 	}

@@ -131,13 +131,20 @@ public class CharAppearance : MonoBehaviour {
 		}
 	}
 	void renderCharacter(){
+		//0=legs
+		//1=feet
+		//2=arms
+		//3=face
+		//4=hair
+		//5=body
 		temp = player.GetComponent<Renderer>().materials;
 		temp [3].SetColor ("_Color",(Color)skinColor);
-		temp [3].SetTexture("_Main Texture",Resources.Load("Face"+ face, typeof(Texture))as Texture);
-		temp [4] = Resources.Load ("Body" + shirt, typeof(Material))as Material ;
-		temp [4] = Resources.Load ("Arms" + shirt, typeof(Material))as Material ;
-		temp [1] = Resources.Load ("Hair" + hair, typeof(Material))as Material;
-		temp [2] = Resources.Load ("Legs" + pants, typeof(Material))as Material;
+		temp [3].SetTexture("_MainTex",Resources.Load("Face"+ face, typeof(Texture))as Texture);
+		temp [5] = Resources.Load ("Body" + shirt, typeof(Material))as Material ;
+		temp [2] = Resources.Load ("Arms" + shirt, typeof(Material))as Material ;
+		temp [4] = Resources.Load ("Hair" + hair, typeof(Material))as Material;
+		temp [0] = Resources.Load ("Legs" + pants, typeof(Material))as Material;
+
 		player.GetComponent<Renderer>().materials = temp;
 	}
 }
