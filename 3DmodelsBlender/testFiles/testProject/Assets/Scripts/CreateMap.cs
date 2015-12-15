@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CreateMap : MonoBehaviour {
+	public static GameObject plane;
+
 	int scale;
 	int numBuildings;
 
@@ -15,16 +17,32 @@ public class CreateMap : MonoBehaviour {
 
 	public checkCollision thisCheck ;
 
+	static Grid grid;
+	
+	static Vector2 borderX, borderZ; //the borders of the grid
+
+	static CreateRoads roadbuilder;
+
 	void Awake () {
-		//CreateRoads.createRoads ();
+		//create plane
+		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+		scale = 10; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane, set to 50
+		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
+
+		//create roads
+		roadbuilder = GetComponent<CreateRoads>();
+		roadbuilder.createRoads ();
+		//CreateRoads.createRoads (); //mag ook
 	}
 
 	void Start () {
+		grid = GetComponent<Grid> ();
+		borderX = new Vector2 (grid.worldBottomLeft.x, grid.worldBottomLeft.x + grid.gridWorldSize.x); //left and right border
+		borderZ = new Vector2 (grid.worldBottomLeft.z, grid.worldBottomLeft.z + grid.gridWorldSize.y); //upper and down border
+
 		thisCheck = thisCheck.GetComponent<checkCollision>();
-		GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-		scale = 10; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane, set to 50
-		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
-		
+
+		//load the buildingprefabs
 		GameObject building1 = Resources.Load("Buildings/building1") as GameObject;
 		GameObject building2 = (GameObject)Resources.Load ("Buildings/building2");
 		GameObject building3 = (GameObject)Resources.Load ("Buildings/building3");
@@ -41,7 +59,7 @@ public class CreateMap : MonoBehaviour {
 			if (thisCheck.fail){
 				numBuildings++;
 			}
-			Debug.Log(i);
+			//Debug.Log(i);
 		}
 	}
 

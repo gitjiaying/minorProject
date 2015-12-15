@@ -2,26 +2,26 @@
 using System.Collections;
 
 public class CreateRoads : MonoBehaviour {
+	GameObject plane;
+	public static GameObject road;
+	static Vector3 roadSize;
+	Vector3 startpos;
 
-	Vector2 borderX, borderZ;
-
-	static Grid grid;
-	public static Object road;
-
-	void Awake()
-	{
-		grid = GetComponent<Grid> ();
+	 void Initialize()
+	{	
+		plane = CreateMap.plane;
 		road = Resources.Load ("road") as GameObject;
-		borderX = new Vector2 (grid.worldBottomLeft.x, grid.worldBottomLeft.x + grid.gridWorldSize.x); //left and right border
-		borderZ = new Vector2 (grid.worldBottomLeft.z, grid.worldBottomLeft.z + grid.gridWorldSize.y); //upper and down border
+		roadSize = road.GetComponent<Renderer> ().bounds.size; //gets the size of the road tile using its renderer, should be (4, 0.2, 4)
 	}
 
-	public static void createRoads () {
+	public void createRoads () {
+		Initialize ();
+		
+
+		//startpos=new Vector3(Random.Range((float)grid.worldBottomLeft.x, (float)(grid.worldBottomLeft.x + grid.gridWorldSize.x)), 0f, 
+		                         //    Random.Range((float)grid.worldBottomLeft.z, (float)(grid.worldBottomLeft.z + grid.gridWorldSize.y)));           
+
 		//int startSide = Random.Range (0, 4);
-		Vector3 startpos=new Vector3(Random.Range((float)grid.worldBottomLeft.x, (float)(grid.worldBottomLeft.x + grid.gridWorldSize.x)), 0f, 
-		                             Random.Range((float)grid.worldBottomLeft.z, (float)(grid.worldBottomLeft.z + grid.gridWorldSize.y)));           
-
-
 //		switch(startSide){
 //		case 0:
 //			startpos.x = Random.Range (grid.worldBottomLeft.x, grid.worldBottomLeft.x + grid.gridWorldSize.x);
