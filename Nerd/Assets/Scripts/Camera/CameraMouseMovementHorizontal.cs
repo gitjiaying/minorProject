@@ -14,7 +14,7 @@ public class CameraMouseMovementHorizontal : MonoBehaviour {
 
     void Start ()
     {
-        orbitDistance = 5;
+        orbitDistance = 0;
 
     }
 	
@@ -44,8 +44,10 @@ public class CameraMouseMovementHorizontal : MonoBehaviour {
         if (target != null)
         {
             // Keep us at orbitDistance from target
-            transform.position = target.position + (transform.position - target.position).normalized * orbitDistance;
-            transform.RotateAround(target.position, Vector3.up, rotation);
+            transform.position = target.position;
+            transform.rotation = target.rotation;
+            //transform.RotateAround(target.position, Vector3.up, rotation);
+            transform.Rotate(new Vector3(0, 180, 0));
             Vector3 pos = transform.position;
             pos.y= 5;
             transform.position = pos;

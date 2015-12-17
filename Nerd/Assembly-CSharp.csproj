@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{BBDAAD46-E7E9-C673-CD00-1690E46B9D28}</ProjectGuid>
+	<ProjectGuid>{0223093A-14EC-5C2F-6E9C-9DDF94C3ABEA}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -65,9 +65,7 @@
      <Compile Include="Assets\Scripts\Pathfnding\PathFinding.cs" />
      <Compile Include="Assets\Scripts\Player\ButtonTurn.cs" />
      <Compile Include="Assets\Scripts\Player\Camera2Controller.cs" />
-     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
      <Compile Include="Assets\Scripts\Player\CameraTurn.cs" />
-     <Compile Include="Assets\Scripts\Player\MainCameraController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
@@ -84,17 +82,11 @@
      <None Include="Assets\Scenes\output.txt" />
      <None Include="Assets\Scenes\ANNReadMe.txt" />
      <None Include="Assets\Scenes\input2.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

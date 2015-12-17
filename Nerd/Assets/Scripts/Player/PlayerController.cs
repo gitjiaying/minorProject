@@ -96,6 +96,8 @@ public class PlayerController : MonoBehaviour
         if (stamina >= 0)
         {
             rb.AddForce(new Vector3(0, jump, 0));
+            //rb.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+
             canJump = false;
             playerStamina.Jump(JumpCost);
         }

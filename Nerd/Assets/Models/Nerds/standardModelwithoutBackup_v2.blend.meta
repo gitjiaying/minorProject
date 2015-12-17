@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 89f4b5a81655f29478c375962920d54d
-timeCreated: 1450105014
+guid: 773e904306b1b154994814b6c27afc56
+timeCreated: 1450174691
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,33 +9,41 @@ ModelImporter:
     100002: arm_R
     100004: Armature_v2_layer6
     100006: character_layer3_skinned_with_v2
-    100008: head
-    100010: lowerleg_L
-    100012: lowerleg_R
-    100014: //RootNode
-    100016: torso
-    100018: upperLeg__L
-    100020: upperLeg_R
+    100008: geo
+    100010: head
+    100012: lowerleg_L
+    100014: lowerleg_R
+    100016: //RootNode
+    100018: torso
+    100020: upperLeg__L
+    100022: upperLeg_R
     400000: arm_L
     400002: arm_R
     400004: Armature_v2_layer6
     400006: character_layer3_skinned_with_v2
-    400008: head
-    400010: lowerleg_L
-    400012: lowerleg_R
-    400014: //RootNode
-    400016: torso
-    400018: upperLeg__L
-    400020: upperLeg_R
+    400008: geo
+    400010: head
+    400012: lowerleg_L
+    400014: lowerleg_R
+    400016: //RootNode
+    400018: torso
+    400020: upperLeg__L
+    400022: upperLeg_R
+    2300000: geo
+    3300000: geo
     4300000: character_layer3_skinned_with_v2
+    4300002: geo
     7400000: Default Take
-    7400002: hit
+    7400002: hitwithGEO
     7400004: idle
     7400006: jump
     7400008: run
-    7400010: shoot
-    7400012: stand
-    7400014: walk_v2
+    7400010: run_001
+    7400012: runwithGEO
+    7400014: shoot
+    7400016: stand
+    7400018: walk_v2
+    7400020: walk_v2_001
     9500000: //RootNode
     13700000: character_layer3_skinned_with_v2
   materials:
@@ -57,7 +65,557 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: hitwithGEO
+      takeName: hitwithGEO
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 0
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      firstFrame: 0
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 0
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: jump
+      takeName: jump
+      firstFrame: 0
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: 0
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 0
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run_001
+      takeName: run_001
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: runwithGEO
+      takeName: runwithGEO
+      firstFrame: 0
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: shoot
+      takeName: shoot
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: stand
+      takeName: stand
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: walk_v2
+      takeName: walk_v2
+      firstFrame: 0
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 0
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: walk_v2_001
+      takeName: walk_v2_001
+      firstFrame: 0
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature_v2_layer6
+        weight: 1
+      - path: Armature_v2_layer6/arm_L
+        weight: 1
+      - path: Armature_v2_layer6/arm_R
+        weight: 1
+      - path: Armature_v2_layer6/torso
+        weight: 1
+      - path: Armature_v2_layer6/torso/head
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg__L/lowerleg_L
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R
+        weight: 1
+      - path: Armature_v2_layer6/upperLeg_R/lowerleg_R
+        weight: 1
+      - path: character_layer3_skinned_with_v2
+        weight: 1
+      - path: character_layer3_skinned_with_v2/geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -93,7 +651,7 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Armature_v2_layer6
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2

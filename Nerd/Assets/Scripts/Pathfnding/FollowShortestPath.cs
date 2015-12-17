@@ -7,8 +7,9 @@ public class FollowShortestPath : MonoBehaviour
     public Transform player;
 	public Grid grid;
 	public int speed = 10;
+   
 
-	void Awake()
+    void Awake()
 	{
 		grid = grid.GetComponent<Grid>();
 	}
@@ -23,14 +24,23 @@ public class FollowShortestPath : MonoBehaviour
         if(grid.path.Count == 0)
         {
             Debug.Log(grid.path.Count);
-            moveTo(player.position);
+            Vector3 transformPlayer = new Vector3(player.position.x,0.0f, player.position.z);
+            moveTo(transformPlayer);
         }
         Debug.Log(grid.path.Count);
+
+        Vector3 targetPosition = new Vector3(target.position.x, this.transform.position.y, target.position.z);
+
+        this.transform.LookAt(targetPosition);
+
+     
 	}
 
 	void moveTo(Vector3 Pos)
 	{
-		transform.position = Vector3.MoveTowards(transform.position, Pos, Time.deltaTime * speed);
+        Vector3 transformTarget = new Vector3(transform.position.x, -2.2f, transform.position.z);
+        transform.position = Vector3.MoveTowards(transformTarget, Pos, Time.deltaTime * speed);
 	}
+
 
 }
