@@ -32,6 +32,9 @@ public class FollowShortestPath : MonoBehaviour
         Vector3 targetPosition = new Vector3(target.position.x, this.transform.position.y, target.position.z);
 
         this.transform.LookAt(targetPosition);
+        //Vector3 rot = this.transform.eulerAngles;
+       // rot.y = -rot.y;
+        //this.transform.eulerAngles = rot;
 
      
 	}

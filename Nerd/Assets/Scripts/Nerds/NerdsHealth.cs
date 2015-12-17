@@ -6,18 +6,26 @@ public class NerdsHealth : MonoBehaviour {
     public int startingHealth = 100;
     public int currentHealth;
     public int damagePerBook = 40;
+    public float sinkSpeed = 2.5f;
 
+    Animator anim;
     bool isDead;
+    bool isSinking;
 	
 	void Awake ()
     {
         currentHealth = startingHealth;
+
+        anim = GetComponent<Animator>();
 	
 	}
 
 	void Update ()
     {
-
+        if (isSinking)
+        {
+            transform.Translate(new Vector3(0,0,-1) * sinkSpeed * Time.deltaTime);
+        }
 	}
 
     public void TakeDamage(int amount)
@@ -37,6 +45,10 @@ public class NerdsHealth : MonoBehaviour {
     {
         isDead = true;
 
+        GetComponent<FollowShortestPath>().enabled = false;
+        Invoke("sink", 2);
+
+        Destroy(gameObject, 5f);
     }
 
     void OnTriggerEnter(Collider col)
@@ -48,5 +60,12 @@ public class NerdsHealth : MonoBehaviour {
         }
     }
 
+    private void sink()
+    {
+        
+        isSinking = true;
+        GetComponent<Rigidbody>().isKinematic = true;
+        Debug.Log("sink");
+    }
 
 }

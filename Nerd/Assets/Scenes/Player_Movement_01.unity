@@ -746,7 +746,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374208414}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.79999995, y: 3.5, z: 1.5}
@@ -793,7 +793,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -1184,7 +1184,7 @@ Transform:
   m_PrefabParentObject: {fileID: 493488, guid: 82d7713070540b743a19ee9214815bf7, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1122253062}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.21000004, z: 5.92000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1380,8 +1380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 0
-  gridWorldSize: {x: 50, y: 50}
+    m_Bits: 256
+  gridWorldSize: {x: 100, y: 100}
   nodeRadius: 1
 --- !u!1 &1179063045
 GameObject:
@@ -1445,7 +1445,7 @@ Transform:
   m_PrefabParentObject: {fileID: 453030, guid: 82d7713070540b743a19ee9214815bf7, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1179063045}
-  m_LocalRotation: {x: -1.49011626e-07, y: -1.19209275e-07, z: 1.77635701e-14, w: 1}
+  m_LocalRotation: {x: 2.16942028e-14, y: 1, z: 1.33158068e-07, w: -1.62920685e-07}
   m_LocalPosition: {x: 0, y: 3.72792721, z: 1.00099456}
   m_LocalScale: {x: 14.0829449, y: 14.8405867, z: 26.4922104}
   m_Children: []
@@ -1668,7 +1668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1319088192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2174,6 +2174,58 @@ Transform:
   - {fileID: 1576408129}
   m_Father: {fileID: 1409868443}
   m_RootOrder: 2
+--- !u!1 &1819997673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1819997675}
+  - 114: {fileID: 1819997674}
+  m_Layer: 8
+  m_Name: Map Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1819997674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1819997673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e665b324415104ca00f0e79ffdd7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plane: {fileID: 0}
+  unwalkableMask:
+    serializedVersion: 2
+    m_Bits: 256
+  gridWorldSize: {x: 100, y: 100}
+  nodeRadius: 1
+  numBuildings: 50
+  numPrefabs: 3
+  positions: []
+  buildingPrefabs:
+  - {fileID: 160360, guid: e39483cbc070b44568baf714c7d5c24f, type: 2}
+  - {fileID: 140886, guid: 2d6cf11deec2f46bb8ae67b4672191b4, type: 2}
+  - {fileID: 105214, guid: 458fcdd71df1046dd967a2179f1aa40f, type: 2}
+--- !u!4 &1819997675
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1819997673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1 &1892374664
 GameObject:
   m_ObjectHideFlags: 0
