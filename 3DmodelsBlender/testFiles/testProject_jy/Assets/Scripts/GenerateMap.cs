@@ -85,14 +85,18 @@ public class GenerateMap : MonoBehaviour {
 	Object InstantiatePrefab() {
 		int number = Random.Range (0, numPrefabs);
 		Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
-		positions.Add (position);
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
+
+		positions.Add (position);
+		Debug.Log(position.y);
 		
 		Object building;
 		if (number != 2) {
 			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, 0f, 0f));
+
 		} else {
 			building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
+
 		}
 		return building;
 	}
