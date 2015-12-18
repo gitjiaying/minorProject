@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\Camera\SmoothFollow.cs" />
      <Compile Include="Assets\Scripts\Camera\SmoothLookAt.cs" />
      <Compile Include="Assets\Scripts\Map\GenerateMap.cs" />
+     <Compile Include="Assets\Scripts\Map\GenerateRoads.cs" />
      <Compile Include="Assets\Scripts\Nerds\Data.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdControl.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsAttack.cs" />

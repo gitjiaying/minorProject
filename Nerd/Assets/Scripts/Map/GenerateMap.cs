@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GenerateMap : MonoBehaviour {
 
-	public GameObject plane;
+	public static GameObject plane;
 
 	public LayerMask unwalkableMask;
 	Node[,] Map;
@@ -22,13 +22,15 @@ public class GenerateMap : MonoBehaviour {
 	public List<Vector3> positions = new List<Vector3> ();
 	public List<GameObject> buildingPrefabs = new List<GameObject>();
 
-
+    GenerateRoads roadbuilder;
 
 	void Awake(){
 		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		scale = 15; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane, set to 50
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
-	}
+        roadbuilder = GetComponent<GenerateRoads>();
+        roadbuilder.Generate();
+    }
 	// Use this for initialization
 	void Start () {
 		//GameObject building1 = Resources.Load("Buildings/building1") as GameObject;

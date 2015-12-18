@@ -650,7 +650,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374208414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.81999969, y: 1.42999995, z: 0}
+  m_LocalPosition: {x: 8.81999969, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 322548998}
@@ -750,7 +750,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.79999995, y: 3.5, z: 1.5}
-  m_Center: {x: 0, y: .25, z: -.200000003}
+  m_Center: {x: 0, y: 1, z: -.200000003}
 --- !u!33 &374208422
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1220,6 +1220,7 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   damagePerBook: 40
+  sinkSpeed: 2.5
 --- !u!114 &1122253066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,7 +1382,7 @@ MonoBehaviour:
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 256
-  gridWorldSize: {x: 100, y: 100}
+  gridWorldSize: {x: 50, y: 50}
   nodeRadius: 1
 --- !u!1 &1179063045
 GameObject:
@@ -2080,6 +2081,7 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   damagePerBook: 40
+  sinkSpeed: 2.5
 --- !u!54 &1715006777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2183,6 +2185,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1819997675}
   - 114: {fileID: 1819997674}
+  - 114: {fileID: 1819997676}
   m_Layer: 8
   m_Name: Map Generator
   m_TagString: Untagged
@@ -2201,11 +2204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e665b324415104ca00f0e79ffdd7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plane: {fileID: 0}
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 256
-  gridWorldSize: {x: 100, y: 100}
+  gridWorldSize: {x: 50, y: 50}
   nodeRadius: 1
   numBuildings: 50
   numPrefabs: 3
@@ -2226,6 +2228,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
+--- !u!114 &1819997676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1819997673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62c83cc6d585384296c6f9afdbf5d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnlog: []
+  directionslog: 
+  lastSpawned: []
 --- !u!1 &1892374664
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,11 @@ public class NerdsHealth : MonoBehaviour {
         }
 	}
 
+    void FixedUpdate()
+    {
+        Animating();
+    }
+
     public void TakeDamage(int amount)
     {
         Debug.Log("Damage");
@@ -62,10 +67,15 @@ public class NerdsHealth : MonoBehaviour {
 
     private void sink()
     {
-        
         isSinking = true;
         GetComponent<Rigidbody>().isKinematic = true;
         Debug.Log("sink");
+    }
+
+    void Animating()
+    {
+        bool dead = currentHealth <= 0;
+        anim.SetBool("Dead", dead);
     }
 
 }
