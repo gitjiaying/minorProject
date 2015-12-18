@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManagerScript : MonoBehaviour {
 
@@ -75,7 +76,7 @@ public class GameManagerScript : MonoBehaviour {
 	public static int killedByMelee;
 
 	//Highscores
-	public static ArrayList scores;
+	public static List<int> scores=new List<int>();
 	
 	void Awake() {
 		if (!created) {
@@ -87,15 +88,11 @@ public class GameManagerScript : MonoBehaviour {
 		soundEffects = false;
 		thirdPerson = true;
 		music = true;
-		if (scores == null) {
-			scores= new ArrayList();
-		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (playerhair);
-		Debug.Log (playerface);
+	
 	}
 
 
