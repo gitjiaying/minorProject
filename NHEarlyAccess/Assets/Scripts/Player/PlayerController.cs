@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
     {
         bool walking = (h!= 0f || v!= 0f) && !sprint ;
         bool running = (h!= 0f || v!= 0f )&& sprint;
-        bool hitting = (Input.GetKey("mouse 0"));
+        bool hitting = (Input.GetKey("mouse 1"));
         anim.SetBool("Walking", walking);
         anim.SetBool("Running", running);
         anim.SetBool("Hitting", hitting);

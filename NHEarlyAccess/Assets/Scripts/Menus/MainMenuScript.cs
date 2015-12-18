@@ -19,6 +19,12 @@ public class MainMenuScript : MonoBehaviour {
 	public Toggle music;
 	public Toggle ThirdPerson;
 	public GameObject player;
+	public Text h1;
+	public Text h2;
+	public Text h3;
+	public Text h4;
+	public Text h5;
+
 
 
 	void awake(){
@@ -68,6 +74,8 @@ public class MainMenuScript : MonoBehaviour {
 		highscoresMenu.enabled=true;
 		player.SetActive (false);
 		main.SetActive (false);
+
+		getHighscores ();
 	}
 
 	public void Options(){
@@ -97,6 +105,12 @@ public class MainMenuScript : MonoBehaviour {
 	}
 	public void FirstPerson(){
 		GameManagerScript.thirdPerson = ThirdPerson.isOn;
+	}
+
+	void getHighscores(){
+		ArrayList scores = GameManagerScript.scores;
+		scores.Sort ();
+
 	}
 
 }

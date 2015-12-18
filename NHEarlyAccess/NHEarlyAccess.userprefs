@@ -1,15 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Weapons\GeoMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menus\MainMenuScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\Pathfinding\PathFinding.cs" Line="19" Column="11" />
-      <File FileName="Assets\Scripts\Pathfinding\FollowShortestPath.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Pathfinding\Grid.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Nerds\NerdsHealth.cs" Line="10" Column="31" />
-      <File FileName="Assets\Scripts\GameScene.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapons\Shoot.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Weapons\BookMovement.cs" Line="34" Column="2" />
-      <File FileName="Assets\Scripts\Weapons\GeoMovement.cs" Line="15" Column="25" />
+      <File FileName="Assets\Scripts\Menus\MainMenuScript.cs" Line="113" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

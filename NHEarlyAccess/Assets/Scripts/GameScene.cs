@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameScene : MonoBehaviour {
 	public Canvas Over;
@@ -10,14 +11,20 @@ public class GameScene : MonoBehaviour {
 	public int maxX;
 	public int minY;
 	public int maxY;
-	public int height;
-	public int spawnTime;
+	public float height;
+	public float spawnTime;
+	private float startTime;
+	private bool hasDied;
+	public Text scoreOver;
+	public Text scorePause;
 	// Use this for initialization
 	void Start () {
 		GameManagerScript.alive = true;
 		Over.enabled = false;
 		Pause.enabled = false;
-		InvokeRepeating ("spawn", 5, 5);
+		InvokeRepeating ("spawn", 0, spawnTime);
+		startTime = Time.time;
+		hasDied = false;
 	}
 	
 	// Update is called once per frame
@@ -27,9 +34,24 @@ public class GameScene : MonoBehaviour {
 			Time.timeScale=0;
 		}
 		if (Input.GetKeyDown (KeyCode.P)) {
-			Pause.enabled=true;
-			Time.timeScale=0;
+			if(!GameManagerScript.pause){
+				Pause.enabled=true;
+				Time.timeScale=0;
+				GameManagerScript.pause=true;
+			}else {
+				Pause.enabled=false;
+				Time.timeScale=1;
+				GameManagerScript.pause=false;
+			}
 		}
+		if (!GameManagerScript.alive) {
+			if(!hasDied){
+				GameManagerScript.timeAlive=Time.time-startTime;
+				hasDied=true;
+			}
+		}
+		scoreOver.text = GameManagerScript.score.ToString();
+		scorePause.text=GameManagerScript.score.ToString();
 	}
 
 	void NerdSpawner(){

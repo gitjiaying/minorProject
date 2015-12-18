@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameOverScript : MonoBehaviour {
 
 	public Button backToMain;
+	public Canvas pause;
 	// Use this for initialization
 	void Start () {
 		backToMain = backToMain.GetComponent<Button> ();
@@ -16,6 +17,13 @@ public class GameOverScript : MonoBehaviour {
 	}
 
 	public void mainMenu(){
+		Time.timeScale = 1;
 		Application.LoadLevel (0);
+		GameManagerScript.pause = false;
+	}
+	public void resume(){
+		Time.timeScale = 1;
+		pause.enabled = false;
+		GameManagerScript.pause = false;
 	}
 }

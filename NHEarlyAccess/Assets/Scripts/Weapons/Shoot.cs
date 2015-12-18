@@ -23,7 +23,7 @@ public class Shoot : MonoBehaviour {
 
 			anim.Play("Default Take");
 			Instantiate(Book, shotSpawn.position, shotSpawn.rotation);
-
+			GameManagerScript.booksFired++;
 			//nextFire = Time.time + fireRate;
 			/*Kan ook met aanpasbare fireRate
 			 */

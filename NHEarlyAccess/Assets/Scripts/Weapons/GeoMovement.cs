@@ -18,5 +18,6 @@ public class GeoMovement : MonoBehaviour {
 	}
 	void destroy(){
 		Destroy (gameObject);
+		GameManagerScript.geoThrown++;
 	}
 }

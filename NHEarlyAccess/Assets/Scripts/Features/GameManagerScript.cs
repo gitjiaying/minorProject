@@ -61,7 +61,21 @@ public class GameManagerScript : MonoBehaviour {
 	public static bool geo=false;
 	public static bool bookLauncher=false;
 
+	//Stats per game
+	public static int booksFired;
+	public static int booksHit;
+	public static int geoThrown;
+	public static int geoHit;
+	public static int nerdsKilled;
+	public static float nerdsAverageLife;
+	public static float timeAlive;
+	public static int score;
+	public static int killedByBook;
+	public static int killedByGeo;
+	public static int killedByMelee;
 
+	//Highscores
+	public static ArrayList scores;
 	
 	void Awake() {
 		if (!created) {
@@ -73,6 +87,9 @@ public class GameManagerScript : MonoBehaviour {
 		soundEffects = false;
 		thirdPerson = true;
 		music = true;
+		if (scores == null) {
+			scores= new ArrayList();
+		}
 	}
 	
 	// Update is called once per frame

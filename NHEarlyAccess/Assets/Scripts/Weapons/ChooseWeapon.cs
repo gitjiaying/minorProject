@@ -44,6 +44,7 @@ public class ChooseWeapon : MonoBehaviour {
 
 			// launcher weer op false en nog deleten.
         }
+
 	    
 	}
 
