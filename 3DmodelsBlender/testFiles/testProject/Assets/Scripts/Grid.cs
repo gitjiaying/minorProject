@@ -2,39 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Grid : MonoBehaviour {
+
 	
-	public LayerMask unwalkableMask; //ook unspawnableMask
-	public Vector2 gridWorldSize; //[500,500]
+	public LayerMask unwalkableMask;
+	public Vector2 gridWorldSize;
 	Node[,] grid;
 	public float nodeRadius;
-	public Vector3 worldBottomLeft; //used in createRoads
 
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
 
-	public List<Node> unwalks =new List<Node>();
-
-	void Awake()
-	{	
-		nodeRadius = 1f; //0.5f
-		gridWorldSize = new Vector2 (100f, 100f); //should be 500
+	void Start()
+	{
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
-		//CreateGrid();
+		CreateGrid();
 	}
 
-	void Update() {
-	CreateGrid ();
-//		unwalks = GetUnwalkables ();
-	}
-
-	public void CreateGrid()
+	void CreateGrid()
 	{
 		grid = new Node[gridSizeX, gridSizeY];
-		//Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2; //linksonder positie van de grid
-		worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
+		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
+
 
 		for(int x = 0; x<gridSizeX; x++)
 		{
@@ -47,7 +39,7 @@ public class Grid : MonoBehaviour {
 		}
 	}
 
-	public List<Node> GetNeighbours (Node node)
+	public List<Node> GetNeighbours(Node node)
 	{
 		List<Node> neighbours = new List<Node>();
 
@@ -55,7 +47,7 @@ public class Grid : MonoBehaviour {
 		{
 			for(int y = -1; y <= 1; y++)
 			{
-				if(x==0 && y==0) 
+				if(x==0 && y==0)
 				{
 					continue;
 				}
@@ -108,21 +100,5 @@ public class Grid : MonoBehaviour {
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
 			}
 		}
-	}
-
-	public List<Node> GetUnwalkables() {
-		List<Node> red = new List<Node> ();
-		if (grid != null)
-		{
-			
-			foreach (Node n in grid)
-			{
-				if(!n.walkable) 
-					red.Add(n);
-			
-			}
-
-		}
-		return red;
 	}
 }
