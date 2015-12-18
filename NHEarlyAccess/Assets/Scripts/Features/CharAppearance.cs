@@ -139,11 +139,11 @@ public class CharAppearance : MonoBehaviour {
 		//5=body
 		temp = player.GetComponent<Renderer>().materials;
 		temp [3].SetColor ("_Color",(Color)skinColor);
-		temp [3].SetTexture("_MainTex",Resources.Load("Face"+ face, typeof(Texture))as Texture);
-		temp [5] = Resources.Load ("Body" + shirt, typeof(Material))as Material ;
-		temp [2] = Resources.Load ("Arms" + shirt, typeof(Material))as Material ;
-		temp [4] = Resources.Load ("Hair" + hair, typeof(Material))as Material;
-		temp [0] = Resources.Load ("Legs" + pants, typeof(Material))as Material;
+		temp [3].SetTexture("_MainTex",Resources.Load("Characters/Face"+ face, typeof(Texture))as Texture);
+		temp [5] = Resources.Load ("Characters/Body" + shirt, typeof(Material))as Material ;
+		temp [2] = Resources.Load ("Characters/Arms" + shirt, typeof(Material))as Material ;
+		temp [4] = Resources.Load ("Characters/Hair" + hair, typeof(Material))as Material;
+		temp [0] = Resources.Load ("Characters/Legs" + pants, typeof(Material))as Material;
 
 		player.GetComponent<Renderer>().materials = temp;
 	}

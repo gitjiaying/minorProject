@@ -34,7 +34,7 @@ public class CameraMouseMovementHorizontal : MonoBehaviour {
     }
     void LateUpdate()
     {
-        Orbit();
+		Orbit ();
     }
 
     void Orbit()
