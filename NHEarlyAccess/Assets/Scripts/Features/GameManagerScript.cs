@@ -55,6 +55,11 @@ public class GameManagerScript : MonoBehaviour {
 	public static bool music;
 
 	private static bool created = false;
+	public static bool pause;
+	public static bool alive;
+
+	public static bool geo=false;
+	public static bool bookLauncher=false;
 
 
 	

@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{7BB70571-74D1-B8A9-A4E3-CC4A9997D5C2}</ProjectGuid>
+	<ProjectGuid>{E671C446-D9EC-E7D3-BE7E-904129D3A3DF}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp</AssemblyName>
@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\BuildLevel.cs" />
      <Compile Include="Assets\Scripts\CreateMap.cs" />
      <Compile Include="Assets\Scripts\CreateRoads.cs" />
+     <Compile Include="Assets\Scripts\GenerateMap.cs" />
      <Compile Include="Assets\Scripts\GenerateRoads.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />

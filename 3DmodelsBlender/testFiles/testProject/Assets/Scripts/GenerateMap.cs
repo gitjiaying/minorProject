@@ -7,6 +7,7 @@ public class GenerateMap : MonoBehaviour {
 	public GameObject plane;
 
 	public LayerMask unwalkableMask;
+	//public LayerMask roadMask;
 	Node[,] Map;
 	public Vector2 gridWorldSize;
 
@@ -22,12 +23,11 @@ public class GenerateMap : MonoBehaviour {
 	public List<Vector3> positions = new List<Vector3> ();
 	public List<GameObject> buildingPrefabs = new List<GameObject>();
 
-
-
 	void Awake(){
 		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		scale = 15; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane, set to 50
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
+	
 	}
 	// Use this for initialization
 	void Start () {
@@ -101,7 +101,11 @@ public class GenerateMap : MonoBehaviour {
 		for(int x=0; x<gridSizeX; x++){
 			for(int y=0; y<gridSizeX; y++){
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x*nodeDiameter + nodeRadius) + Vector3.forward * (y*nodeDiameter+ nodeRadius);
+				
 				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+//				if(walkable){
+//					walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, roadMask));
+//				}
 				Map[x,y] = new Node(walkable, worldPoint, x, y);
 			}
 		}
@@ -121,7 +125,6 @@ public class GenerateMap : MonoBehaviour {
 				Gizmos.color = (n.walkable)?Color.white:Color.red;
 				
 				Gizmos.DrawCube(n.worldPosition, new Vector3(nodeDiameter-.1f, nodeDiameter*0.5f, nodeDiameter-.1f));
-					//Vector3.one * (nodeDiameter-.1f));
 
 			}
 		}
@@ -140,15 +143,14 @@ public class GenerateMap : MonoBehaviour {
 		List<Node> unwalk = new List<Node>();
 	
 
-		int borderWidth = 8; //x-dir
-		int borderHeight = 7; //z-dir
+		int borderWidth = 4; //x-dir
+		int borderHeight = 5; //z-dir
 
 		float RightBorder = obj.transform.position.x+nodeRadius+borderWidth*nodeDiameter;
 		float LeftBorder = obj.transform.position.x-nodeRadius-borderWidth*nodeDiameter;
 		float TopBorder = obj.transform.position.z+nodeRadius+borderHeight*nodeDiameter;
 		float DownBorder = obj.transform.position.z-nodeRadius-borderHeight*nodeDiameter;
 
-		//Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
 
 		foreach(Node n in Map){
 					if(n.worldPosition.x<RightBorder && n.worldPosition.x>LeftBorder 

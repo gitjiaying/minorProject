@@ -39,5 +39,6 @@ public class PlayerHealth : MonoBehaviour {
     {
         isDead = true;
         playerController.enabled = false;
+		GameManagerScript.alive = false;
     }
 }

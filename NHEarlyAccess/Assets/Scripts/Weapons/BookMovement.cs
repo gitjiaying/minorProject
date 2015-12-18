@@ -16,6 +16,7 @@ public class BookMovement : MonoBehaviour {
 
 		rb.AddForce(transform.forward * MovementSpeed * -100.0f);
 		rb.angularVelocity = Random.insideUnitSphere * tumble;
+		Invoke ("destroy", 5);
 	}
 	
 	
@@ -24,12 +25,13 @@ public class BookMovement : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay (Collider col)
     {
-        if (col.gameObject.tag == "Nerd")
-        {
-            nerdsHealth.TakeDamage(damagePerBook);
-            Debug.Log("HIT");
-        }
+        Destroy(gameObject, 0.1f);
+
+       
     }
+	void destroy(){
+		Destroy (gameObject);
+	}
 }
