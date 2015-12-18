@@ -22,7 +22,7 @@ public class GameScene : MonoBehaviour {
 		GameManagerScript.alive = true;
 		Over.enabled = false;
 		Pause.enabled = false;
-		InvokeRepeating ("spawn", 0, spawnTime);
+		InvokeRepeating ("spawn", 5, spawnTime);
 		startTime = Time.time;
 		hasDied = false;
 	}
