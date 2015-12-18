@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GenerateMap : MonoBehaviour {
 
-	public GameObject plane;
+	public static GameObject plane;
 
 	public LayerMask unwalkableMask;
 	//public LayerMask roadMask;
@@ -18,16 +18,20 @@ public class GenerateMap : MonoBehaviour {
 	int gridSizeX, gridSizeY;
 
 	int scale;
-	public int numBuildings = 5;
+	public int numBuildings;
 	public int numPrefabs;
 	public List<Vector3> positions = new List<Vector3> ();
 	public List<GameObject> buildingPrefabs = new List<GameObject>();
 
+	static GenerateRoads roadbuilder;
+
 	void Awake(){
 		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-		scale = 15; // scaling the plane gives an 5*scale x 5*scale (x-axis x z-axis) plane, set to 50
+		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
-	
+
+		roadbuilder = GetComponent<GenerateRoads>();
+		roadbuilder.Generate ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -143,8 +147,8 @@ public class GenerateMap : MonoBehaviour {
 		List<Node> unwalk = new List<Node>();
 	
 
-		int borderWidth = 4; //x-dir
-		int borderHeight = 5; //z-dir
+		int borderWidth = 8; //x-dir
+		int borderHeight = 7; //z-dir
 
 		float RightBorder = obj.transform.position.x+nodeRadius+borderWidth*nodeDiameter;
 		float LeftBorder = obj.transform.position.x-nodeRadius-borderWidth*nodeDiameter;
