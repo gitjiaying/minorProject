@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MainMenuScript : MonoBehaviour {
 
@@ -57,6 +58,7 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void Play(){
 		Application.LoadLevel ("Game");
+		Time.timeScale=1;
 	}
 
 	public void Quit(){
@@ -108,9 +110,41 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	void getHighscores(){
-		ArrayList scores = GameManagerScript.scores;
+		List<int> highscores = new List<int> ();
+		List<int> scores = GameManagerScript.scores;
+		for (int i=0; i<scores.Count; i++) {
+			Debug.Log (scores[i].ToString());
+		}
 		scores.Sort ();
+		scores.Reverse ();
+		Debug.Log ("sorted");
+		for (int i=0; i<scores.Count; i++) {
+			Debug.Log (scores[i].ToString());
+		}
 
+		for (int i = 0; i<Mathf.Min(5,scores.Count); i++) {
+			if(scores[i] !=null){
+				highscores.Add(scores[i]);
+			}
+		}
+		Debug.Log ("highscores made");
+		for (int i=0; i<highscores.Count; i++) {
+			Debug.Log (highscores[i].ToString());
+		}
+		if (highscores.Count>=4) {
+			h5.text="5-"+highscores[4].ToString();
+		}
+		if (highscores.Count>3) {
+			h4.text="4-"+highscores[3].ToString();
+		}
+		if (highscores.Count>2) {
+			h3.text="3-"+highscores[2].ToString();
+		}
+		if (highscores.Count>1) {
+			h2.text="2-"+highscores[1].ToString();
+		}
+		if (highscores.Count>0) {
+			h1.text="1-"+highscores[0].ToString();
+		}
 	}
-
 }

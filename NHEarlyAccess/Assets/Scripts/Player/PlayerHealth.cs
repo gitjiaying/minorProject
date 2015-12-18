@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         isDead = true;
         playerController.enabled = false;
-		//GameManagerScript.scores.Add(GameManagerScript.score);
+		GameManagerScript.scores.Add(GameManagerScript.score);
 		GameManagerScript.alive = false;
     }
 }
