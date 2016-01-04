@@ -39,7 +39,6 @@ public class AnalyticsSystem : MonoBehaviour
             {"nerds killed", GameManagerScript.nerdsKilled },
             {"nerds average life", GameManagerScript.nerdsAverageLife },
 			{"time player was alive", GameManagerScript.timeAlive},
-			{"score", GameManagerScript.score},
 			{"nerds killed with a book", GameManagerScript.killedByBook},
 			{"nerds killed with a geo", GameManagerScript.killedByGeo},
 			{"nerds killed with melee", GameManagerScript.killedByMelee}
