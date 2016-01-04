@@ -85,7 +85,9 @@ public class NerdsHealth : MonoBehaviour {
 			}
 			if (col.gameObject.tag == "Geo") {
 				TakeDamage (damagePerGeo);
+                col.gameObject.GetComponent<BoxCollider>().enabled = false;
 				GameManagerScript.geoHit++;
+                Debug.Log(GameManagerScript.geoHit + " " + GameManagerScript.geoThrown);
 			}
 		}
     }

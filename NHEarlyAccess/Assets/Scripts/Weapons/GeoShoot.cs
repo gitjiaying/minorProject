@@ -21,7 +21,9 @@ public class GeoShoot : MonoBehaviour {
 			Instantiate(Geo, shotSpawn.position, shotSpawn.rotation);
 			
 			nextFire = Time.time + fireRate;
-			}
+            GameManagerScript.geoThrown++;
+            Debug.Log("thrown " + GameManagerScript.geoThrown);
+            }
 		}
 	}
 }

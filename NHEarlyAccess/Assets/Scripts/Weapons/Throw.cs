@@ -27,6 +27,8 @@ public class Throw : MonoBehaviour
 
            // anim.Play("Default Take");
             Instantiate(GEO, geoSpawn.position, geoSpawn.rotation);
+            GameManagerScript.geoThrown++;
+          
 
             //nextFire = Time.time + fireRate;
             /*Kan ook met aanpasbare fireRate
