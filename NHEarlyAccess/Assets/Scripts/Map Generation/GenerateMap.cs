@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 public class GenerateMap : MonoBehaviour {
 
-	public static GameObject plane;
+	//public static GameObject plane;
 
 	public LayerMask unwalkableMask;
 	//public LayerMask roadMask;
 	Node[,] Map;
 	public Vector2 gridWorldSize;
+	public static Vector2 groundSize; 
 
 	GameObject thisBuilding;
 
@@ -23,12 +24,15 @@ public class GenerateMap : MonoBehaviour {
 	public List<Vector3> positions = new List<Vector3> ();
 	public List<GameObject> buildingPrefabs = new List<GameObject>();
 
+	int[] spawnRotations = new int[] {0, 90, 180, 270};
+
 	static GenerateRoads roadbuilder;
 
 	void Awake(){
-		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
-		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
+//		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+//		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
+//		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
+		groundSize = gridWorldSize;
 
 		roadbuilder = GetComponent<GenerateRoads>();
 		roadbuilder.Generate ();
@@ -84,18 +88,20 @@ public class GenerateMap : MonoBehaviour {
 
 	Object InstantiatePrefab() {
 		int number = Random.Range (0, numPrefabs);
-		Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
+		//Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
+		Vector3 position = new Vector3 (Random.Range (-gridWorldSize.x/2, gridWorldSize.x/2), 0, Random.Range (-gridWorldSize.y/2, gridWorldSize.y/2)); //random position in the x,z-plane
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
 
 		positions.Add (position);
 		Debug.Log(position.y);
-		
+
+		int rotationIndex = Random.Range (0, spawnRotations.Length);
 		Object building;
 		if (number != 2) {
-			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, 0f, 0f));
+			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, (float) spawnRotations[rotationIndex], 0f));
 
 		} else {
-			building = Instantiate (buildingPrefabs [number], position, Quaternion.identity);
+			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler(0f, (float) spawnRotations[rotationIndex], 0f));
 
 		}
 		return building;
@@ -121,22 +127,22 @@ public class GenerateMap : MonoBehaviour {
 	}
 
 
-	//void OnDrawGizmos()
-	//{
-		//Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-		//if (Map != null)
-		//{
+		if (Map != null)
+		{
 			
-			//foreach (Node n in Map)
-			//{
-			//	Gizmos.color = (n.walkable)?Color.white:Color.red;
-			//	
-			//	Gizmos.DrawCube(n.worldPosition, new Vector3(nodeDiameter-.1f, nodeDiameter*0.5f, nodeDiameter-.1f));
+			foreach (Node n in Map)
+			{
+				Gizmos.color = (n.walkable)?Color.white:Color.red;
+				
+				Gizmos.DrawCube(n.worldPosition, new Vector3(nodeDiameter-.1f, nodeDiameter*0.5f, nodeDiameter-.1f));
 
-			//}
-		//}
-	//}
+			}
+		}
+	}
 
 	List<Node> getUnwalkables(){
 		List<Node> unwalk = new List<Node>();

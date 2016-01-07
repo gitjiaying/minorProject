@@ -5,11 +5,15 @@ using System.Collections.Generic;
 //INSTANTIATE AFTER SPAWNLOG IS DONE
 
 public class GenerateRoads : MonoBehaviour {
-	GameObject plane;
-	float planeSize;
+//	GameObject plane;
+	GameObject terrain;
+	Vector2 planeSize;
+	//List<Vector3> grassSpawnCoordinates = new List<Vector3> (); //wrt the grassTiles
+
 	public static GameObject road;
 	static Vector3 roadSize;
-	int sideLengthRelRoad;
+	//int sideLengthRelRoad;
+
 	float upperborder;
 	float rightborder;
 
@@ -17,34 +21,59 @@ public class GenerateRoads : MonoBehaviour {
 	public List<int> directionslog;
 	public List<Vector3> lastSpawned;
 
+//	public List<GameObject> grassPrefabs = new List<GameObject> ();
+//	float grassTileSize = 10f;
+
 	bool generateRoads;
-
-
-//	void DestroyAllObjects()
-//	{
-//		List<GameObject> gameObjects = GameObject.FindGameObjectsWithTag ("ground");
-//		
-//		for(var i = 0 ; i < gameObjects.Count ; i ++)
-//		{
-//			Destroy(gameObjects[i]);
-//		}
-//	}
 
 	void Initialize () {
 		generateRoads = true;
-		plane = GenerateMap.plane;
-		planeSize = plane.transform.localScale.x * 10; //plane is 10*scale by 10*scale
-		Debug.Log ("planeSize: " + planeSize);
-		road = Resources.Load ("road") as GameObject;
-		roadSize = road.GetComponent<Renderer> ().bounds.size; //gets the size of the road tile using its renderer, should be (4, 0.2, 4)
-		sideLengthRelRoad = (int) Mathf.Floor (planeSize / roadSize.x); //number of possible roadtiles on a side
-		upperborder = planeSize/2 - roadSize.z/2; //z-value border relative to a roadtile
-		rightborder = planeSize/2 - roadSize.x/2; //x-value relative to a roadtile
+
+
+
+		planeSize = GenerateMap.groundSize;
+//		for (float i = -planeSize.x/2; i< planeSize.x/2; i=i+grassTileSize) {
+//			for (float j = -planeSize.y/2; j<planeSize.y/2; j+=grassTileSize) { 
+//				Vector3 coordinates = new Vector3(i, 0, j);
+//				grassSpawnCoordinates.Add(coordinates);
+//					}
+//		}
+		//plane = GenerateMap.plane;
+		//planeSize = plane.transform.localScale.x * 10; //plane is 10*scale by 10*scale
+
+		//for grassTiles the rightuppercorner is the spawn point
+//		GameObject grass1 = (GameObject) Resources.Load("Ground/grass1");
+//		GameObject grass2 = (GameObject) Resources.Load("Ground/grass2");
+//		GameObject grass3 = (GameObject) Resources.Load("Ground/grass3");
+//		grassPrefabs.Add (grass1);
+//		grassPrefabs.Add (grass2);
+//		grassPrefabs.Add (grass3);
+//
+//		FillWithGrass ();
+
+		terrain = (GameObject)Resources.Load ("Ground/grassPlane2");
+		//Vector3 terrainSpawn = new Vector3 (-planeSize.x / 2, 0, -planeSize.y / 2);
+		Instantiate (terrain, new Vector3(-5,0,5), Quaternion.identity);
+
+		//for the roadtile to spawn like the grassTile, we have to correct the spawnposition of the road with +roadsize/2 per axis x and z
+		//roadTile spawnpoint is the center of the tile
+		road = Resources.Load ("Ground/road2") as GameObject;
+		roadSize = road.GetComponent<Renderer> ().bounds.size; //gets the size of the road tile using its renderer
+		//sideLengthRelRoad = (int) Mathf.Floor (planeSize / roadSize.x); //number of possible roadtiles on a side
+		upperborder = planeSize.y/2 - roadSize.z/2; //z-value border relative to a roadtile
+		rightborder = planeSize.x/2 - roadSize.x/2; //x-value relative to a roadtile
 		spawnlog = new List<Vector3> ();
 		directionslog = new List<int> ();
 		lastSpawned = new List<Vector3> ();
 		CreateFirstTiles ();
 	}
+
+//	void FillWithGrass() {
+//		for (int i = 0; i<= grassSpawnCoordinates.Count; i++) {
+//			int randomDraw = Random.Range(0, grassPrefabs.Count);
+//			Instantiate (grassPrefabs[randomDraw], grassSpawnCoordinates[i], Quaternion.identity);
+//		}
+//	}
 
 	void CreateFirstTiles() {
 		int tossUOD = Random.Range (0, 2); //0 = down, 1=up
