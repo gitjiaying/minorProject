@@ -1,18 +1,20 @@
-﻿Shader "Masked/Mask" {
- 
-	SubShader {
-		// Render the mask after regular geometry, but before masked geometry and
-		// transparent things.
- 
-		Tags {"Queue" = "Geometry-10" }
- 
-		// Don't draw in the RGBA channels; just the depth buffer
- 
-		ColorMask 0
-		ZWrite On
- 
-		// Do nothing specific in the pass:
- 
-		Pass {}
-	}
+﻿Shader "TextureMask"
+{
+   Properties
+   {
+      _Mask ("Culling Mask", 2D) = "white" {}
+   }
+   SubShader
+   {
+      Tags {"Queue" = "Background"}
+      Blend SrcAlpha OneMinusSrcAlpha
+      Lighting Off
+      ZWrite On
+      ZTest Always
+      Alphatest LEqual 0
+      Pass
+      {
+         SetTexture [_Mask] {combine texture}
+      }
+   }
 }
