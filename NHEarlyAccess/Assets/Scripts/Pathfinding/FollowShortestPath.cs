@@ -30,7 +30,6 @@ public class FollowShortestPath : MonoBehaviour
             Vector3 transformPlayer = new Vector3(player.position.x,0.0f, player.position.z);
             moveTo(transformPlayer);
         }
-        Debug.Log(grid.path.Count);
 
         Vector3 targetPosition = new Vector3(target.position.x, this.transform.position.y, target.position.z);
 

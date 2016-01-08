@@ -19,6 +19,9 @@ public class PlayerHealth : MonoBehaviour {
         currentHealth = startingHealth;
         hitParticles = GetComponentInChildren<ParticleSystem>();
     }
+	void Update() {
+		healthSlider.value = currentHealth;
+	}
 	
 	void Start()
     {
@@ -29,7 +32,6 @@ public class PlayerHealth : MonoBehaviour {
     {
         damaged = true;
         currentHealth -= amount;
-        healthSlider.value = currentHealth;
         hitParticles.Play();
 
         if (currentHealth <= 0 && !isDead)

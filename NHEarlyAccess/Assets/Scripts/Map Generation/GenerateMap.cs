@@ -93,7 +93,6 @@ public class GenerateMap : MonoBehaviour {
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
 
 		positions.Add (position);
-		Debug.Log(position);
 
 		int rotationIndex = Random.Range (0, spawnRotations.Length);
 		Object building;
