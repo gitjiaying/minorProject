@@ -12,11 +12,13 @@ public class PlayerHealth : MonoBehaviour {
     
     bool isDead = false;
     bool damaged;
+    ParticleSystem hitParticles;
 
-	void Awake () {
+    void Awake () {
 
         currentHealth = startingHealth;
-	}
+        hitParticles = GetComponentInChildren<ParticleSystem>();
+    }
 	
 	void Start()
     {
@@ -28,8 +30,9 @@ public class PlayerHealth : MonoBehaviour {
         damaged = true;
         currentHealth -= amount;
         healthSlider.value = currentHealth;
+        hitParticles.Play();
 
-        if(currentHealth <= 0 && !isDead)
+        if (currentHealth <= 0 && !isDead)
         {
             Death();
         }
