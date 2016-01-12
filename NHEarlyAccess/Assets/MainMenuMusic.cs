@@ -22,5 +22,14 @@ public class MainMenuMusic : MonoBehaviour
             GetComponent<AudioSource>().Stop();
             AudioBegin = false;
         }
+
+        if (GameManagerScript.music == false)
+        {
+            GetComponent<AudioSource>().mute = true;
+        }
+        else
+        {
+            GetComponent<AudioSource>().mute = false;
+        }
     }
 }

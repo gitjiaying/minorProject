@@ -28,5 +28,14 @@ public class SoundController : MonoBehaviour
             source.PlayOneShot((AudioClip)Resources.Load("Music/GameOver"));
             dead = true;
         }
+
+        if (GameManagerScript.music == false)
+        {
+            GetComponent<AudioSource>().mute = true;
+        }
+        else
+        {
+            GetComponent<AudioSource>().mute = false;
+        }
     }
 }

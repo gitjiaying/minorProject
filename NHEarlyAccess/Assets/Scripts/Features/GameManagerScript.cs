@@ -87,7 +87,7 @@ public class GameManagerScript : MonoBehaviour {
 		} 
 		soundEffects = false;
 		thirdPerson = true;
-		music = true;
+        music = true;
 	}
 	
 	// Update is called once per frame
