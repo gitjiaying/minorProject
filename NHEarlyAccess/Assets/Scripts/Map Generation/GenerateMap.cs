@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class GenerateMap : MonoBehaviour {
 
-	//public static GameObject plane;
+	public static GameObject plane;
+	Material grass;
 
 	public LayerMask unwalkableMask;
 	//public LayerMask roadMask;
@@ -29,10 +30,12 @@ public class GenerateMap : MonoBehaviour {
 	static GenerateRoads roadbuilder;
 
 	void Awake(){
-//		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-//		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
-//		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
-		groundSize = gridWorldSize;
+		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
+		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
+		grass = Resources.Load ("Materials/TL_Grass_01/U5_Material/TL_Grass_01_U5") as Material;
+		plane.GetComponent<Renderer> ().material = grass;
+		//groundSize = gridWorldSize;
 
 		roadbuilder = GetComponent<GenerateRoads>();
 		roadbuilder.Generate ();
@@ -93,6 +96,7 @@ public class GenerateMap : MonoBehaviour {
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
 
 		positions.Add (position);
+		Debug.Log(position.y);
 
 		int rotationIndex = Random.Range (0, spawnRotations.Length);
 		Object building;

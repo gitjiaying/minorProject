@@ -5,10 +5,12 @@ using System.Collections.Generic;
 //INSTANTIATE AFTER SPAWNLOG IS DONE
 
 public class GenerateRoads : MonoBehaviour {
-//	GameObject plane;
+	GameObject plane;
 	GameObject terrain;
 	Vector2 planeSize;
-	//List<Vector3> grassSpawnCoordinates = new List<Vector3> (); //wrt the grassTiles
+	GameObject tree;
+
+
 
 	public static GameObject road;
 	static Vector3 roadSize;
@@ -21,39 +23,23 @@ public class GenerateRoads : MonoBehaviour {
 	public List<int> directionslog;
 	public List<Vector3> lastSpawned;
 
-//	public List<GameObject> grassPrefabs = new List<GameObject> ();
-//	float grassTileSize = 10f;
+	public List<Vector3> treeSpawnlog;
+	float treeSpawnOffsetx ;
+	float treeSpawnOffsetz ;
+
 
 	bool generateRoads;
 
 	void Initialize () {
 		generateRoads = true;
 
-
-
-		planeSize = GenerateMap.groundSize;
-//		for (float i = -planeSize.x/2; i< planeSize.x/2; i=i+grassTileSize) {
-//			for (float j = -planeSize.y/2; j<planeSize.y/2; j+=grassTileSize) { 
-//				Vector3 coordinates = new Vector3(i, 0, j);
-//				grassSpawnCoordinates.Add(coordinates);
-//					}
-//		}
-		//plane = GenerateMap.plane;
-		//planeSize = plane.transform.localScale.x * 10; //plane is 10*scale by 10*scale
-
-		//for grassTiles the rightuppercorner is the spawn point
-//		GameObject grass1 = (GameObject) Resources.Load("Ground/grass1");
-//		GameObject grass2 = (GameObject) Resources.Load("Ground/grass2");
-//		GameObject grass3 = (GameObject) Resources.Load("Ground/grass3");
-//		grassPrefabs.Add (grass1);
-//		grassPrefabs.Add (grass2);
-//		grassPrefabs.Add (grass3);
-//
-//		FillWithGrass ();
-
-		terrain = (GameObject)Resources.Load ("Ground/grassPlane2");
+		//planeSize = GenerateMap.groundSize;
+		plane = GenerateMap.plane;
+		planeSize.x = plane.transform.localScale.x * 10; //plane is 10*scale by 10*scale
+		planeSize.y = plane.transform.localScale.z* 10; //plane is 10*scale by 10*scale
+		//terrain = (GameObject)Resources.Load ("Ground/grassPlane2");
 		//Vector3 terrainSpawn = new Vector3 (-planeSize.x / 2, 0, -planeSize.y / 2);
-		Instantiate (terrain, new Vector3(-5,0,5), Quaternion.identity);
+		//Instantiate (terrain, new Vector3(0,0,0), Quaternion.identity);
 
 		//for the roadtile to spawn like the grassTile, we have to correct the spawnposition of the road with +roadsize/2 per axis x and z
 		//roadTile spawnpoint is the center of the tile
@@ -65,15 +51,29 @@ public class GenerateRoads : MonoBehaviour {
 		spawnlog = new List<Vector3> ();
 		directionslog = new List<int> ();
 		lastSpawned = new List<Vector3> ();
+		
+		tree = (GameObject)Resources.Load ("Trees/Tree");
+		treeSpawnOffsetx = roadSize.x;//3.3f;
+		treeSpawnOffsetz = roadSize.z;//3.3f;
+		treeSpawnlog = new List<Vector3> ();
 		CreateFirstTiles ();
 	}
 
-//	void FillWithGrass() {
-//		for (int i = 0; i<= grassSpawnCoordinates.Count; i++) {
-//			int randomDraw = Random.Range(0, grassPrefabs.Count);
-//			Instantiate (grassPrefabs[randomDraw], grassSpawnCoordinates[i], Quaternion.identity);
-//		}
-//	}
+
+	void AddTreeSpawnPositions(Vector3 spawnpos, int toss) {
+		if (toss == 0 || toss == 1) { //vertical spawning
+			Vector3 spawn1 = spawnpos + new Vector3 (treeSpawnOffsetx, 0, 0);
+			treeSpawnlog.Add (spawn1);
+			Vector3 spawn2 = spawnpos + new Vector3 (-treeSpawnOffsetx, 0, 0);
+			treeSpawnlog.Add (spawn2);
+		} else {
+			Vector3 spawn1 = spawnpos + new Vector3 (0, 0, treeSpawnOffsetz);
+			treeSpawnlog.Add (spawn1);
+			Vector3 spawn2 = spawnpos + new Vector3 (0, 0, -treeSpawnOffsetz);
+			treeSpawnlog.Add (spawn2);
+		}
+
+	}
 
 	void CreateFirstTiles() {
 		int tossUOD = Random.Range (0, 2); //0 = down, 1=up
@@ -84,35 +84,71 @@ public class GenerateRoads : MonoBehaviour {
 
 		Vector3 startpos = new Vector3 (Random.Range (-rightborder/s, rightborder/s), 0f, Random.Range (-upperborder/s, upperborder/s));
 		Debug.Log ("startpos: " + startpos);
-		if (tossUOD == 1) {
-			for (float i = startpos.z; i <= upperborder; i= i+roadSize.z) {
-				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
-				//Instantiate (road, spawnpos, Quaternion.identity);
-				spawnlog.Add (spawnpos);
-			}
-		} else {
-			for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
-				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
-				//Instantiate (road, spawnpos, Quaternion.identity);
-				spawnlog.Add (spawnpos);
-			}
-		}
+//		if (tossUOD == 1) {
+//			for (float i = startpos.z; i <= upperborder; i= i+roadSize.z) {
+//				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
+//				//Instantiate (road, spawnpos, Quaternion.identity);
+//				spawnlog.Add (spawnpos);
+//				AddTreeSpawnPositions(spawnpos, tossUOD);
+//			}
+//		} else {
+//			for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
+//				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
+//				//Instantiate (road, spawnpos, Quaternion.identity);
+//				spawnlog.Add (spawnpos);
+//				AddTreeSpawnPositions(spawnpos, tossUOD);
+//			}
+//		}
 
-		if (tossROL == 2) {
-			for (float i = startpos.x; i <= rightborder; i= i+roadSize.x) {
-				Vector3 spawnpos = new Vector3 (i, 0f, startpos.z);
-				//Instantiate (road, spawnpos, Quaternion.identity);
-				spawnlog.Add (spawnpos);
-				lastSpawned.Add(spawnpos);
-			}
-		} else {
+		// one main vertical road, top to bottom
+		for (float i = startpos.z; i <= upperborder; i= i+roadSize.z) {
+							Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
+							//Instantiate (road, spawnpos, Quaternion.identity);
+							spawnlog.Add (spawnpos);
+							AddTreeSpawnPositions(spawnpos, tossUOD);
+						}
+
+			for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
+								Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
+								//Instantiate (road, spawnpos, Quaternion.identity);
+								spawnlog.Add (spawnpos);
+								AddTreeSpawnPositions(spawnpos, tossUOD);
+							}
+
+
+
+
+//		if (tossROL == 2) {
+//			for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
+//				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
+//				//Instantiate (road, spawnpos, Quaternion.identity);
+//				spawnlog.Add (spawnpos);
+//				AddTreeSpawnPositions(spawnpos, tossUOD);
+//			}
+//		} else {
+//			for (float i = startpos.x; i >= -rightborder; i= i-roadSize.x) {
+//				Vector3 spawnpos = new Vector3 (i, 0f, startpos.z);
+//				//Instantiate (road, spawnpos, Quaternion.identity);
+//				spawnlog.Add (spawnpos);
+//				lastSpawned.Add(spawnpos);
+//				AddTreeSpawnPositions(spawnpos, tossROL);
+//			}
+//		}
+
+		for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
+							Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
+							//Instantiate (road, spawnpos, Quaternion.identity);
+							spawnlog.Add (spawnpos);
+							AddTreeSpawnPositions(spawnpos, tossUOD);
+						}
+
 			for (float i = startpos.x; i >= -rightborder; i= i-roadSize.x) {
-				Vector3 spawnpos = new Vector3 (i, 0f, startpos.z);
-				//Instantiate (road, spawnpos, Quaternion.identity);
-				spawnlog.Add (spawnpos);
-				lastSpawned.Add(spawnpos);
-			}
-		}
+								Vector3 spawnpos = new Vector3 (i, 0f, startpos.z);
+								//Instantiate (road, spawnpos, Quaternion.identity);
+								spawnlog.Add (spawnpos);
+								lastSpawned.Add(spawnpos);
+								AddTreeSpawnPositions(spawnpos, tossROL);
+							}
 
 		directionslog.Add (tossUOD);
 		directionslog.Add (tossROL);
@@ -139,6 +175,7 @@ public class GenerateRoads : MonoBehaviour {
 					//Instantiate (road, spawnpos, Quaternion.identity);
 					spawnlog.Add (spawnpos);
 					lastSpawned.Add (spawnpos);
+					AddTreeSpawnPositions(spawnpos, toss);
 				}
 			} else {
 				for (float i = startpos.x; i >= -rightborder; i= i-roadSize.x) {
@@ -146,6 +183,7 @@ public class GenerateRoads : MonoBehaviour {
 					//Instantiate (road, spawnpos, Quaternion.identity);
 					spawnlog.Add (spawnpos);
 					lastSpawned.Add (spawnpos);
+					AddTreeSpawnPositions(spawnpos, toss);
 				}
 			}
 
@@ -159,6 +197,7 @@ public class GenerateRoads : MonoBehaviour {
 					//Instantiate (road, spawnpos, Quaternion.identity);
 					spawnlog.Add (spawnpos);
 					lastSpawned.Add(spawnpos);
+					AddTreeSpawnPositions(spawnpos, toss);
 				}
 			} else {
 				for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
@@ -166,6 +205,7 @@ public class GenerateRoads : MonoBehaviour {
 					//Instantiate (road, spawnpos, Quaternion.identity);
 					spawnlog.Add (spawnpos);
 					lastSpawned.Add(spawnpos);
+					AddTreeSpawnPositions(spawnpos, toss);
 				}
 			}
 		}
@@ -174,10 +214,9 @@ public class GenerateRoads : MonoBehaviour {
 	}
 
 	public void Generate() {
-		//while (generateRoads) {
 			Initialize ();
 
-			int iter = 10;
+			int iter = 5;
 	
 		for (int i=1; i<=iter; i++) {
 			CreateNext ();
@@ -188,11 +227,12 @@ public class GenerateRoads : MonoBehaviour {
 			Instantiate(road, spawnlog[i], Quaternion.identity);
 		}
 
-//			if (spawnlog.Count >150) {
-//				DestroyAllObjects();
-//				Generate();
-//			}
-		//}
+		treeSpawnlog = getUnique (treeSpawnlog);
+		CheckRoadVSTree ();
+		for (int j = 0; j< treeSpawnlog.Count; j++) {
+			Instantiate(tree, treeSpawnlog[j] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
+		}
+
 
 	}
 
@@ -205,6 +245,15 @@ public class GenerateRoads : MonoBehaviour {
 			}
 		}
 		return ok;
+	}
+
+	void CheckRoadVSTree() {
+		for (int i= 0; i< treeSpawnlog.Count; i++) {
+			if (spawnlog.Contains(treeSpawnlog[i])) {
+				treeSpawnlog.RemoveAt(i);
+				CheckRoadVSTree();
+			}
+		}
 	}
 
 }
