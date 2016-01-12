@@ -6,7 +6,7 @@ public class GameOverScript : MonoBehaviour {
 
 	public Button backToMain;
 	public Canvas pause;
-	// Use this for initialization
+
 	void Start () {
 		backToMain = backToMain.GetComponent<Button> ();
 	}

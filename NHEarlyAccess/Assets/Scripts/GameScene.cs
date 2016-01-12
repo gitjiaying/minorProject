@@ -22,8 +22,8 @@ public class GameScene : MonoBehaviour {
 	private bool hasDied;
 	public Text scoreOver;
 	public Text scorePause;
-	// Use this for initialization
-	void Start () {
+
+    void Start () {
 		GameManagerScript.alive = true;
 		Over.enabled = false;
 		Pause.enabled = false;
@@ -33,11 +33,10 @@ public class GameScene : MonoBehaviour {
 		hasDied = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (!GameManagerScript.alive) {
 			Over.enabled=true;
-			Time.timeScale=0;
+            Time.timeScale=0;
 		}
 		if (Input.GetKeyDown (KeyCode.P)) {
 			if(!GameManagerScript.pause){
