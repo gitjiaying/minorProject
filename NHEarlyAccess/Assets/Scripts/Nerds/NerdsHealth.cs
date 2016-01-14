@@ -97,13 +97,14 @@ public class NerdsHealth : MonoBehaviour
 			if (col.gameObject.tag == "Book") {
 				Debug.Log ("bb IS "+GameManagerScript.bookEx);
 				if (GameManagerScript.bookEx) {
-					Collider[] hitNerds = Physics.OverlapSphere (this.transform.position, blastRadius,mask);
+					Collider[] hitNerds = Physics.OverlapSphere (col.transform.position, blastRadius,mask);
 					int i = 0;
 					Debug.Log (hitNerds.Length);
 					while (i < hitNerds.Length) {
 						hitNerds [i].gameObject.SendMessageUpwards ("AddBlastDamage");
 						i++;
 					}
+					col.gameObject.SetActive (false);
 				} else {
 					TakeDamage (damagePerBook);
 					Debug.Log ("HIT");

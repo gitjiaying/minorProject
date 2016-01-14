@@ -87,7 +87,7 @@ public class NewCharMenuScript : MonoBehaviour {
 	
 	}
 	public void prevHair(){
-		if (hair == 1) {
+		if (hair == 1||hair==0||hair==null) {
 			hair = 3;
 		} else {
 			hair--;
@@ -103,7 +103,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		charAp.face = face;
 	}
 	public void prevFace(){
-		if (face == 1) {
+		if (face == 1||face==0||face==null) {
 			face = 4;
 		} else {
 			face--;
@@ -119,7 +119,7 @@ public class NewCharMenuScript : MonoBehaviour {
 		charAp.shirt = shirt;
 	}
 	public void prevShirt(){
-		if (shirt == 1) {
+		if (shirt == 1||shirt==0||shirt==null) {
 			shirt = 3;
 		} else {
 			shirt--;
@@ -136,7 +136,7 @@ public class NewCharMenuScript : MonoBehaviour {
 
 	}
 	public void prevPants(){
-		if (pants == 1) {
+		if (pants == 1||pants==0||pants==null) {
 			pants = 4;
 		} else {
 			pants--;
@@ -177,6 +177,9 @@ public class NewCharMenuScript : MonoBehaviour {
 			break;
 		case 9:
 			Skin = new Color32(45, 34,30,1);
+			break;
+		default:
+			Skin = new Color32 (255, 229, 200,1);
 			break;
 		}
 		charAp.skinColor = Skin;

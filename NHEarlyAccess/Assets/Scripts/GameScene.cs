@@ -28,7 +28,7 @@ public class GameScene : MonoBehaviour {
 		Over.enabled = false;
 		Pause.enabled = false;
 		InvokeRepeating ("spawn", 5, spawnTime);
-		InvokeRepeating ("popup", 10, popupTime);
+		InvokeRepeating ("popup", 5, popupTime);
 		startTime = Time.time;
 		hasDied = false;
 	}
