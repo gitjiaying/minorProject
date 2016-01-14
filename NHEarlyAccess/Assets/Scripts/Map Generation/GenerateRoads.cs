@@ -27,6 +27,9 @@ public class GenerateRoads : MonoBehaviour {
 	float treeSpawnOffsetx ;
 	float treeSpawnOffsetz ;
 
+	List<Vector3> tempSpawn;
+	List<Vector3> tempTreeSpawn;
+
 
 	bool generateRoads;
 
@@ -212,6 +215,7 @@ public class GenerateRoads : MonoBehaviour {
 
 
 	}
+	
 
 	public void Generate() {
 			Initialize ();
@@ -228,11 +232,14 @@ public class GenerateRoads : MonoBehaviour {
 		}
 
 		treeSpawnlog = getUnique (treeSpawnlog);
+		tempSpawn = RoundedPositions (spawnlog);
+		tempTreeSpawn = RoundedPositions (treeSpawnlog);
 		CheckRoadVSTree ();
-		for (int j = 0; j< treeSpawnlog.Count; j++) {
+		for (int j = 0; j< treeSpawnlog.Count-1; j=j+4) {
 			Instantiate(tree, treeSpawnlog[j] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
-		}
+			Instantiate(tree, treeSpawnlog[j+1] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
 
+		}
 
 	}
 
@@ -247,13 +254,34 @@ public class GenerateRoads : MonoBehaviour {
 		return ok;
 	}
 
+	List<Vector3> RoundedPositions(List<Vector3> positions) {
+		List<Vector3> res = new List<Vector3> ();
+
+		for (int i =0; i<positions.Count; i++) {
+			res.Add(new Vector3(Mathf.CeilToInt (positions[i].x), 0, Mathf.CeilToInt (positions[i].z)));
+		}
+
+		return res;
+	}
+
+
+
 	void CheckRoadVSTree() {
-		for (int i= 0; i< treeSpawnlog.Count; i++) {
-			if (spawnlog.Contains(treeSpawnlog[i])) {
+		for (int i= 0; i< tempTreeSpawn.Count; i++) {
+			if (tempSpawn.Contains(tempTreeSpawn[i])) {
+				tempTreeSpawn.RemoveAt(i);
 				treeSpawnlog.RemoveAt(i);
 				CheckRoadVSTree();
 			}
 		}
+
+//		for (int i= 0; i< treeSpawnlog.Count; i++) {
+//			if (spawnlog.Contains(treeSpawnlog[i])) {
+//				treeSpawnlog.RemoveAt(i);
+//				CheckRoadVSTree();
+//			}
+//		}
+
 	}
 
 }

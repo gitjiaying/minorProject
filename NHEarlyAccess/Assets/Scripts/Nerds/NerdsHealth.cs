@@ -93,10 +93,11 @@ public class NerdsHealth : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if (!isDead)
-		{	
+		{
 			if (col.gameObject.tag == "Book") {
-				Debug.Log ("bb IS "+GameManagerScript.bookEx);
+				
 				if (GameManagerScript.bookEx) {
+                    Instantiate(Resources.Load("Explosion"), col.transform.position, Quaternion.identity);
 					Collider[] hitNerds = Physics.OverlapSphere (col.transform.position, blastRadius,mask);
 					int i = 0;
 					Debug.Log (hitNerds.Length);
@@ -104,6 +105,7 @@ public class NerdsHealth : MonoBehaviour
 						hitNerds [i].gameObject.SendMessageUpwards ("AddBlastDamage");
 						i++;
 					}
+                    TakeDamage(100);
 					col.gameObject.SetActive (false);
 				} else {
 					TakeDamage (damagePerBook);

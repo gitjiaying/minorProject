@@ -11,6 +11,7 @@ public class GameOverScript : MonoBehaviour {
     public Toggle mute;
     public Toggle music;
     public Toggle ThirdPerson;
+    public CameraSwitch Switch;
 
 
 
@@ -24,8 +25,17 @@ public class GameOverScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+
+        if (GameManagerScript.thirdPerson == false)
+        {
+            Switch.enabled = false;
+        }
+        else
+        {
+            Switch.enabled = true;
+        }
+
+    }
 
 	public void mainMenu(){
 		Time.timeScale = 1;
