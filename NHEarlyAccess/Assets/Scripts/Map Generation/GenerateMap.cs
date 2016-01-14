@@ -35,6 +35,7 @@ public class GenerateMap : MonoBehaviour {
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
 		grass = Resources.Load ("Materials/TL_Grass_01/U5_Material/TL_Grass_01_U5") as Material;
 		plane.GetComponent<Renderer> ().material = grass;
+		plane.layer = 11;
 		//groundSize = gridWorldSize;
 
 		roadbuilder = GetComponent<GenerateRoads>();

@@ -56,7 +56,13 @@ public class UsePickups : MonoBehaviour {
 		}
 	}
     void useBB(){
-		
+		if (Inventory.BombBooks == 0) {
+			errorSound.Play ();
+		} else {
+			Inventory.BombBooks--;
+			GameManagerScript.bookEx = true;
+			Invoke ("normalBooks", 5f);
+		}
 	}
 	void normalSpeed(){
 		player.WalkSpeed += 3;
@@ -67,5 +73,8 @@ public class UsePickups : MonoBehaviour {
 		player.WalkSpeed -= 2;
 		player.SprintSpeed -= 3;
 		geo.fireRate += .05f;
+	}
+	void normalBooks(){
+		GameManagerScript.bookEx = false;
 	}
 }

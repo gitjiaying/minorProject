@@ -16,6 +16,9 @@ public class NerdsHealth : MonoBehaviour
     private float timer;
     public float timeBetweenAttacks = 0.5f;
     ParticleSystem hitParticles;
+	public int blastRadius;
+	public int layer;
+	public LayerMask mask;
 
     void Awake()
     {
@@ -23,6 +26,8 @@ public class NerdsHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         spawn = Time.time;
         hitParticles = GetComponentInChildren<ParticleSystem>();
+		layer = 12;
+		mask = 1 << layer;
     }
 
     void Update()
@@ -88,19 +93,30 @@ public class NerdsHealth : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if (!isDead)
-        {
-            if (col.gameObject.tag == "Book")
-            {
-                TakeDamage(damagePerBook);
-                Debug.Log("HIT");
-                GameManagerScript.booksHit++;
-            }
+		{	
+			if (col.gameObject.tag == "Book") {
+				Debug.Log ("bb IS "+GameManagerScript.bookEx);
+				if (GameManagerScript.bookEx) {
+					Collider[] hitNerds = Physics.OverlapSphere (this.transform.position, blastRadius,mask);
+					int i = 0;
+					Debug.Log (hitNerds.Length);
+					while (i < hitNerds.Length) {
+						hitNerds [i].gameObject.SendMessageUpwards ("AddBlastDamage");
+						i++;
+					}
+				} else {
+					TakeDamage (damagePerBook);
+					Debug.Log ("HIT");
+					GameManagerScript.booksHit++;
+				}
+				col.gameObject.GetComponent<BoxCollider> ().enabled = false;
+			}
             if (col.gameObject.tag == "Geo")
             {
                 TakeDamage(damagePerGeo);
-                col.gameObject.GetComponent<BoxCollider>().enabled = false;
                 GameManagerScript.geoHit++;
                 Debug.Log(GameManagerScript.geoHit + " " + GameManagerScript.geoThrown);
+				col.gameObject.GetComponent<BoxCollider> ().enabled = false;
             }
         }
     }
@@ -110,10 +126,7 @@ public class NerdsHealth : MonoBehaviour
         {
             TakeDamage(100);
             timer = 0f;
-            Debug.Log("HIT");
-
         }
-
     }
 
     void sink()
@@ -126,5 +139,8 @@ public class NerdsHealth : MonoBehaviour
     {
         anim.SetBool("Dead", isDead);
     }
+	void AddBlastDamage(){
+		TakeDamage (damagePerBook / 2);
+	}
 
 }

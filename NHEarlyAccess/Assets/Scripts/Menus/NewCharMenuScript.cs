@@ -1,7 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using LitJson;
 
+[System.Serializable]
+public class Character{
+
+	public int Hair = 0;
+	public int Face = 0;
+	public int Shirt = 0;
+	public int Pants = 0;
+	public int SkinR = 0;
+	public int SkinG = 0;
+	public int SkinB = 0;
+	public int CharNumber = 0;
+
+}
 public class NewCharMenuScript : MonoBehaviour {
 
 	public Button hairLeft;
@@ -24,8 +38,9 @@ public class NewCharMenuScript : MonoBehaviour {
 	public Canvas editMenu;
 	public GameObject main;
 	private CharAppearance charAp;
+	private Character temp;
 
-
+	string Url = "http://drproject.twi.tudelft.nl:8085/sendCharacter";
 
 
 	void Start () {
@@ -59,7 +74,6 @@ public class NewCharMenuScript : MonoBehaviour {
 		face = charAp.face;
 		shirt = charAp.shirt;
 		pants = charAp.pants;
-		Debug.Log (Skin.b);
 		setSlider ();
 	}
 
@@ -214,6 +228,8 @@ public class NewCharMenuScript : MonoBehaviour {
 		charAp.pants = pants;
 		charAp.skinColor = Skin;
 
+		MakeChar ();
+
 		Skin = new Color32 (255, 229, 200,1);
 		hair = 0;
 		face = 0;
@@ -222,5 +238,30 @@ public class NewCharMenuScript : MonoBehaviour {
 
 		editMenu.enabled = false;
 		main.SetActive (true);
+	}
+	void MakeChar(){
+		temp = new Character();
+		temp.Hair = hair;
+		temp.Face = face;
+		temp.Shirt = shirt;
+		temp.Pants = pants;
+		temp.SkinR = Skin.r;
+		temp.SkinG = Skin.g;
+		temp.SkinB = Skin.b;
+		temp.CharNumber = CharMenuScript.charIndex;
+
+		string JsonCharacter = JsonMapper.ToJson(temp);
+		Debug.Log(JsonCharacter);
+
+		StartCoroutine(sendChar(JsonCharacter));
+	}
+
+	IEnumerator sendChar(string Char)
+	{
+		WWWForm dataParameters = new WWWForm();
+		dataParameters.AddField("Character", Char); // stuur altijd als string.
+		dataParameters.AddField("UserId" , LoginScript.userID);
+		WWW www = new WWW(Url,dataParameters);
+		yield return www;
 	}
 }
