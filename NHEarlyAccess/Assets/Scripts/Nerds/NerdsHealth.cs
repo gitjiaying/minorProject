@@ -143,7 +143,8 @@ public class NerdsHealth : MonoBehaviour
         anim.SetBool("Dead", isDead);
     }
 	void AddBlastDamage(){
-		TakeDamage (damagePerBook / 2);
+		int damage = damagePerBook / 4;
+		TakeDamage (damage);
 	}
 
 }

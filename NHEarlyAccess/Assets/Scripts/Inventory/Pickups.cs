@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Pickups : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class Pickups : MonoBehaviour {
 	public Canvas BeerInfo;
 	public Canvas EnergyInfo;
 	public Canvas BBInfo;
+	public Text cans;
+	public Text beers;
+	public Text bombs;
 
 	void Start(){
 		firstBeer = true;
@@ -17,6 +21,11 @@ public class Pickups : MonoBehaviour {
 		BeerInfo.enabled=false;
 		EnergyInfo.enabled=false;
 		BBInfo.enabled=false;
+	}
+	void Update(){
+		cans.text = Inventory.Energy.ToString();
+		beers.text = Inventory.Beers.ToString();
+		bombs.text = Inventory.BombBooks.ToString();
 	}
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.CompareTag("Beer"))

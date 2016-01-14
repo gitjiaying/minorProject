@@ -27,7 +27,7 @@ public class GameScene : MonoBehaviour {
 		GameManagerScript.alive = true;
 		Over.enabled = false;
 		Pause.enabled = false;
-		InvokeRepeating ("spawn", 5, spawnTime);
+		InvokeRepeating ("spawn", 10, spawnTime);
 		InvokeRepeating ("popup", 5, popupTime);
 		startTime = Time.time;
 		hasDied = false;
@@ -67,7 +67,7 @@ public class GameScene : MonoBehaviour {
 	void popup(){
 		int rand = Random.Range (1, 4);
 		Vector3 pos = new Vector3 (Random.Range (minX, maxX), popupHeight, Random.Range (minY, maxY));
-		Vector3 rot = new Vector3 (0, 0, 0);
+		Vector3 rot = new Vector3 (-90, 0, 0);
 
 		switch (rand) {
 		case 1:
