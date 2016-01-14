@@ -19,6 +19,7 @@ public class NerdsHealth : MonoBehaviour
 	public int blastRadius;
 	public int layer;
 	public LayerMask mask;
+    public bool isNormalNerd = true;
 
     void Awake()
     {
@@ -75,19 +76,31 @@ public class NerdsHealth : MonoBehaviour
 
         if (amount == 40)
         {
-            GameManagerScript.score += 40;
+            GameManagerScript.score += 10;
             GameManagerScript.killedByBook++;
         }
         if (amount == 10)
         {
-            GameManagerScript.score += 50;
+            GameManagerScript.score += 20;
             GameManagerScript.killedByGeo++;
         }
         if (amount == 100)
         {
-            GameManagerScript.score += 100;
+            GameManagerScript.score += 50;
             GameManagerScript.killedByMelee++;
         }
+
+        if (isNormalNerd)
+        {
+            GameManagerScript.score += 20;
+            Debug.Log("nerd died!!" + GameManagerScript.score);
+        }
+        else
+        {
+            GameManagerScript.score += 400;
+            Debug.Log("Ubernerd died!!" + GameManagerScript.score);
+        }
+        
     }
 
     void OnTriggerEnter(Collider col)
@@ -143,8 +156,12 @@ public class NerdsHealth : MonoBehaviour
         anim.SetBool("Dead", isDead);
     }
 	void AddBlastDamage(){
-		int damage = damagePerBook / 4;
-		TakeDamage (damage);
+		TakeDamage (damagePerBook / 2);
 	}
+
+    public void setUberNerd(bool nerd)
+    {
+       isNormalNerd = nerd;
+    }
 
 }
