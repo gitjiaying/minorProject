@@ -48,6 +48,11 @@
      <Compile Include="Assets\Scripts\Nerds\GridMovement.js" />
      <None Include="Assets\Shaders\CameraMask.shader" />
      <None Include="Assets\Shaders\CameraShader.shader" />
+     <None Include="Assets\Resources\Materials\mp_met\mp_met.shader" />
+     <None Include="Assets\Resources\Materials\mp_poc\Point of Contention.txt" />
+     <None Include="Assets\Resources\Materials\mp_met\license.txt" />
+     <None Include="Assets\Resources\Materials\mp_poc\license.txt" />
+     <None Include="Assets\Resources\Materials\mp_poc\mp_poc.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -56,6 +61,9 @@
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>C:/Users/Olivier/Documents/TU Delft/2015-2016/MinorProject/NHEarlyAccess/Assets/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

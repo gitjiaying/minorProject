@@ -6,17 +6,17 @@ public class Pickups : MonoBehaviour {
 	private bool firstBeer;
 	private bool firstEnergy;
     private bool firstBB;
-	public Canvas BeerInfo;
-	public Canvas EnergyInfo;
-	public Canvas BBInfo;
+	public GameObject BeerInfo;
+	public GameObject EnergyInfo;
+	public GameObject BBInfo;
 
 	void Start(){
 		firstBeer = true;
 		firstEnergy = true;
         firstBB = true;
-		BeerInfo.enabled = false;
-		EnergyInfo.enabled = false;
-        BBInfo.enabled = false;
+		BeerInfo.SetActive(false);
+		EnergyInfo.SetActive(false);
+		BBInfo.SetActive(false);
 	}
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.CompareTag("Beer"))
@@ -27,7 +27,7 @@ public class Pickups : MonoBehaviour {
 
 			if (firstBeer){
 				firstBeer=false;
-				BeerInfo.enabled=true;
+				BeerInfo.SetActive(true);
 				Invoke("clearInfo",4f);
 			}
 		}
@@ -38,7 +38,7 @@ public class Pickups : MonoBehaviour {
 
 			if (firstEnergy){
 				firstEnergy=false;
-				EnergyInfo.enabled=true;
+				EnergyInfo.SetActive(true);
 				Invoke("clearInfo",4f);
 			}
 		}
@@ -49,15 +49,15 @@ public class Pickups : MonoBehaviour {
 
 			if (firstBB){
 				firstBB=false;
-				BBInfo.enabled=true;
+				BBInfo.SetActive(true);
 				Invoke("clearInfo",4f);
 			}
 		}
 	}
 
 	void clearInfo(){
-		BeerInfo.enabled = false;
-		EnergyInfo.enabled = false;
-        BBInfo.enabled = false;
+		BeerInfo.SetActive(false);
+		EnergyInfo.SetActive(false);
+		BBInfo.SetActive(false);
 	}
 }
