@@ -6,6 +6,7 @@ public class GenerateMap : MonoBehaviour {
 
 	public static GameObject plane;
 	Material grass;
+	List<GameObject> walls = new List<GameObject> ();
 
 	public LayerMask unwalkableMask;
 	//public LayerMask roadMask;
@@ -28,6 +29,7 @@ public class GenerateMap : MonoBehaviour {
 	int[] spawnRotations = new int[] {0, 90, 180, 270};
 
 	static GenerateRoads roadbuilder;
+	List<Material> skyboxes = new List<Material>();
 
 	void Awake(){
 		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -37,6 +39,23 @@ public class GenerateMap : MonoBehaviour {
 		plane.GetComponent<Renderer> ().material = grass;
 		plane.layer = 11;
 		//groundSize = gridWorldSize;
+
+		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall1"));
+		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall2"));
+		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall3"));
+		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall4"));
+		for (int i =0; i< walls.Count; i++) {
+			Instantiate (walls[i], walls[i].transform.position, walls[i].transform.rotation);
+		}
+		
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox1"));
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox2"));
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox3"));
+		int randomskybox = Random.Range (0, skyboxes.Count+1);
+		if (randomskybox != skyboxes.Count) {
+			RenderSettings.skybox = skyboxes [randomskybox];
+		}
+		RenderSettings.fog = true;
 
 		roadbuilder = GetComponent<GenerateRoads>();
 		roadbuilder.Generate ();
