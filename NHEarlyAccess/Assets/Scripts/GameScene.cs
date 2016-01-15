@@ -7,6 +7,7 @@ public class GameScene : MonoBehaviour {
 	public Canvas Pause;
 	public GameObject nerd;
     public GameObject ubernerd;
+    public GameObject nerdsprinter;
 	public GameObject player;
 	public GameObject beer;
 	public GameObject energy;
@@ -21,9 +22,12 @@ public class GameScene : MonoBehaviour {
 	public float popupTime;
 	private float startTime;
 	private bool hasDied;
+    public static float counter;
 	public Text scoreOver;
 	public Text scorePause;
     public int uberRate;
+    public int sprinterRate;
+    public Text score;
 
 
     void Start () {
@@ -34,9 +38,12 @@ public class GameScene : MonoBehaviour {
 		InvokeRepeating ("popup", 5, popupTime);
 		startTime = Time.time;
 		hasDied = false;
+        counter = 0;
 	}
 	
 	void Update () {
+        score.text = GameManagerScript.score.ToString();
+        counter += 1 * Time.deltaTime;
 		if (!GameManagerScript.alive) {
 			Over.enabled=true;
             Time.timeScale=0;
@@ -72,7 +79,13 @@ public class GameScene : MonoBehaviour {
             Instantiate(ubernerd, pos, Quaternion.Euler(rot));
             Debug.Log("ubernerd spawned");
         }
-	}
+        if (GameManagerScript.nerdsKilled % sprinterRate == 0 && GameManagerScript.nerdsKilled > sprinterRate - 1)
+        {
+            pos = new Vector3(Random.Range(minX, maxX), height, Random.Range(minY, maxY));
+            Instantiate(nerdsprinter, pos, Quaternion.Euler(rot));
+            Debug.Log("SprinterNerd spawned");
+        }
+    }
 	void popup(){
 		int rand = Random.Range (1, 4);
 		Vector3 pos = new Vector3 (Random.Range (minX, maxX), popupHeight, Random.Range (minY, maxY));

@@ -70,10 +70,13 @@
      <Compile Include="Assets\Scripts\Menus\NewCharMenuScript.cs" />
      <Compile Include="Assets\Scripts\Nerds\Data.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdControl.cs" />
+     <Compile Include="Assets\Scripts\Nerds\NerdInitiator.cs" />
+     <Compile Include="Assets\Scripts\Nerds\NerdSprinterInitiator.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsAttack.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsHealth.cs" />
      <Compile Include="Assets\Scripts\Nerds\NerdsMovement.cs" />
      <Compile Include="Assets\Scripts\Nerds\UberNerd.cs" />
+     <Compile Include="Assets\Scripts\Nerds\UberNerdInitiator.cs" />
      <Compile Include="Assets\Scripts\Nerds\WeightsMDF.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\FollowShortestPath.cs" />
      <Compile Include="Assets\Scripts\Pathfinding\Grid.cs" />
