@@ -6,7 +6,7 @@
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
 	<RootNamespace></RootNamespace>
-	<ProjectGuid>{32DC34CB-0A4D-242A-8AA7-6090074E2ED0}</ProjectGuid>
+	<ProjectGuid>{052E6A4A-7A88-4A76-A4D6-24EC37177235}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -110,11 +110,8 @@
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="LitJson">
- <HintPath>/Users/JY/Documents/MinorTUDelftSoftwareProgrammerenEnToepassen/MinorProject/NHEarlyAccess/Assets/LitJson.dll</HintPath>
+ <HintPath>/Users/JY/Documents/MinorTUDelftSoftwareProgrammerenEnToepassen/MinorProject/NHBeta/Assets/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
