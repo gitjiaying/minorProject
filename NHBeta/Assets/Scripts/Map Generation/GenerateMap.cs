@@ -47,10 +47,12 @@ public class GenerateMap : MonoBehaviour {
 		for (int i =0; i< walls.Count; i++) {
 			Instantiate (walls[i], walls[i].transform.position, walls[i].transform.rotation);
 		}
-		
+
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox1"));
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox2"));
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox3"));
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox4"));
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox5"));
 		int randomskybox = Random.Range (0, skyboxes.Count+1);
 		if (randomskybox != skyboxes.Count) {
 			RenderSettings.skybox = skyboxes [randomskybox];

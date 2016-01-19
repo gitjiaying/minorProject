@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\unity_test_field\Weapons_Test\Assets\AnimationTest.cs">
+    <Files>
+      <File FileName="..\..\unity_test_field\Weapons_Test\Assets\AnimationTest.cs" Line="9" Column="12" />
+      <File FileName="..\..\unity_test_field\Weapons_Test\Assets\Weapons\script\Shoot.cs" Line="12" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

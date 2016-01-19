@@ -21,6 +21,8 @@ public class NerdsHealth : MonoBehaviour
 	public LayerMask mask;
     public bool isNormalNerd = true;
 
+	AudioSource source;
+
     void Awake()
     {
         currentHealth = startingHealth;
@@ -29,6 +31,7 @@ public class NerdsHealth : MonoBehaviour
         hitParticles = GetComponentInChildren<ParticleSystem>();
 		layer = 12;
 		mask = 1 << layer;
+		source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -111,6 +114,7 @@ public class NerdsHealth : MonoBehaviour
 				
 				if (GameManagerScript.bookEx) {
                     Instantiate(Resources.Load("Explosion"), col.transform.position, Quaternion.identity);
+					source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/Explosion"));
 					Collider[] hitNerds = Physics.OverlapSphere (col.transform.position, blastRadius,mask);
 					int i = 0;
 					Debug.Log (hitNerds.Length);
