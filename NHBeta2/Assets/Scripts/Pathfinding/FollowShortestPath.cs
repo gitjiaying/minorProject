@@ -44,10 +44,10 @@ public class FollowShortestPath : MonoBehaviour
 
 
 		FileInfo theSourceFile = new FileInfo 
-        ("C:/Users/Ajdin/Downloads/UnitySpace/Episode4/Assets/Scenes/WeightsIH.txt");
+        (Application.dataPath + "/WeightsIH.txt");
         StreamReader reader = theSourceFile.OpenText();
         FileInfo theSourceFile2 = new FileInfo
-        ("C:/Users/Ajdin/Downloads/UnitySpace/Episode4/Assets/Scenes/WeightsHO.txt");
+        (Application.dataPath + "/WeightsHO.txt");
         StreamReader reader2 = theSourceFile2.OpenText();
 
     	WeightsIH = CreateWeights(reader);
@@ -71,19 +71,19 @@ public class FollowShortestPath : MonoBehaviour
 		Vector3 normalLeft = RotateV3aboutY(unitDirection, -(Mathf.PI/2+angle*3));
 		Vector3 normalRight= RotateV3aboutY(unitDirection,  (Mathf.PI/2+angle*3));
 
-		//Debug.DrawLine(target.position, target.position+target.forward*10, Color.red);
+		Debug.DrawLine(target.position, target.position+RotateV3aboutY(target.forward*10, Mathf.PI*170/180), Color.red);
 		//Debug.DrawLine(target.position, target.position+rightBound*10, Color.blue);
 		//Debug.DrawLine(target.position, target.position+leftBound*10, Color.blue);
 
 		//Debug.DrawLine(transform.position, transform.position+normalLeft*10, Color.red);
 		//Debug.DrawLine(transform.position, transform.position+normalRight*10, Color.red);
 
-		facingUnit = V3InDirectionRange(target.forward, leftBound, rightBound);
+		facingUnit = V3InDirectionRange(RotateV3aboutY(target.forward*10, Mathf.PI*170/180), leftBound, rightBound);
 
-		float angleDifference = Vector3.Angle(unitDirection, target.forward);
+		float angleDifference = Vector3.Angle(unitDirection, RotateV3aboutY(target.forward*10, Mathf.PI*170/180));
 
-		float leftAngleDifference = Vector3.Angle(leftBound, target.forward);
-		float rightAngleDifference = Vector3.Angle(rightBound, target.forward);
+		float leftAngleDifference = Vector3.Angle(leftBound, RotateV3aboutY(target.forward*10, Mathf.PI*170/180));
+		float rightAngleDifference = Vector3.Angle(rightBound, RotateV3aboutY(target.forward*10, Mathf.PI*170/180));
 
 		if(rightAngleDifference>leftAngleDifference){
 			rightDominate = true; 
@@ -115,14 +115,19 @@ public class FollowShortestPath : MonoBehaviour
 		}
 
 		if(Youtput<0.5){
-				if(grid.NodeFromWorldPoint(target.position+normalLeft).walkable && angleDifference<160)
-				transform.position = Vector3.MoveTowards(transform.position, target.position+normalLeft, speed*Time.deltaTime);
+				if(angleDifference<160)
+				{
+					transform.position = Vector3.MoveTowards(transform.position, target.position+normalLeft, speed*Time.deltaTime);
+					Debug.Log("keuze ready");
+				}
 				else
 				moveTo(grid.path[0].getWorldPos());
 		}
 		else{
-				if(grid.NodeFromWorldPoint(target.position+normalRight).walkable && angleDifference<160)
+				if(angleDifference<160){
 				transform.position = Vector3.MoveTowards(transform.position, target.position+normalRight, speed*Time.deltaTime);
+				Debug.Log("keuze ready");
+				}
 				else
 				moveTo(grid.path[0].getWorldPos());
 		}
