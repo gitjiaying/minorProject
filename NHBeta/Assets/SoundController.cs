@@ -3,6 +3,8 @@ using System.Collections;
 
 public class SoundController : MonoBehaviour
 {
+	private float random;
+	public float nextSound;
 
     AudioSource source;
     bool dead = false;
@@ -37,5 +39,6 @@ public class SoundController : MonoBehaviour
         {
             GetComponent<AudioSource>().mute = false;
         }
+
     }
 }
