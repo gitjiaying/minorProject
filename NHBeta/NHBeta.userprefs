@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Map Generation/GenerateMap.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SoundController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Map Generation/GenerateRoads.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Map Generation/GenerateMap.cs" Line="57" Column="52" />
+      <File FileName="Assets\SoundController.cs" Line="41" Column="10" />
+      <File FileName="Assets\Scripts\Nerds\NerdsHealth.cs" Line="23" Column="2" />
+      <File FileName="Assets\Scripts\Weapons\GeoShoot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameScene.cs" Line="102" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

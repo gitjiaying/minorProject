@@ -29,7 +29,8 @@ public class GameScene : MonoBehaviour {
     public int sprinterRate;
     public Text score;
 
-	AudioSource source;
+	private AudioSource source;
+	private float random;
 
 	int lastUberCount;
 	int lastSprinterCount;
@@ -95,6 +96,15 @@ public class GameScene : MonoBehaviour {
         {
             pos = new Vector3(Random.Range(minX, maxX), height, Random.Range(minY, maxY));
             Instantiate(nerdsprinter, pos, Quaternion.Euler(rot));
+
+			random = Random.Range(0,1);
+
+			if(random < 0.5){
+				source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/nanana"));
+			}else if(random > 0.5){
+				source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/nonono"));
+			}
+
             Debug.Log("SprinterNerd spawned");
 			lastSprinterCount += sprinterRate;
         }

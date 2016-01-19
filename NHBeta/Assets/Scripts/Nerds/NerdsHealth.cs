@@ -21,7 +21,7 @@ public class NerdsHealth : MonoBehaviour
 	public LayerMask mask;
     public bool isNormalNerd = true;
 
-	AudioSource source;
+	private AudioSource source;
 
     void Awake()
     {
