@@ -54,6 +54,7 @@ public class PlayerHealth : MonoBehaviour {
 		sortHighscores ();
 		sendHS ();
 		GameManagerScript.alive = false;
+		Cursor.visible = true;
     }
 
 	void sendHS(){

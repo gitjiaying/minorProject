@@ -45,7 +45,7 @@ public class GameScene : MonoBehaviour {
 		startTime = Time.time;
 		hasDied = false;
         counter = 0;
-
+		GameManagerScript.score = 0;
 		source = GetComponent<AudioSource>();
 
 		lastUberCount =0;
@@ -59,7 +59,7 @@ public class GameScene : MonoBehaviour {
 			Over.enabled=true;
             Time.timeScale=0;
 		}
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape)&&GameManagerScript.alive) {
 			if(!GameManagerScript.pause){
 				Pause.enabled=true;
 				Time.timeScale=0;

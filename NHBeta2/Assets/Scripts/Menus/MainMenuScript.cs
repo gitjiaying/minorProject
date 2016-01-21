@@ -117,28 +117,27 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	void getHighscores(){
-		List<int> highscores = new List<int> ();
+		List<int> highscores = new List<int> (0);
 		List<int> scores = GameManagerScript.scores;
-		for (int i=0; i<scores.Count; i++) {
-			Debug.Log (scores[i].ToString());
+		foreach (int score in scores) {
+			Debug.Log (score.ToString());
 		}
 		scores.Sort ();
 		scores.Reverse ();
 		Debug.Log ("sorted");
-		for (int i=0; i<scores.Count; i++) {
-			Debug.Log (scores[i].ToString());
+		foreach(int score in scores) {
+			Debug.Log ("sorted"+ score.ToString());
 		}
-
-		for (int i = 0; i<Mathf.Min(5,scores.Count); i++) {
-			if(scores[i] !=null){
-				highscores.Add(scores[i]);
+		foreach(int score in scores) {
+			if(score !=null){
+				highscores.Add(score);
 			}
 		}
 		Debug.Log ("highscores made");
-		for (int i=0; i<highscores.Count; i++) {
-			Debug.Log (highscores[i].ToString());
+		foreach(int score in highscores){
+			Debug.Log (score.ToString());
 		}
-		if (highscores.Count>=4) {
+		if (highscores.Count>4) {
 			h5.text="5-"+highscores[4].ToString();
 		}
 		if (highscores.Count>3) {

@@ -78,7 +78,7 @@ public class NewCharMenuScript : MonoBehaviour {
 	}
 
 	public void nextHair () {
-		if (hair == 5) {
+		if (hair == 3) {
 			hair = 1;
 		} else {
 			hair++;
@@ -88,14 +88,14 @@ public class NewCharMenuScript : MonoBehaviour {
 	}
 	public void prevHair(){
 		if (hair == 1||hair==0||hair==null) {
-			hair = 5;
+			hair = 3;
 		} else {
 			hair--;
 		}
 		charAp.hair = hair;
 	}
 	public void nextFace(){
-		if (face == 5) {
+		if (face == 4) {
 			face = 1;
 		} else {
 			face++;
@@ -104,14 +104,14 @@ public class NewCharMenuScript : MonoBehaviour {
 	}
 	public void prevFace(){
 		if (face == 1||face==0||face==null) {
-			face = 5;
+			face = 4;
 		} else {
 			face--;
 		}
 		charAp.face = face;
 	}
 	public void nextShirt(){
-		if (shirt== 8) {
+		if (shirt== 3) {
 			shirt = 1;
 		} else {
 			shirt++;
@@ -120,14 +120,14 @@ public class NewCharMenuScript : MonoBehaviour {
 	}
 	public void prevShirt(){
 		if (shirt == 1||shirt==0||shirt==null) {
-			shirt = 8;
+			shirt = 3;
 		} else {
 			shirt--;
 		}
 		charAp.shirt = shirt;
 	}
 	public void nextPants(){
-		if (pants == 5) {
+		if (pants == 4) {
 			pants = 1;
 		} else {
 			pants++;
@@ -137,7 +137,7 @@ public class NewCharMenuScript : MonoBehaviour {
 	}
 	public void prevPants(){
 		if (pants == 1||pants==0||pants==null) {
-			pants = 5;
+			pants = 4;
 		} else {
 			pants--;
 		}
