@@ -36,12 +36,13 @@ public class GenerateRoads : MonoBehaviour {
 	void Initialize () {
 		generateRoads = true;
 
-		//planeSize = GenerateMap.groundSize;
 		plane = GenerateMap.plane;
 		planeSize.x = plane.transform.localScale.x * 10; //plane is 10*scale by 10*scale
 		planeSize.y = plane.transform.localScale.z* 10; //plane is 10*scale by 10*scale
-		//terrain = (GameObject)Resources.Load ("Ground/grassPlane2");
-		//Vector3 terrainSpawn = new Vector3 (-planeSize.x / 2, 0, -planeSize.y / 2);
+//		planeSize = GenerateMap.groundSize;
+//		terrain = (GameObject)Resources.Load ("Ground/grassPlane3");
+//		Vector3 terrainSpawn = new Vector3 (-planeSize.x / 2, 0, -planeSize.y / 2);
+//		Instantiate (terrain, terrainSpawn, Quaternion.identity);
 		//Instantiate (terrain, new Vector3(0,0,0), Quaternion.identity);
 
 		//for the roadtile to spawn like the grassTile, we have to correct the spawnposition of the road with +roadsize/2 per axis x and z
@@ -55,7 +56,7 @@ public class GenerateRoads : MonoBehaviour {
 		directionslog = new List<int> ();
 		lastSpawned = new List<Vector3> ();
 		
-		tree = (GameObject)Resources.Load ("Trees/Tree");
+		tree = (GameObject)Resources.Load ("Trees/TreeWithBorder");
 		treeSpawnOffsetx = roadSize.x;//3.3f;
 		treeSpawnOffsetz = roadSize.z;//3.3f;
 		treeSpawnlog = new List<Vector3> ();
@@ -236,8 +237,33 @@ public class GenerateRoads : MonoBehaviour {
 		tempTreeSpawn = RoundedPositions (treeSpawnlog);
 		CheckRoadVSTree ();
 		for (int j = 0; j< treeSpawnlog.Count-1; j=j+4) {
-			Instantiate(tree, treeSpawnlog[j] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
-			Instantiate(tree, treeSpawnlog[j+1] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
+			float randomScale;
+			GameObject tree1 = (GameObject) Instantiate(tree, treeSpawnlog[j] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
+			randomScale = Random.Range (tree.transform.localScale.y, tree.transform.localScale.y + 0.5f);
+			tree1.transform.localScale = new Vector3(1f, randomScale, 1f);
+
+			int tree1X = Mathf.RoundToInt(treeSpawnlog[j].x);
+			int tree1Z = Mathf.RoundToInt(treeSpawnlog[j].z);
+			if(tree1X%2==0){
+				tree1X+=1;}
+			if (tree1Z%2==0){
+				tree1Z +=1;
+			}
+			tree1.transform.localPosition = new Vector3(tree1X, tree.transform.position.y*Mathf.Sqrt(Mathf.Sqrt(randomScale)), tree1Z);
+
+			GameObject tree2 = (GameObject) Instantiate(tree, treeSpawnlog[j+1] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
+			randomScale = Random.Range (tree.transform.localScale.y, tree.transform.localScale.y + 0.5f);
+			tree2.transform.localScale = new Vector3(1f, randomScale, 1f);
+
+			int tree2X = Mathf.RoundToInt(treeSpawnlog[j+1].x);
+			int tree2Z = Mathf.RoundToInt(treeSpawnlog[j+1].z);
+			if(tree2X%2==0){
+				tree2X+=1;}
+			if (tree2Z%2==0){
+				tree2Z +=1;
+			}
+			tree2.transform.localPosition = new Vector3(tree2X, tree.transform.position.y*Mathf.Sqrt(Mathf.Sqrt(randomScale)), tree2Z);
+
 
 		}
 
@@ -275,12 +301,6 @@ public class GenerateRoads : MonoBehaviour {
 			}
 		}
 
-//		for (int i= 0; i< treeSpawnlog.Count; i++) {
-//			if (spawnlog.Contains(treeSpawnlog[i])) {
-//				treeSpawnlog.RemoveAt(i);
-//				CheckRoadVSTree();
-//			}
-//		}
 
 	}
 

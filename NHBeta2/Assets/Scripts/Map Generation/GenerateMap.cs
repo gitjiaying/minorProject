@@ -31,6 +31,9 @@ public class GenerateMap : MonoBehaviour {
 	static GenerateRoads roadbuilder;
 	List<Material> skyboxes = new List<Material>();
 
+	public List<int> buildingSizes;
+	public int maxBuildingSize;
+
 	void Awake(){
 		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
@@ -38,7 +41,7 @@ public class GenerateMap : MonoBehaviour {
 		grass = Resources.Load ("Materials/TL_Grass_01/U5_Material/TL_Grass_01_U5") as Material;
 		plane.GetComponent<Renderer> ().material = grass;
 		plane.layer = 11;
-		//groundSize = gridWorldSize;
+//		groundSize = gridWorldSize;
 
 		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall1"));
 		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall2"));
@@ -47,10 +50,12 @@ public class GenerateMap : MonoBehaviour {
 		for (int i =0; i< walls.Count; i++) {
 			Instantiate (walls[i], walls[i].transform.position, walls[i].transform.rotation);
 		}
-		
+
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox1"));
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox2"));
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox3"));
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox4"));
+		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox5"));
 		int randomskybox = Random.Range (0, skyboxes.Count+1);
 		if (randomskybox != skyboxes.Count) {
 			RenderSettings.skybox = skyboxes [randomskybox];
@@ -65,6 +70,17 @@ public class GenerateMap : MonoBehaviour {
 		//GameObject building1 = Resources.Load("Buildings/building1") as GameObject;
 		//GameObject building2 = (GameObject)Resources.Load ("Buildings/building2");
 		//GameObject building3 = (GameObject)Resources.Load ("Buildings/building3");
+
+//		buildingPrefabs.Add((GameObject) Resources.Load("Buildings/building1"));
+//		buildingPrefabs.Add((GameObject) Resources.Load("Buildings/building2"));
+//		buildingPrefabs.Add((GameObject) Resources.Load("Buildings/building3"));
+
+//		for (int i = 0; i<buildingPrefabs.Count; i++) {
+//			buildingSizes.Add (Mathf.CeilToInt(buildingPrefabs[i].GetComponent<Renderer>().bounds.size.x));
+//			buildingSizes.Add (Mathf.CeilToInt(buildingPrefabs[i].GetComponent<Renderer>().bounds.size.z));
+//				}
+//		maxBuildingSize = Mathf.Max(buildingSizes.ToArray ());
+		maxBuildingSize = 32;
 
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
@@ -112,7 +128,8 @@ public class GenerateMap : MonoBehaviour {
 	Object InstantiatePrefab() {
 		int number = Random.Range (0, numPrefabs);
 		//Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
-		Vector3 position = new Vector3 (2*Random.Range ((int)-gridWorldSize.x/4, (int)gridWorldSize.x/4), 0, 2*Random.Range ((int)-gridWorldSize.y/4, (int)gridWorldSize.y/4)); //random position in the x,z-plane
+		Vector3 position = new Vector3 (2*Random.Range (((int)-gridWorldSize.x+maxBuildingSize)/4, ((int)gridWorldSize.x-maxBuildingSize)/4), 0, 2*Random.Range (((int)-gridWorldSize.y+maxBuildingSize)/4, ((int)gridWorldSize.y-maxBuildingSize)/4)); //random position in the x,z-plane
+		//Vector3 position = new Vector3 (2*Random.Range ((int)-gridWorldSize.x/4, (int)gridWorldSize.x/4), 0, 2*Random.Range ((int)-gridWorldSize.y/4, (int)gridWorldSize.y/4)); //random position in the x,z-plane
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
 
 		positions.Add (position);
@@ -149,6 +166,23 @@ public class GenerateMap : MonoBehaviour {
 
 	}
 
+
+	void OnDrawGizmos()
+	{
+		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+
+		if (Map != null)
+		{
+			
+			foreach (Node n in Map)
+			{
+				Gizmos.color = (n.walkable)?Color.white:Color.red;
+				
+				Gizmos.DrawCube(n.worldPosition, new Vector3(nodeDiameter-.1f, nodeDiameter*0.5f, nodeDiameter-.1f));
+
+			}
+		}
+	}
 
 	List<Node> getUnwalkables(){
 		List<Node> unwalk = new List<Node>();

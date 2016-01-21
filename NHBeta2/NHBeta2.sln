@@ -7,8 +7,6 @@ Project("{C7AF6EB2-5DB7-0D58-E077-A6227B1708BB}") = "NHBeta2", "Assembly-CSharp.
 EndProject
 Project("{C7AF6EB2-5DB7-0D58-E077-A6227B1708BB}") = "NHBeta2", "Assembly-CSharp-Editor.csproj", "{A3EB9A6C-D2EB-097F-E4CE-26F799943F18}"
 EndProject
-Project("{C7AF6EB2-5DB7-0D58-E077-A6227B1708BB}") = "NHBeta2", "Assembly-UnityScript.unityproj", "{A5E88814-7444-3759-8645-782EEF9EE931}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,15 +25,11 @@ Global
 		{A3EB9A6C-D2EB-097F-E4CE-26F799943F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3EB9A6C-D2EB-097F-E4CE-26F799943F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3EB9A6C-D2EB-097F-E4CE-26F799943F18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5E88814-7444-3759-8645-782EEF9EE931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5E88814-7444-3759-8645-782EEF9EE931}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5E88814-7444-3759-8645-782EEF9EE931}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5E88814-7444-3759-8645-782EEF9EE931}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-														GlobalSection(MonoDevelopProperties) = preSolution
+																		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -54,4 +48,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal
