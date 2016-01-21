@@ -36,6 +36,7 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	void Start () {
+		Time.timeScale = 1;
 		quitMenu = quitMenu.GetComponent<Canvas> ();
 		optionsMenu = optionsMenu.GetComponent<Canvas> ();
 		highscoresMenu = highscoresMenu.GetComponent<Canvas> ();

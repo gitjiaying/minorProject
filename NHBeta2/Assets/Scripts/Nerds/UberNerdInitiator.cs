@@ -12,10 +12,10 @@ public class UberNerdInitiator : MonoBehaviour {
 	
 	void Start ()
     {
-        int averageHealth = Mathf.RoundToInt(100f + healthRate * GameScene.counter);
+		int averageHealth = Mathf.RoundToInt(health.startingHealth + healthRate * GameScene.counter);
         health.startingHealth = averageHealth;
 
-        int averageSpeed = Mathf.RoundToInt(6f + speedRate * GameScene.counter);
+		int averageSpeed = Mathf.RoundToInt(follow.speed + speedRate * GameScene.counter);
         follow.speed = Random.Range(averageSpeed - 1, averageSpeed + 1);
 	}
 	

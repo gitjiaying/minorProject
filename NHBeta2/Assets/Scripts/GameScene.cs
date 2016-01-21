@@ -28,6 +28,7 @@ public class GameScene : MonoBehaviour {
     public int uberRate;
     public int sprinterRate;
     public Text score;
+	public Canvas Options;
 
 	private AudioSource source;
 	private float random;
@@ -54,7 +55,7 @@ public class GameScene : MonoBehaviour {
 	
 	void Update () {
         score.text = GameManagerScript.score.ToString();
-        counter += 1 * Time.deltaTime;
+        counter += Time.deltaTime;
 		if (!GameManagerScript.alive) {
 			Over.enabled=true;
             Time.timeScale=0;
@@ -67,6 +68,7 @@ public class GameScene : MonoBehaviour {
 				GameManagerScript.pause=true;
 			}else {
 				Pause.enabled=false;
+				Options.enabled = false;
 				Time.timeScale=1;
 				GameManagerScript.pause=false;
 				Cursor.visible = false;
