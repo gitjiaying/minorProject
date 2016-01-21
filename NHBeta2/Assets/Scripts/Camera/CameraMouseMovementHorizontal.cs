@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraMouseMovementHorizontal : MonoBehaviour {
 
-    public float horizontalspeed = 400f;
+    public static float horizontalspeed = 400f;
 
     public static float rotation;
     public Transform target;

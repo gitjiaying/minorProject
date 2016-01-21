@@ -29,8 +29,14 @@ public class GameScene : MonoBehaviour {
     public int sprinterRate;
     public Text score;
 
+	private AudioSource source;
+	private float random;
+
+	int lastUberCount;
+	int lastSprinterCount;
 
     void Start () {
+		Cursor.visible = false;
 		GameManagerScript.alive = true;
 		Over.enabled = false;
 		Pause.enabled = false;
@@ -39,6 +45,11 @@ public class GameScene : MonoBehaviour {
 		startTime = Time.time;
 		hasDied = false;
         counter = 0;
+
+		source = GetComponent<AudioSource>();
+
+		lastUberCount =0;
+		lastSprinterCount =0;
 	}
 	
 	void Update () {
@@ -48,15 +59,17 @@ public class GameScene : MonoBehaviour {
 			Over.enabled=true;
             Time.timeScale=0;
 		}
-		if (Input.GetKeyDown (KeyCode.P)) {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
 			if(!GameManagerScript.pause){
 				Pause.enabled=true;
 				Time.timeScale=0;
+				Cursor.visible = true;
 				GameManagerScript.pause=true;
 			}else {
 				Pause.enabled=false;
 				Time.timeScale=1;
 				GameManagerScript.pause=false;
+				Cursor.visible = false;
 			}
 		}
 		if (!GameManagerScript.alive) {
@@ -73,17 +86,30 @@ public class GameScene : MonoBehaviour {
 		Vector3 pos = new Vector3 (Random.Range (minX, maxX), height, Random.Range (minY, maxY));
 		Vector3 rot = new Vector3 (0, 0, 0);
 		Instantiate(nerd, pos,Quaternion.Euler(rot));
-        if (GameManagerScript.nerdsKilled % uberRate == 0 && GameManagerScript.nerdsKilled > uberRate - 1) 
+		
+        if (GameManagerScript.nerdsKilled % uberRate == 0 && GameManagerScript.nerdsKilled > lastUberCount) 
         {
             pos = new Vector3(Random.Range(minX, maxX), height, Random.Range(minY, maxY));
             Instantiate(ubernerd, pos, Quaternion.Euler(rot));
+			source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/zombie_1"));
             Debug.Log("ubernerd spawned");
+			lastUberCount+= uberRate;
         }
-        if (GameManagerScript.nerdsKilled % sprinterRate == 0 && GameManagerScript.nerdsKilled > sprinterRate - 1)
+        if (GameManagerScript.nerdsKilled % sprinterRate == 0 && GameManagerScript.nerdsKilled > lastSprinterCount)
         {
             pos = new Vector3(Random.Range(minX, maxX), height, Random.Range(minY, maxY));
             Instantiate(nerdsprinter, pos, Quaternion.Euler(rot));
+
+			random = Random.Range(0,1);
+
+			if(random < 0.5){
+				source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/nanana"));
+			}else if(random > 0.5){
+				source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/nonono"));
+			}
+
             Debug.Log("SprinterNerd spawned");
+			lastSprinterCount += sprinterRate;
         }
     }
 	void popup(){

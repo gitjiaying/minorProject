@@ -12,14 +12,14 @@ public class GameOverScript : MonoBehaviour {
     public Toggle music;
     public Toggle ThirdPerson;
     public CameraSwitch Switch;
-
+	public Slider slider;
 
 
     void Start () {
 		backToMain = backToMain.GetComponent<Button> ();
         options = options.GetComponent<Button>();
-
-
+		slider = slider.GetComponent<Slider> ();
+		slider.value=CameraMouseMovementHorizontal.horizontalspeed;
         optionsMenu.enabled = false;
     }
 	
@@ -39,13 +39,14 @@ public class GameOverScript : MonoBehaviour {
 
 	public void mainMenu(){
 		Time.timeScale = 1;
-		Application.LoadLevel (0);
+		Application.LoadLevel ("MainMenu");
 		GameManagerScript.pause = false;
 	}
 	public void resume(){
 		Time.timeScale = 1;
 		pause.enabled = false;
 		GameManagerScript.pause = false;
+		Cursor.visible = false;
 	}
     public void Options()
     {
@@ -72,4 +73,7 @@ public class GameOverScript : MonoBehaviour {
     {
         GameManagerScript.thirdPerson = ThirdPerson.isOn;
     }
+	public void sensitivity(){
+		CameraMouseMovementHorizontal.horizontalspeed = slider.value;
+	}
 }

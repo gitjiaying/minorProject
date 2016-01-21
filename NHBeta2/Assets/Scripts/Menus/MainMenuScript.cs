@@ -8,6 +8,7 @@ public class MainMenuScript : MonoBehaviour {
 	public Canvas quitMenu;
 	public Canvas optionsMenu;
 	public Canvas highscoresMenu;
+	public GameObject controls;
 	public Button start;
 	public Button character;
 	public Button highscores;
@@ -20,6 +21,8 @@ public class MainMenuScript : MonoBehaviour {
 	public Toggle music;
 	public Toggle ThirdPerson;
 	public GameObject player;
+	public Slider slider;
+	static CameraMouseMovementHorizontal mouseHor;
 	public Text h1;
 	public Text h2;
 	public Text h3;
@@ -46,6 +49,9 @@ public class MainMenuScript : MonoBehaviour {
 		mute = mute.GetComponent<Toggle> ();
 		music = music.GetComponent<Toggle> ();
 		ThirdPerson = ThirdPerson.GetComponent<Toggle> ();
+		slider = slider.GetComponent<Slider> ();
+		controls.SetActive (false);
+		slider.value=CameraMouseMovementHorizontal.horizontalspeed;
 
 		quitMenu.enabled = false;
 		optionsMenu.enabled = false;
@@ -57,6 +63,7 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	public void Play(){
+		controls.SetActive (true);
 		Application.LoadLevel ("Game");
 		Time.timeScale=1;
 	}
@@ -146,5 +153,8 @@ public class MainMenuScript : MonoBehaviour {
 		if (highscores.Count>0) {
 			h1.text="1-"+highscores[0].ToString();
 		}
+	}
+	public void sensitivity(){
+		CameraMouseMovementHorizontal.horizontalspeed = slider.value;
 	}
 }
