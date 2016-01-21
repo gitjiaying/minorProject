@@ -42,16 +42,13 @@ public class FollowShortestPath : MonoBehaviour
 
 	void Start(){
 
+        TextAsset text1 = Resources.Load("WeightsIH") as TextAsset;
+        TextAsset text2 = Resources.Load("WeightsHO") as TextAsset;
 
-		FileInfo theSourceFile = new FileInfo 
-        (Application.dataPath + "/WeightsIH.txt");
-        StreamReader reader = theSourceFile.OpenText();
-        FileInfo theSourceFile2 = new FileInfo
-        (Application.dataPath + "/WeightsHO.txt");
-        StreamReader reader2 = theSourceFile2.OpenText();
+    	WeightsIH = CreateWeights((TextAsset)text1);
+    	WeightsHO = CreateWeights((TextAsset)text2);
 
-    	WeightsIH = CreateWeights(reader);
-    	WeightsHO = CreateWeights(reader2);
+    	Debug.Log(WeightsIH[0][0]);
 
     	Yhidden = new float[50][];
     	HiddenOutput = new float[50][];
@@ -182,6 +179,29 @@ public class FollowShortestPath : MonoBehaviour
             }
             Weights[n] = floats;
             n++;
+		}
+		return Weights;
+	}
+
+	public float[][] CreateWeights(TextAsset textAsset){
+		
+		float[][] Weights = new float[50][];
+
+		string[] linesFromFile = textAsset.text.Split("\n"[0]);
+
+		for(int i = 0; i<linesFromFile.Length; i++){
+
+	    	string[] strFloats = linesFromFile[i].Split (new char[0]);
+	    	float[] floats = new float[strFloats.Length];
+	    	for(int j = 0; j<strFloats.Length; j++){
+	    			if(string.IsNullOrEmpty (strFloats[j]))
+	    			continue;
+
+            	floats[j] = float.Parse(strFloats[j]);
+            	
+            }
+            Weights[i] = floats;
+            
 		}
 		return Weights;
 	}
