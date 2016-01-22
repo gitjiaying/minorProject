@@ -9,6 +9,7 @@ public class UsePickups : MonoBehaviour {
 	public PlayerHealth health;
 	public int healthboost;
 	public GeoShoot geo;
+	public int stamboost;
 	// Use this for initialization
 	void Start () {
 	
@@ -39,8 +40,8 @@ public class UsePickups : MonoBehaviour {
 				health.currentHealth += healthboost;
 			} else {
 				health.currentHealth = health.startingHealth;
-				Invoke ("normalSpeed", 5f);
 			}
+			Invoke ("normalSpeed", 5f);
         }
 	}
 
@@ -49,10 +50,11 @@ public class UsePickups : MonoBehaviour {
 			errorSound.Play ();
 		} else {
 			Inventory.Energy--;
-			player.WalkSpeed += 2;
-			player.SprintSpeed += 3;
-			geo.fireRate -= .05f;
-			Invoke ("normalEnergy", 5f);
+			if (PlayerStamina.currentStamina < PlayerStamina.startingStamina - stamboost) {
+				PlayerStamina.currentStamina += stamboost;
+			} else {
+				PlayerStamina.currentStamina = PlayerStamina.startingStamina;
+			}
 		}
 	}
     void useBB(){
@@ -61,7 +63,7 @@ public class UsePickups : MonoBehaviour {
 		} else {
 			Inventory.BombBooks--;
 			GameManagerScript.bookEx = true;
-			Invoke ("normalBooks", 5f);
+			Invoke ("normalBooks", 10f);
 		}
 	}
 	void normalSpeed(){

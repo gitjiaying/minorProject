@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerStamina : MonoBehaviour {
 
-    public int startingStamina = 100;
+	public static float startingStamina = 100f;
     public static float currentStamina;
     public Slider StaminaSlider;
     public float RegenerationRate = 5;

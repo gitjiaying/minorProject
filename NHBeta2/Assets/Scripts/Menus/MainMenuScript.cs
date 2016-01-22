@@ -156,5 +156,6 @@ public class MainMenuScript : MonoBehaviour {
 	}
 	public void sensitivity(){
 		CameraMouseMovementHorizontal.horizontalspeed = slider.value;
+		CameraMouseMovementVertical.verticalspeed = slider.value;
 	}
 }

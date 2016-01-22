@@ -13,7 +13,7 @@ public class NerdInitiator : MonoBehaviour {
 	void Start ()
     {
 		int averageHealth = Mathf.RoundToInt(health.startingHealth + healthRate * GameScene.counter);
-        health.startingHealth = averageHealth;
+        health.currentHealth = averageHealth;
 
 		int averageSpeed = Mathf.RoundToInt(follow.speed + speedRate * GameScene.counter);
         follow.speed = Random.Range(averageSpeed - 1, averageSpeed + 1);

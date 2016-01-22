@@ -16,6 +16,7 @@ public class GameOverScript : MonoBehaviour {
 
 
     void Start () {
+		Time.timeScale = 1;
 		backToMain = backToMain.GetComponent<Button> ();
         options = options.GetComponent<Button>();
 		slider = slider.GetComponent<Slider> ();
@@ -75,5 +76,9 @@ public class GameOverScript : MonoBehaviour {
     }
 	public void sensitivity(){
 		CameraMouseMovementHorizontal.horizontalspeed = slider.value;
+	}
+	public void retry(){
+		Application.LoadLevel ("Game");
+
 	}
 }
