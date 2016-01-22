@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Camera\CameraMouseMovementHorizontal.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraMouseMovementVertical.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraSwitch.cs" />
+     <Compile Include="Assets\Scripts\Camera\TargetShaker.cs" />
      <Compile Include="Assets\Scripts\Features\AnalyticsSystem.cs" />
      <Compile Include="Assets\Scripts\Features\CharAppearance.cs" />
      <Compile Include="Assets\Scripts\Features\GameManagerScript.cs" />

@@ -17,12 +17,12 @@ public class PlayerHealth : MonoBehaviour {
 	private string Url = "http://drproject.twi.tudelft.nl:8085/postScore";
 
     bool isDead = false;
-    bool damaged;
+    public static bool damaged;
     ParticleSystem hitParticles;
 
 	//visual red feedback created on the HUDCanvas by a canvas filling damageImage;
 	public Image damageImage; 
-	public float flashSpeed = 5f;                              
+	public float flashSpeed = 3f;                              
 	public Color flashColour = new Color(1f, 0f, 0f, 0.1f); 
 
     void Awake () {

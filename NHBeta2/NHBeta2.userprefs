@@ -1,10 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player/PlayerHealth.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Camera/TargetShaker.cs">
     <Files>
-      <File FileName="Assets/Scripts/Camera/CameraMouseMovementVertical.cs" Line="12" Column="6" />
-      <File FileName="Assets/Scripts/Player/PlayerHealth.cs" Line="28" Column="20" />
-      <File FileName="Assets/Scripts/Features/AnalyticsSystem.cs" Line="31" Column="22" />
+      <File FileName="Assets/Scripts/Features/AnalyticsSystem.cs" Line="33" Column="13" />
+      <File FileName="Assets/Scripts/Camera/TargetShaker.cs" Line="34" Column="25" />
+      <File FileName="Assets/Scripts/Camera/CameraMouseMovementHorizontal.cs" Line="30" Column="26" />
+      <File FileName="Assets/Scripts/Camera/CameraMouseMovementVertical.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player/PlayerHealth.cs" Line="20" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
