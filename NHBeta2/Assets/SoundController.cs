@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SoundController : MonoBehaviour
 {
-
+	public AudioListener listen;
+	public AudioListener listenfp;
     AudioSource source;
     bool dead = false;
     void Awake()
@@ -29,13 +30,7 @@ public class SoundController : MonoBehaviour
             dead = true;
         }
 
-        if (GameManagerScript.music == false)
-        {
-            GetComponent<AudioSource>().mute = true;
-        }
-        else
-        {
-            GetComponent<AudioSource>().mute = false;
-        }
+		listen.enabled = GameManagerScript.music;
+		listenfp.enabled = GameManagerScript.music;
     }
 }

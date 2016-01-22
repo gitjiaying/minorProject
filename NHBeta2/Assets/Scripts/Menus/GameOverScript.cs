@@ -8,7 +8,6 @@ public class GameOverScript : MonoBehaviour {
     public Button options;
 	public Canvas pause;
     public Canvas optionsMenu;
-    public Toggle mute;
     public Toggle music;
     public Toggle ThirdPerson;
     public CameraSwitch Switch;
@@ -53,7 +52,6 @@ public class GameOverScript : MonoBehaviour {
     {
         optionsMenu.enabled = true;
         pause.enabled = false;
-        mute.isOn = !GameManagerScript.soundEffects;
         music.isOn = GameManagerScript.music;
         ThirdPerson.isOn = GameManagerScript.thirdPerson;
     }
@@ -61,10 +59,6 @@ public class GameOverScript : MonoBehaviour {
     {
         optionsMenu.enabled = false;
         pause.enabled = true;
-    }
-    public void muteFX()
-    {
-        GameManagerScript.soundEffects = !mute.isOn;
     }
     public void muteMusic()
     {

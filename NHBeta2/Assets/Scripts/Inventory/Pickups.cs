@@ -21,6 +21,7 @@ public class Pickups : MonoBehaviour {
 		BeerInfo.enabled=false;
 		EnergyInfo.enabled=false;
 		BBInfo.enabled=false;
+		Inventory.clear ();
 	}
 	void Update(){
 		cans.text = Inventory.Energy.ToString();

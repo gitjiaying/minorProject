@@ -23,6 +23,7 @@ public class CharMenuScript : MonoBehaviour {
 	private float to;
 	private float yDegree;
 	private float lerpValue;
+	public AudioListener listen;
 
 
 	void Start () {
@@ -53,7 +54,7 @@ public class CharMenuScript : MonoBehaviour {
 	}
 	void Update(){
 		lerpValue += rotSpeed * Time.deltaTime;
-		GameObject.Find ("CharMenu").GetComponent<AudioSource>().mute = GameManagerScript.soundEffects;
+		listen.enabled = GameManagerScript.music;
 		yDegree = Mathf.LerpAngle(from, to, lerpValue);
 		schijf.transform.eulerAngles = new Vector3 (0, yDegree, 0);
 	}

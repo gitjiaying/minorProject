@@ -13,4 +13,9 @@ public class Inventory : MonoBehaviour {
        Energy=0;
        BombBooks=0;
 	}
+	public static void clear(){
+		Beers=0;
+		Energy=0;
+		BombBooks=0;
+	}
 }

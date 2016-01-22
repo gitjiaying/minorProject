@@ -56,7 +56,6 @@ public class GameManagerScript : MonoBehaviour {
 	public static Color32 sc6;
 
 	//Settings
-	public static bool soundEffects;
 	public static bool thirdPerson;
 	public static bool music;
 
@@ -92,8 +91,6 @@ public class GameManagerScript : MonoBehaviour {
 		} else {
 			Destroy(this.gameObject);
 		} 
-
-		soundEffects = false;
 		thirdPerson = true;
 		music = true;
 	}

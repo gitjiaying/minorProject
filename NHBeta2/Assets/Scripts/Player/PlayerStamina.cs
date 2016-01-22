@@ -25,21 +25,12 @@ public class PlayerStamina : MonoBehaviour {
         }
     }
 
-   
-
     public void Run (float amount)
     {
         currentStamina -= amount*Time.deltaTime;
         StaminaSlider.value = currentStamina;
         
     }
-
-    public void Jump (float amount)
-    {
-        currentStamina -= amount;
-        StaminaSlider.value = currentStamina;
-    }
-
    void Regenerate()
     {
         currentStamina += RegenerationRate * Time.deltaTime;

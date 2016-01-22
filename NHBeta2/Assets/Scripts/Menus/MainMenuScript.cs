@@ -17,7 +17,6 @@ public class MainMenuScript : MonoBehaviour {
 	public Button yes;
 	public Button no;
 	public GameObject main;
-	public Toggle mute;
 	public Toggle music;
 	public Toggle ThirdPerson;
 	public GameObject player;
@@ -28,6 +27,7 @@ public class MainMenuScript : MonoBehaviour {
 	public Text h3;
 	public Text h4;
 	public Text h5;
+	public AudioListener listen;
 
 
 
@@ -47,7 +47,6 @@ public class MainMenuScript : MonoBehaviour {
 		quit = quit.GetComponent<Button> ();
 		yes = yes.GetComponent<Button> ();
 		no = no.GetComponent<Button> ();
-		mute = mute.GetComponent<Toggle> ();
 		music = music.GetComponent<Toggle> ();
 		ThirdPerson = ThirdPerson.GetComponent<Toggle> ();
 		slider = slider.GetComponent<Slider> ();
@@ -59,8 +58,7 @@ public class MainMenuScript : MonoBehaviour {
 		highscoresMenu.enabled = false;
 	}
 	void Update(){
-		GameObject.Find ("mainMenu").GetComponent<AudioSource>().mute = GameManagerScript.soundEffects;
-
+		listen.enabled = GameManagerScript.music;
 	}
 
 	public void Play(){
@@ -90,7 +88,6 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void Options(){
 		optionsMenu.enabled = true;
-		mute.isOn = !GameManagerScript.soundEffects;
 		music.isOn = GameManagerScript.music;
 		ThirdPerson.isOn = GameManagerScript.thirdPerson;
 		main.SetActive (false);
@@ -106,9 +103,6 @@ public class MainMenuScript : MonoBehaviour {
 
 	public void Exit(){
 		Application.Quit ();
-	}
-	public void muteFX(){
-		GameManagerScript.soundEffects=!mute.isOn;
 	}
 	public void muteMusic(){
 		GameManagerScript.music = music.isOn;
