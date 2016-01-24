@@ -26,7 +26,7 @@ public class GameOverScript : MonoBehaviour {
     void Update()
     {
         //Set switch based on thirdperson setting
-        Switch.enabled = GameManagerScript.thirdperson;
+        Switch.enabled = GameManagerScript.thirdPerson;
     }
 
     public void mainMenu()//unpause time and load menu

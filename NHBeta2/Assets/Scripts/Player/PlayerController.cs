@@ -90,8 +90,8 @@ public class PlayerController : MonoBehaviour
         }
        
     }
-		
-    void Animating (float h, float v)
+	
+    void Animating (float h, float v) //Controls the booleans that trigger all the move and attack animations of our player
     {
         bool walking = (h!= 0f || v!= 0f) && !sprint ;
         bool running = (h!= 0f || v!= 0f )&& sprint;
