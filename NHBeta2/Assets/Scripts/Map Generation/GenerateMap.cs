@@ -9,7 +9,6 @@ public class GenerateMap : MonoBehaviour {
 	List<GameObject> walls = new List<GameObject> ();
 
 	public LayerMask unwalkableMask;
-	//public LayerMask roadMask;
 	Node[,] Map;
 	public Vector2 gridWorldSize;
 	public static Vector2 groundSize; 
@@ -35,14 +34,15 @@ public class GenerateMap : MonoBehaviour {
 	public int maxBuildingSize;
 
 	void Awake(){
+		//create walking ground
 		plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
 		scale = (int)gridWorldSize.x/10; // scaling the plane gives an 10*scale x 10*scale (x-axis x z-axis) plane, set to 50
 		plane.transform.localScale = new Vector3 (scale, 1, scale); //scales only in x and z dimensions
 		grass = Resources.Load ("Materials/TL_Grass_01/U5_Material/TL_Grass_01_U5") as Material;
 		plane.GetComponent<Renderer> ().material = grass;
 		plane.layer = 11;
-//		groundSize = gridWorldSize;
 
+		//set borders
 		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall1"));
 		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall2"));
 		walls.Add ((GameObject) Resources.Load("Borders/Walls/wall3"));
@@ -51,6 +51,7 @@ public class GenerateMap : MonoBehaviour {
 			Instantiate (walls[i], walls[i].transform.position, walls[i].transform.rotation);
 		}
 
+		//choose skybox
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox1"));
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox2"));
 		skyboxes.Add ((Material) Resources.Load("Skyboxes/skybox3"));
@@ -62,26 +63,16 @@ public class GenerateMap : MonoBehaviour {
 		}
 		RenderSettings.fog = true;
 
+		//create roads and trees
 		roadbuilder = GetComponent<GenerateRoads>();
 		roadbuilder.Generate ();
 	}
 	// Use this for initialization
 	void Start () {
-		//GameObject building1 = Resources.Load("Buildings/building1") as GameObject;
-		//GameObject building2 = (GameObject)Resources.Load ("Buildings/building2");
-		//GameObject building3 = (GameObject)Resources.Load ("Buildings/building3");
+	
+		maxBuildingSize = 32; //hardcoded maximum size of the biggest building
 
-//		buildingPrefabs.Add((GameObject) Resources.Load("Buildings/building1"));
-//		buildingPrefabs.Add((GameObject) Resources.Load("Buildings/building2"));
-//		buildingPrefabs.Add((GameObject) Resources.Load("Buildings/building3"));
-
-//		for (int i = 0; i<buildingPrefabs.Count; i++) {
-//			buildingSizes.Add (Mathf.CeilToInt(buildingPrefabs[i].GetComponent<Renderer>().bounds.size.x));
-//			buildingSizes.Add (Mathf.CeilToInt(buildingPrefabs[i].GetComponent<Renderer>().bounds.size.z));
-//				}
-//		maxBuildingSize = Mathf.Max(buildingSizes.ToArray ());
-		maxBuildingSize = 32;
-
+		//grid parameters
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
@@ -90,12 +81,9 @@ public class GenerateMap : MonoBehaviour {
 	
 	}
 
-	//int i = 0;
-
 	void Generate(){
 
 		for(int i =0; i<numBuildings; i++){
-			//while(i < numBuildings){
 
 				CreateGrid();
 				List<Node> unwalkables = getUnwalkables();
@@ -103,10 +91,9 @@ public class GenerateMap : MonoBehaviour {
 				CreateGrid();
 				List<Node> unwalkables2 = getUnwalkables(thisBuilding);
 				
-
+					//check whether this building is spawnd on top of the already existing unwalkable nodes, if that is the case then destroy the building
 					foreach(Node n in unwalkables){
 
-						//Debug.Log(n.worldPosition);
 						bool breaking = false;
 						foreach(Node m in unwalkables2){
 						if(n.worldPosition==m.worldPosition){
@@ -127,9 +114,7 @@ public class GenerateMap : MonoBehaviour {
 
 	Object InstantiatePrefab() {
 		int number = Random.Range (0, numPrefabs);
-		//Vector3 position = new Vector3 (Random.Range (-scale*5, scale*5), 0, Random.Range (-scale*5, scale*5)); //random position in the x,z-plane
 		Vector3 position = new Vector3 (2*Random.Range (((int)-gridWorldSize.x+maxBuildingSize)/4, ((int)gridWorldSize.x-maxBuildingSize)/4), 0, 2*Random.Range (((int)-gridWorldSize.y+maxBuildingSize)/4, ((int)gridWorldSize.y-maxBuildingSize)/4)); //random position in the x,z-plane
-		//Vector3 position = new Vector3 (2*Random.Range ((int)-gridWorldSize.x/4, (int)gridWorldSize.x/4), 0, 2*Random.Range ((int)-gridWorldSize.y/4, (int)gridWorldSize.y/4)); //random position in the x,z-plane
 		position.y = buildingPrefabs [number].transform.position.y; //make sure they spawn on top of the plane instead of y=0 w.r.t. their pivot point
 
 		positions.Add (position);
@@ -137,7 +122,7 @@ public class GenerateMap : MonoBehaviour {
 
 		int rotationIndex = Random.Range (0, spawnRotations.Length);
 		Object building;
-		if (number != 2) {
+		if (number != 2 && number != 3) { //prefabs 0 and 1 are flipped, so that will be corrected
 			building = Instantiate (buildingPrefabs [number], position, Quaternion.Euler (-90f, (float) spawnRotations[rotationIndex], 0f));
 
 		} else {
@@ -157,9 +142,6 @@ public class GenerateMap : MonoBehaviour {
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x*nodeDiameter + nodeRadius) + Vector3.forward * (y*nodeDiameter+ nodeRadius);
 				
 				bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
-//				if(walkable){
-//					walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, roadMask));
-//				}
 				Map[x,y] = new Node(walkable, worldPoint, x, y);
 			}
 		}
@@ -184,6 +166,7 @@ public class GenerateMap : MonoBehaviour {
 		}
 	}
 
+	//gets all unwalkable node coordinates in the map
 	List<Node> getUnwalkables(){
 		List<Node> unwalk = new List<Node>();
 		foreach(Node n in Map){
@@ -193,6 +176,7 @@ public class GenerateMap : MonoBehaviour {
 		return unwalk;
 	}
 
+	//gives the unwalkable node coordinates around the object
 	List<Node> getUnwalkables(GameObject obj){
 		List<Node> unwalk = new List<Node>();
 	

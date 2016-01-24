@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-//INSTANTIATE AFTER SPAWNLOG IS DONE
 
 public class GenerateRoads : MonoBehaviour {
 	GameObject plane;
@@ -10,11 +9,8 @@ public class GenerateRoads : MonoBehaviour {
 	Vector2 planeSize;
 	GameObject tree;
 
-
-
 	public static GameObject road;
 	static Vector3 roadSize;
-	//int sideLengthRelRoad;
 
 	float upperborder;
 	float rightborder;
@@ -30,26 +26,19 @@ public class GenerateRoads : MonoBehaviour {
 	List<Vector3> tempSpawn;
 	List<Vector3> tempTreeSpawn;
 
+	int[] spawnRotations = new int[] {0, 90, 180, 270};
 
-	bool generateRoads;
 
 	void Initialize () {
-		generateRoads = true;
 
 		plane = GenerateMap.plane;
 		planeSize.x = plane.transform.localScale.x * 10; //plane is 10*scale by 10*scale
 		planeSize.y = plane.transform.localScale.z* 10; //plane is 10*scale by 10*scale
-//		planeSize = GenerateMap.groundSize;
-//		terrain = (GameObject)Resources.Load ("Ground/grassPlane3");
-//		Vector3 terrainSpawn = new Vector3 (-planeSize.x / 2, 0, -planeSize.y / 2);
-//		Instantiate (terrain, terrainSpawn, Quaternion.identity);
-		//Instantiate (terrain, new Vector3(0,0,0), Quaternion.identity);
 
-		//for the roadtile to spawn like the grassTile, we have to correct the spawnposition of the road with +roadsize/2 per axis x and z
 		//roadTile spawnpoint is the center of the tile
 		road = Resources.Load ("Ground/road2") as GameObject;
 		roadSize = road.GetComponent<Renderer> ().bounds.size; //gets the size of the road tile using its renderer
-		//sideLengthRelRoad = (int) Mathf.Floor (planeSize / roadSize.x); //number of possible roadtiles on a side
+
 		upperborder = planeSize.y/2 - roadSize.z/2; //z-value border relative to a roadtile
 		rightborder = planeSize.x/2 - roadSize.x/2; //x-value relative to a roadtile
 		spawnlog = new List<Vector3> ();
@@ -57,8 +46,8 @@ public class GenerateRoads : MonoBehaviour {
 		lastSpawned = new List<Vector3> ();
 		
 		tree = (GameObject)Resources.Load ("Trees/TreeWithBorder");
-		treeSpawnOffsetx = roadSize.x;//3.3f;
-		treeSpawnOffsetz = roadSize.z;//3.3f;
+		treeSpawnOffsetx = roadSize.x;
+		treeSpawnOffsetz = roadSize.z;
 		treeSpawnlog = new List<Vector3> ();
 		CreateFirstTiles ();
 	}
@@ -87,22 +76,6 @@ public class GenerateRoads : MonoBehaviour {
 		int s = 4;
 
 		Vector3 startpos = new Vector3 (Random.Range (-rightborder/s, rightborder/s), 0f, Random.Range (-upperborder/s, upperborder/s));
-		Debug.Log ("startpos: " + startpos);
-//		if (tossUOD == 1) {
-//			for (float i = startpos.z; i <= upperborder; i= i+roadSize.z) {
-//				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
-//				//Instantiate (road, spawnpos, Quaternion.identity);
-//				spawnlog.Add (spawnpos);
-//				AddTreeSpawnPositions(spawnpos, tossUOD);
-//			}
-//		} else {
-//			for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
-//				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
-//				//Instantiate (road, spawnpos, Quaternion.identity);
-//				spawnlog.Add (spawnpos);
-//				AddTreeSpawnPositions(spawnpos, tossUOD);
-//			}
-//		}
 
 		// one main vertical road, top to bottom
 		for (float i = startpos.z; i <= upperborder; i= i+roadSize.z) {
@@ -118,27 +91,7 @@ public class GenerateRoads : MonoBehaviour {
 								spawnlog.Add (spawnpos);
 								AddTreeSpawnPositions(spawnpos, tossUOD);
 							}
-
-
-
-
-//		if (tossROL == 2) {
-//			for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
-//				Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
-//				//Instantiate (road, spawnpos, Quaternion.identity);
-//				spawnlog.Add (spawnpos);
-//				AddTreeSpawnPositions(spawnpos, tossUOD);
-//			}
-//		} else {
-//			for (float i = startpos.x; i >= -rightborder; i= i-roadSize.x) {
-//				Vector3 spawnpos = new Vector3 (i, 0f, startpos.z);
-//				//Instantiate (road, spawnpos, Quaternion.identity);
-//				spawnlog.Add (spawnpos);
-//				lastSpawned.Add(spawnpos);
-//				AddTreeSpawnPositions(spawnpos, tossROL);
-//			}
-//		}
-
+		//one horizontal road crossing the vertivcal one
 		for (float i = startpos.z; i >= -upperborder; i= i-roadSize.z) {
 							Vector3 spawnpos = new Vector3 (startpos.x, 0f, i);
 							//Instantiate (road, spawnpos, Quaternion.identity);
@@ -221,24 +174,26 @@ public class GenerateRoads : MonoBehaviour {
 	public void Generate() {
 			Initialize ();
 
-			int iter = 5;
-	
+			int iter = 5; //number of iterations
 		for (int i=1; i<=iter; i++) {
 			CreateNext ();
 		}
 
+		//checking for overlaps in roads
 		spawnlog = getUnique (spawnlog);
 		for (int i =0; i<spawnlog.Count; i++) {
 			Instantiate(road, spawnlog[i], Quaternion.identity);
 		}
 
+		//checking and instantiating trees against roads
 		treeSpawnlog = getUnique (treeSpawnlog);
 		tempSpawn = RoundedPositions (spawnlog);
 		tempTreeSpawn = RoundedPositions (treeSpawnlog);
 		CheckRoadVSTree ();
 		for (int j = 0; j< treeSpawnlog.Count-1; j=j+4) {
 			float randomScale;
-			GameObject tree1 = (GameObject) Instantiate(tree, treeSpawnlog[j] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
+			int rotationIndex = Random.Range (0, spawnRotations.Length);
+			GameObject tree1 = (GameObject) Instantiate(tree, treeSpawnlog[j] + new Vector3(0, tree.transform.position.y, 0), Quaternion.Euler(0f, (float) spawnRotations[rotationIndex], 0f));
 			randomScale = Random.Range (tree.transform.localScale.y, tree.transform.localScale.y + 0.5f);
 			tree1.transform.localScale = new Vector3(1f, randomScale, 1f);
 
@@ -251,7 +206,8 @@ public class GenerateRoads : MonoBehaviour {
 			}
 			tree1.transform.localPosition = new Vector3(tree1X, tree.transform.position.y*Mathf.Sqrt(Mathf.Sqrt(randomScale)), tree1Z);
 
-			GameObject tree2 = (GameObject) Instantiate(tree, treeSpawnlog[j+1] + new Vector3(0, tree.transform.position.y, 0), Quaternion.identity);
+			rotationIndex = Random.Range (0, spawnRotations.Length);
+			GameObject tree2 = (GameObject) Instantiate(tree, treeSpawnlog[j+1] + new Vector3(0, tree.transform.position.y, 0), Quaternion.Euler(0f, (float) spawnRotations[rotationIndex], 0f));
 			randomScale = Random.Range (tree.transform.localScale.y, tree.transform.localScale.y + 0.5f);
 			tree2.transform.localScale = new Vector3(1f, randomScale, 1f);
 
@@ -280,6 +236,7 @@ public class GenerateRoads : MonoBehaviour {
 		return ok;
 	}
 
+	//rounds the x and z coordinates to integers
 	List<Vector3> RoundedPositions(List<Vector3> positions) {
 		List<Vector3> res = new List<Vector3> ();
 
@@ -290,8 +247,7 @@ public class GenerateRoads : MonoBehaviour {
 		return res;
 	}
 
-
-
+	//deletes trees overlapping roads
 	void CheckRoadVSTree() {
 		for (int i= 0; i< tempTreeSpawn.Count; i++) {
 			if (tempSpawn.Contains(tempTreeSpawn[i])) {
@@ -300,7 +256,6 @@ public class GenerateRoads : MonoBehaviour {
 				CheckRoadVSTree();
 			}
 		}
-
 
 	}
 

@@ -30,18 +30,18 @@ public class AnalyticsSystem : MonoBehaviour
 
     void OnGameOver()
     {
-        Analytics.CustomEvent("Game over", new Dictionary<string, object>
-        {
-            {"books fired", GameManagerScript.booksFired },
-            {"geo thrown", GameManagerScript.geoThrown },
-            {"books hit", GameManagerScript.booksHit },
-            {"geo hit", GameManagerScript.geoHit },
-            {"nerds killed", GameManagerScript.nerdsKilled },
-            {"nerds average life", GameManagerScript.nerdsAverageLife },
-			{"time player was alive", GameManagerScript.timeAlive},
-			{"nerds killed with a book", GameManagerScript.killedByBook},
-			{"nerds killed with a geo", GameManagerScript.killedByGeo},
-			{"nerds killed with melee", GameManagerScript.killedByMelee}
-        });
+//        Analytics.CustomEvent("Game over", new Dictionary<string, object>
+//        {
+//            {"books fired", GameManagerScript.booksFired },
+//            {"geo thrown", GameManagerScript.geoThrown },
+//            {"books hit", GameManagerScript.booksHit },
+//            {"geo hit", GameManagerScript.geoHit },
+//            {"nerds killed", GameManagerScript.nerdsKilled },
+//            {"nerds average life", GameManagerScript.nerdsAverageLife },
+//			{"time player was alive", GameManagerScript.timeAlive},
+//			{"nerds killed with a book", GameManagerScript.killedByBook},
+//			{"nerds killed with a geo", GameManagerScript.killedByGeo},
+//			{"nerds killed with melee", GameManagerScript.killedByMelee}
+//        });
     }
 }
