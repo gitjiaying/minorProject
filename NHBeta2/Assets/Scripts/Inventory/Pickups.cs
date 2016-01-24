@@ -24,7 +24,8 @@ public class Pickups : MonoBehaviour {
 		Inventory.clear ();
 	}
 	void Update(){
-		cans.text = Inventory.Energy.ToString();
+        //display current amounts of pickups possesd;
+        cans.text = Inventory.Energy.ToString();
 		beers.text = Inventory.Beers.ToString();
 		bombs.text = Inventory.BombBooks.ToString();
 	}
@@ -35,8 +36,8 @@ public class Pickups : MonoBehaviour {
 
 			other.gameObject.SetActive(false);
 			Debug.Log (firstBeer);
-
-			if (firstBeer){
+            //If it is the first time this pickup is picked up, a message appears with info about the pickup
+            if (firstBeer){
 				firstBeer=false;
 				BeerInfo.enabled = true;;
 				Invoke("clearInfo",4f);

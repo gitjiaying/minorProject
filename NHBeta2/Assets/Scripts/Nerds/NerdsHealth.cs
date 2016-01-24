@@ -37,7 +37,7 @@ public class NerdsHealth : MonoBehaviour
     void Update()
     {
         if (isSinking)
-        {
+        {//sink dead nerd down thorugh the ground
             transform.Translate(new Vector3(0, -1, 0) * sinkSpeed * Time.deltaTime, Space.World);
         }
         timer += Time.deltaTime;
@@ -48,13 +48,10 @@ public class NerdsHealth : MonoBehaviour
         Animating();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount)//remove an amount of health from nerd
     {
-        Debug.Log("Damage");
         if (isDead)
             return;
-        Debug.Log("lost health");
-
         currentHealth -= amount;
         hitParticles.Play();
 
@@ -65,7 +62,7 @@ public class NerdsHealth : MonoBehaviour
         }
     }
 
-    void Death(int amount)
+    void Death(int amount) //When a nerd dies, i tfalls over and score is increased depending on how the nerd died
     {
         Debug.Log("is no more");
         isDead = true;
@@ -82,7 +79,7 @@ public class NerdsHealth : MonoBehaviour
             GameManagerScript.score += 10;
             GameManagerScript.killedByBook++;
         }
-        if (amount == 10)
+        if (amount == 25)
         {
             GameManagerScript.score += 20;
             GameManagerScript.killedByGeo++;
@@ -106,7 +103,7 @@ public class NerdsHealth : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)//Deals different amounts of damage based on what hits the nerd
     {
         if (!isDead)
 		{
@@ -115,7 +112,7 @@ public class NerdsHealth : MonoBehaviour
 				if (GameManagerScript.bookEx) {
                     Instantiate(Resources.Load("Explosion"), col.transform.position, Quaternion.identity);
 					source.PlayOneShot((AudioClip)Resources.Load("Music/Effects/Explosion"));
-					Collider[] hitNerds = Physics.OverlapSphere (col.transform.position, blastRadius,mask);
+					Collider[] hitNerds = Physics.OverlapSphere (col.transform.position, blastRadius,mask);//deals damage to surrounding nerds when books are exploding
 					int i = 0;
 					Debug.Log (hitNerds.Length);
 					while (i < hitNerds.Length) {

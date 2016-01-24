@@ -4,13 +4,10 @@ using System.Collections.Generic;
 using LitJson;
 
 public class GameManagerScript : MonoBehaviour {
-	private string ScoreUrl = "http://drproject.twi.tudelft.nl:8085/getScore";
-	private string CharUrl = "http://drproject.twi.tudelft.nl:8085/getCharacters";
-	private JsonData Scoreobj;
-	private JsonData Charobj;
+    //This script contains data used throughout the game for appearance and settings
 
-	//Player Appearrance
-	public static int playerhair;
+    //Player Appearrance
+    public static int playerhair;
 	public static int playerface;
 	public static int playershirt;
 	public static int playerpants;
@@ -85,7 +82,8 @@ public class GameManagerScript : MonoBehaviour {
 
 	
 	void Awake() {
-		if (!created) {
+        //Make this script stay and only be created once in the lifetime of the program
+        if (!created) {
 			DontDestroyOnLoad(this.gameObject);
 			created = true;
 		} else {

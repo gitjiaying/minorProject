@@ -17,7 +17,7 @@ public class GeoShoot : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {//shoots a geo on mouseclick with a set max fire rate
 		if(Input.GetKeyDown("mouse 0") && Time.time > nextFire){
 			if(GameManagerScript.geo){
 			Instantiate(Geo, shotSpawn.position, shotSpawn.rotation);

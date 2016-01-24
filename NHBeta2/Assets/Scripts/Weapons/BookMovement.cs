@@ -18,18 +18,10 @@ public class BookMovement : MonoBehaviour {
 		rb.angularVelocity = Random.insideUnitSphere * tumble;
 		Invoke ("destroy", 5);
 	}
-	
-	
-	void Update ()
-    {
-	
-	}
 
     void OnTriggerStay (Collider col)
     {
         Destroy(gameObject, 0.1f);
-
-       
     }
 	void destroy(){
 		Destroy (gameObject);

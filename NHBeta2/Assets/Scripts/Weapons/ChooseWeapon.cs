@@ -12,13 +12,12 @@ public class ChooseWeapon : MonoBehaviour {
 
     public Transform WeaponsSpawn;
 
+    //this script lets you change weapons. Instantiating and destroying the booklauncher accordingly
 	void Start ()
     {
         rbPlayer = GameObject.Find("Player").GetComponent<Rigidbody>();
-        
 	}
 
-   
     void Update ()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !launcher_ON)
@@ -41,11 +40,7 @@ public class ChooseWeapon : MonoBehaviour {
 			launcher_ON = false;
 			GameManagerScript.geo=true;
 			GameManagerScript.bookLauncher=false;
-
-			// launcher weer op false en nog deleten.
         }
-
-	    
 	}
 
     void FixedUpdate()

@@ -22,33 +22,27 @@ public class GameOverScript : MonoBehaviour {
 		slider.value=CameraMouseMovementHorizontal.horizontalspeed;
         optionsMenu.enabled = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        if (GameManagerScript.thirdPerson == false)
-        {
-            Switch.enabled = false;
-        }
-        else
-        {
-            Switch.enabled = true;
-        }
-
+    void Update()
+    {
+        //Set switch based on thirdperson setting
+        Switch.enabled = GameManagerScript.thirdperson;
     }
 
-	public void mainMenu(){
-		Time.timeScale = 1;
+    public void mainMenu()//unpause time and load menu
+    { 
+        Time.timeScale = 1;
 		Application.LoadLevel ("MainMenu");
 		GameManagerScript.pause = false;
 	}
-	public void resume(){
-		Time.timeScale = 1;
+	public void resume()//unpause time and get rid of pause menu
+    {
+        Time.timeScale = 1;
 		pause.enabled = false;
 		GameManagerScript.pause = false;
 		Cursor.visible = false;
 	}
-    public void Options()
+    public void Options()//hide pause menu, show options menu
     {
         optionsMenu.enabled = true;
         pause.enabled = false;

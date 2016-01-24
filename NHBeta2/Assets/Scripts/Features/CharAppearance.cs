@@ -14,18 +14,10 @@ public class CharAppearance : MonoBehaviour {
 	public GameObject player;
 	private Material [] temp;
 
-
-	//public GameObject unit;
-
-	void Start () {
-
-	}
-
-	// Update is called once per frame
 	void Update () {
-
 		renderCharacter();
 
+        //Assign current properties to character whose index is currently selected
 		switch (index)
 		{
 		case 6:
@@ -73,6 +65,7 @@ public class CharAppearance : MonoBehaviour {
 		}
 	}
 
+    //Set the properties of this character as the properties of the player
 	public void setAppearance(){
 
 		GameManagerScript.playerhair = hair;
@@ -83,6 +76,7 @@ public class CharAppearance : MonoBehaviour {
 		Debug.Log ("set appearance");
 	}
 
+    //Get the features of the chracter of current index
 	public void getAppearance(){
 		switch (index)
 		{
@@ -130,13 +124,9 @@ public class CharAppearance : MonoBehaviour {
 			break;
 		}
 	}
+
+    //Set materials and textures to corresponding feature values
 	void renderCharacter(){
-		//0=legs
-		//1=feet
-		//2=arms
-		//3=face
-		//4=hair
-		//5=body
 		temp = player.GetComponent<Renderer>().materials;
 		temp [3].SetColor ("_Color",(Color)skinColor);
 		temp [3].SetTexture("_MainTex",Resources.Load("Characters/Face"+ face, typeof(Texture))as Texture);

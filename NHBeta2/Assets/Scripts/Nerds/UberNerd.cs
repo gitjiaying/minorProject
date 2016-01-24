@@ -5,9 +5,7 @@ public class UberNerd : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-
+	void Start () {//makes this nerd uber
      transform.GetComponent<NerdsHealth>().setUberNerd(false);
-
 	}
 }

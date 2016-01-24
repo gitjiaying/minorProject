@@ -17,8 +17,9 @@ public class Character{
 
 }
 public class NewCharMenuScript : MonoBehaviour {
+    //This script changes the values of the character properties based on user input on the buttons
 
-	public Button hairLeft;
+    public Button hairLeft;
 	public Button hairRight;
 	public Button faceLeft;
 	public Button faceRight;

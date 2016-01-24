@@ -12,13 +12,10 @@ public class GeoStatic : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () { //animates when geo is thrown
 		if(Input.GetKeyDown("mouse 0") && /*Time.time > nextFire*/ !anim.IsPlaying("Cube|GeoGooi")){
 
 			anim.Play("Cube|GeoGooi");
-			
-			//nextFire = Time.time + fireRate;
-			
 		}
 	}
 }

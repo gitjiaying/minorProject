@@ -7,21 +7,12 @@ public class PlayerAppearance: MonoBehaviour {
 	private Material [] temp;
 	public GameObject player;
 
-	void Start () {
-	
-	}
-
+    //This script constantly updates the correct appearance of the player
 	void Update () {
 		renderCharacter ();
 	}
 
 	void renderCharacter(){
-		//0=legs
-		//1=feet
-		//2=arms
-		//3=face
-		//4=hair
-		//5=body
 		temp = player.GetComponent<Renderer>().materials;
 		temp [3].SetColor ("_Color",(Color)GameManagerScript.playerskinColor);
 		temp [3].SetTexture("_MainTex",Resources.Load("Characters/Face"+ GameManagerScript.playerface, typeof(Texture))as Texture);

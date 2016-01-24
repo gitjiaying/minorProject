@@ -14,14 +14,13 @@ public class NerdsAttack : MonoBehaviour {
     GameObject nerd;
 
 	void Awake (){
-
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         nerdsHealth = GetComponent<NerdsHealth>();
         nerd = GameObject.FindGameObjectWithTag("Nerd");
 	}
 	
-    void OnTriggerEnter (Collider other)
+    void OnTriggerEnter (Collider other)//check if touching player
     {
         if (other.gameObject == player)
         {
@@ -42,9 +41,8 @@ public class NerdsAttack : MonoBehaviour {
     }
 
 
-    void Update () {
-
-        
+    void Update ()//If touching nerd will attack with frequency "timebetweenattacks"
+    { 
         timer += Time.deltaTime;
         if (timer >= timeBetweenAttacks && playerInRange && nerdsHealth.currentHealth > 0)
         {

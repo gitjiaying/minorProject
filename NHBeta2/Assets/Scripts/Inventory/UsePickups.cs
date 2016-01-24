@@ -5,17 +5,11 @@ public class UsePickups : MonoBehaviour {
 
     public AudioSource errorSound;
     public PlayerController player;
-    //public GameObject book;
 	public PlayerHealth health;
 	public int healthboost;
 	public GeoShoot geo;
 	public int stamboost;
-	// Use this for initialization
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
 	void Update () {
 	   if (Input.GetKeyDown("r")) {
 			useBeer();
@@ -29,7 +23,8 @@ public class UsePickups : MonoBehaviour {
 	}
     
     void useBeer(){
-		if (Inventory.Beers==0){
+        //if the player has at least one beer, he will use it and walk/sprint slower, and take longer between shots for 5 seconds. He will also gain health (boost amount) with max at starting health
+        if (Inventory.Beers==0){
             errorSound.Play();
         }else{
 			Inventory.Beers --;
@@ -46,7 +41,8 @@ public class UsePickups : MonoBehaviour {
 	}
 
 	void useEnergy(){
-		if (Inventory.Energy == 0) {
+        //if the player has at least one energy drink, he wil use it and gain a boost of stamina
+        if (Inventory.Energy == 0) {
 			errorSound.Play ();
 		} else {
 			Inventory.Energy--;
@@ -58,7 +54,8 @@ public class UsePickups : MonoBehaviour {
 		}
 	}
     void useBB(){
-		if (Inventory.BombBooks == 0) {
+        //if the player has at least one bombbooks he wil use it and books wil become exploding for 5 seconds;
+        if (Inventory.BombBooks == 0) {
 			errorSound.Play ();
 		} else {
 			Inventory.BombBooks--;

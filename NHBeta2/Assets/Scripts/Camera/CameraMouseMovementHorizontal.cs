@@ -18,9 +18,7 @@ public class CameraMouseMovementHorizontal : MonoBehaviour {
     {
 		shaker = GetComponent<TargetShaker> ();
 		shaker.enabled = false;
-
     }
-	
 	
 	void Update ()
     {
@@ -30,23 +28,21 @@ public class CameraMouseMovementHorizontal : MonoBehaviour {
 			shaker.enabled = true;
 		}
     }
+
     void LateUpdate()
     {
 		Orbit ();
     }
 
-    void Orbit()
-	{
+    void Orbit()//rotate camera horizontaly based on mouse movement
+    {
 		rotation = Input.GetAxis ("Mouse X") * horizontalspeed;
 		rotation *= Time.deltaTime;
-		if (target != null) {
-			// Keep us at orbitDistance from target
-			float xpos = target.position.x;
-			float zpos = target.position.z;
+		if (target != null){
 			Vector3 pos = transform.position;
-			pos.x = xpos;
-			pos.z = zpos;
-			transform.position = pos;
+			pos.x = target.position.x;//Set x and z coordinates to follow the player
+            pos.z = target.position.z;
+            transform.position = pos;
 
 			transform.rotation = target.rotation;
 			transform.Rotate (new Vector3 (0, 180, 0));

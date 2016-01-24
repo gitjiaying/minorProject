@@ -7,7 +7,6 @@ using LitJson;
 public class LoginScript : MonoBehaviour {
 	public GameObject wrong;
 	public GameObject newuser;
-	//public GameObject Play;
 	public InputField username;
 	public InputField password;
 	public static int userID;
@@ -23,26 +22,22 @@ public class LoginScript : MonoBehaviour {
 	private JsonData Charobj;
 
 	private bool loginStatus;
-	// Use this for initialization
+
 	void Start () {
 		wrong.SetActive (false);
 		newuser.SetActive (false);
-		//Play.SetActive (false);
-
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 	public void startcheck(){
-		wrong.SetActive (false);
+        //Start to check inputs with server
+        wrong.SetActive (false);
 		newuser.SetActive (false);
 		StartCoroutine(sendLogin(username.text,password.text));
 		Invoke ("checkFields", 0.5f);
 	}
 	public void checkFields(){
-		Debug.Log("working");
+        //Start game or give error based on server response
+        Debug.Log("working");
 		if (loginStatus==true) {
 			startGame();
 		}else{
@@ -50,7 +45,7 @@ public class LoginScript : MonoBehaviour {
 		}
 	}
 
-	public void startGame(){
+	public void startGame(){//First loads characters and highscores, then starts the game
 		Debug.Log ("Starting as user: " + userID);
 		StartCoroutine (getScore ());
 		Invoke ("sethighscores", 0.5f);
@@ -64,7 +59,8 @@ public class LoginScript : MonoBehaviour {
 	}
 
 	public void newUser(){
-		wrong.SetActive (false);
+        //Send new data to server to create a new character. Gives error if there are empty fields. If character is created, game starts
+        wrong.SetActive (false);
 		newuser.SetActive (false);
 		if (username.text == "" || password.text == "") {
 			newuser.SetActive (true);

@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MainMenuScript : MonoBehaviour {
+    //This script operates all the buttons on the main menu
 
-	public Canvas quitMenu;
+    public Canvas quitMenu;
 	public Canvas optionsMenu;
 	public Canvas highscoresMenu;
 	public GameObject controls;
@@ -112,7 +113,8 @@ public class MainMenuScript : MonoBehaviour {
 	}
 
 	void getHighscores(){
-		List<int> highscores = new List<int> (0);
+        //Stores highscores and sorts to get the highest 5 to display
+        List<int> highscores = new List<int> (0);
 		List<int> scores = GameManagerScript.scores;
 		foreach (int score in scores) {
 			Debug.Log (score.ToString());

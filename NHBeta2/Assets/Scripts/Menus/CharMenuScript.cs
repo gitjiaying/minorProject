@@ -53,14 +53,16 @@ public class CharMenuScript : MonoBehaviour {
 		from = schijf.transform.eulerAngles.y;
 	}
 	void Update(){
-		lerpValue += rotSpeed * Time.deltaTime;
+        //Rotate schijf smoothly to rotation "to"
+        lerpValue += rotSpeed * Time.deltaTime;
 		listen.enabled = GameManagerScript.music;
 		yDegree = Mathf.LerpAngle(from, to, lerpValue);
 		schijf.transform.eulerAngles = new Vector3 (0, yDegree, 0);
 	}
 	
 	public void next(){
-		to= schijf.transform.eulerAngles.y;
+        //Change "to" for rotation and ad one to charIndex
+        to = schijf.transform.eulerAngles.y;
 		from = schijf.transform.eulerAngles.y;
 		to+= 60f;
 		lerpValue = 0f;
@@ -73,7 +75,8 @@ public class CharMenuScript : MonoBehaviour {
 	}
 
 	public void previous(){
-		from = schijf.transform.eulerAngles.y;
+        //Change "to" for rotation and subract one from charIndex
+        from = schijf.transform.eulerAngles.y;
 		to -= 60f;
 		lerpValue = 0f;
 		if (charIndex == 1) {
@@ -84,12 +87,14 @@ public class CharMenuScript : MonoBehaviour {
 	}
 
 	public void newChar(){
-		editMenu.enabled = true;
+        //Change interface to edit
+        editMenu.enabled = true;
 		main.SetActive (false);
 	}
 
 	public void choose(){
-		switch (charIndex)
+        //Sets player appearance to currently selected character
+        switch (charIndex)
 		{
 		case 6:
 			char6.setAppearance();

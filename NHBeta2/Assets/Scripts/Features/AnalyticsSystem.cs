@@ -8,13 +8,6 @@ public class AnalyticsSystem : MonoBehaviour
 
     private bool trigger = true;
 
-    void Start()
-    {
-
-
-    }
-
-
     void Update()
     {
   

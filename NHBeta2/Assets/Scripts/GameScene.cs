@@ -53,7 +53,7 @@ public class GameScene : MonoBehaviour {
 		lastSprinterCount =0;
 	}
 	
-	void Update () {
+	void Update () {//operates the counter and pausing
         score.text = GameManagerScript.score.ToString();
         counter += Time.deltaTime;
 		if (!GameManagerScript.alive) {
@@ -84,7 +84,7 @@ public class GameScene : MonoBehaviour {
 		scorePause.text=GameManagerScript.score.ToString();
 	}
 		
-	void spawn(){
+	void spawn(){//spawns a nerd at a random positoin n the map
 		Vector3 pos = new Vector3 (Random.Range (minX, maxX), height, Random.Range (minY, maxY));
 		Vector3 rot = new Vector3 (0, 0, 0);
 		Instantiate(nerd, pos,Quaternion.Euler(rot));
@@ -114,7 +114,7 @@ public class GameScene : MonoBehaviour {
 			lastSprinterCount += sprinterRate;
         }
     }
-	void popup(){
+	void popup(){//randomly spawns popups around the map
 		int rand = Random.Range (1, 4);
 		Vector3 pos = new Vector3 (Random.Range (minX, maxX), popupHeight, Random.Range (minY, maxY));
 		Vector3 rot = new Vector3 (-90, 0, 0);

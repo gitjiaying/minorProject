@@ -12,9 +12,7 @@ public class PlayerStamina : MonoBehaviour {
     PlayerController playerController;
 
 	void Awake () {
-        
         currentStamina = startingStamina;
-
     }
 
     void Update ()

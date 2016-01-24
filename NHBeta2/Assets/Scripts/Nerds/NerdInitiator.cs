@@ -10,7 +10,7 @@ public class NerdInitiator : MonoBehaviour {
 
 
 	
-	void Start ()
+	void Start ()//instantiate a new nerd with health and speed based on a function of time(counter)
     {
 		int averageHealth = Mathf.RoundToInt(health.startingHealth + healthRate * GameScene.counter);
         health.currentHealth = averageHealth;

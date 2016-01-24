@@ -14,21 +14,5 @@ public class NerdsMovement : MonoBehaviour {
         playerHealth = player.GetComponent<PlayerHealth>();
         nerdHealth = GetComponent<NerdsHealth>();
         nav = GetComponent<NavMeshAgent>();
-    
-	
-	}
-	
-
-	void Update () {
-
-        //if (nerdHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
-        {
-           // nav.SetDestination(player.position);
-        }
-        //else
-        {
-            //nav.enabled = false;
-        }
-	
 	}
 }

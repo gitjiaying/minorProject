@@ -10,7 +10,7 @@ public class NerdSprinterInitiator : MonoBehaviour {
 
 
 	
-	void Start ()
+	void Start ()//instantiates a sprinter nerd with speed and health based on a timer (counter)
     {
 		int averageHealth = Mathf.RoundToInt(health.startingHealth + healthRate * GameScene.counter);
         health.currentHealth = averageHealth;
@@ -18,7 +18,4 @@ public class NerdSprinterInitiator : MonoBehaviour {
         int averageSpeed = Mathf.RoundToInt(follow.speed + speedRate * GameScene.counter);
         follow.speed = Random.Range(averageSpeed - 1, averageSpeed + 1);
 	}
-	
-
-
 }

@@ -17,7 +17,7 @@ public class TargetShaker : MonoBehaviour {
 		shakeDecreaser = 1f;
 	}
 
-	void Update() {
+	void Update() {//will shake the camera a random amount (called in other script when damage is taken)
 		thisposition = transform.localPosition;
 		if (shakeTime > 0f) {
 			shakeAmount = Random.Range (0.5f, 1f);
